@@ -1,0 +1,28 @@
+﻿<Window x:Class="FurnitureManagement.Views.LocationN.ItemsShow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ItemsShow" Height="auto" Width="350" ResizeMode="NoResize">
+    <Grid>
+        <DataGrid Name="dg_ItemsShow" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" >
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Item History" Click="ItemHistory_Click">
+                        <MenuItem.Icon>
+                            <Image Name="itemhistory"  Height="20" Width="20"></Image>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id }"/>
+                <DataGridTextColumn Width="70" Header="Job Item"   Binding="{Binding JobItemId }"/>
+                <DataGridTextColumn Width="70" Header="Location"   Binding="{Binding Location.Name }"/>
+
+                <DataGridTextColumn Width="150" Header="Created At" Binding="{Binding CreatedAt }"/>
+            </DataGrid.Columns>
+
+            
+        </DataGrid>
+    </Grid>
+</Window>

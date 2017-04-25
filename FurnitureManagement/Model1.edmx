@@ -1,0 +1,1018 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FurnitureModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="Article_Id" />
+          </Key>
+          <Property Name="Article_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Article_DESC" Type="nvarchar(max)" />
+          <Property Name="Acc_Unit" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category" Type="int" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+          </Key>
+          <Property Name="Category_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category_DESC" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Indent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IndentNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="IndentMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IndentId" Type="int" />
+          <Property Name="MaterialId" Type="int" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="1" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobItemId" Type="int" />
+          <Property Name="UIN" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="Ceated At" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CANo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContractorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AmountApproval" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FinancialYear" Type="datetime" />
+          <Property Name="JobDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="AmountContract" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CompletionDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="Category" Type="int" />
+        </EntityType>
+        <EntityType Name="JobItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="int" />
+          <Property Name="ArticleId" Type="int" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="Category" Type="int" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="1" />
+        </EntityType>
+        <EntityType Name="MaterialItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="MaterialId" Type="int" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="1" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Officer">
+          <Key>
+            <PropertyRef Name="Officer_id" />
+          </Key>
+          <Property Name="Officer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Occupant_Name" Type="nvarchar(max)" />
+          <Property Name="Rank" Type="nvarchar" MaxLength="50" />
+          <Property Name="ArmyNo" Type="varchar" MaxLength="50" />
+          <Property Name="Date_MarchIn" Type="date" />
+          <Property Name="Location" Type="int" />
+          <Property Name="Location_Name" Type="nvarchar(max)" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_Marchout" Type="date" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="unit_Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="int" />
+        </EntityType>
+        <Association Name="FK_Articles_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_Id" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndentMaterial_Indent">
+          <End Role="Indent" Type="Self.Indent" Multiplicity="0..1" />
+          <End Role="IndentMaterial" Type="Self.IndentMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Indent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndentMaterial">
+              <PropertyRef Name="IndentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndentMaterial_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="IndentMaterial" Type="Self.IndentMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndentMaterial">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ToJobItem">
+          <End Role="JobItems" Type="Self.JobItems" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="JobItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ToLocation">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemLocation_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="ItemLocation" Type="Self.ItemLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemLocation">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemLocation_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="ItemLocation" Type="Self.ItemLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemLocation">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_Id" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobItems_ToArticle">
+          <End Role="Articles" Type="Self.Articles" Multiplicity="0..1" />
+          <End Role="JobItems" Type="Self.JobItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="Article_Id" />
+            </Principal>
+            <Dependent Role="JobItems">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobItems_ToJob">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="JobItems" Type="Self.JobItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobItems">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialItem_ToItemId">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="MaterialItem" Type="Self.MaterialItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialItem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialItem_ToMaterialID">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="MaterialItem" Type="Self.MaterialItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialItem">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Officer_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Officer" Type="Self.Officer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Officer">
+              <PropertyRef Name="Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unit_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FurnitureModelStoreContainer">
+          <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Indent" EntityType="Self.Indent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IndentMaterial" EntityType="Self.IndentMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemLocation" EntityType="Self.ItemLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobItems" EntityType="Self.JobItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialItem" EntityType="Self.MaterialItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Officer" EntityType="Self.Officer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Articles_Category" Association="Self.FK_Articles_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndentMaterial_Indent" Association="Self.FK_IndentMaterial_Indent">
+            <End Role="Indent" EntitySet="Indent" />
+            <End Role="IndentMaterial" EntitySet="IndentMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndentMaterial_Material" Association="Self.FK_IndentMaterial_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="IndentMaterial" EntitySet="IndentMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ToJobItem" Association="Self.FK_Item_ToJobItem">
+            <End Role="JobItems" EntitySet="JobItems" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ToLocation" Association="Self.FK_Item_ToLocation">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemLocation_Item" Association="Self.FK_ItemLocation_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="ItemLocation" EntitySet="ItemLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemLocation_Location" Association="Self.FK_ItemLocation_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="ItemLocation" EntitySet="ItemLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Category" Association="Self.FK_Job_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobItems_ToArticle" Association="Self.FK_JobItems_ToArticle">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="JobItems" EntitySet="JobItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobItems_ToJob" Association="Self.FK_JobItems_ToJob">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="JobItems" EntitySet="JobItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Category" Association="Self.FK_Location_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialItem_ToItemId" Association="Self.FK_MaterialItem_ToItemId">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="MaterialItem" EntitySet="MaterialItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialItem_ToMaterialID" Association="Self.FK_MaterialItem_ToMaterialID">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="MaterialItem" EntitySet="MaterialItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Officer_Location" Association="Self.FK_Officer_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Officer" EntitySet="Officer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unit_Location" Association="Self.FK_Unit_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Unit" EntitySet="Unit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FurnitureModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Article_Id" />
+          </Key>
+          <Property Name="Article_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Article_DESC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Acc_Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_Articles_Category" FromRole="Articles" ToRole="Category" />
+          <NavigationProperty Name="JobItems" Relationship="Self.FK_JobItems_ToArticle" FromRole="Articles" ToRole="JobItems" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Category_Id" />
+          </Key>
+          <Property Name="Category_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category_DESC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_Articles_Category" FromRole="Category" ToRole="Articles" />
+          <NavigationProperty Name="Jobs" Relationship="Self.FK_Job_Category" FromRole="Category" ToRole="Job" />
+          <NavigationProperty Name="Locations" Relationship="Self.FK_Location_Category" FromRole="Category" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Indent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IndentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="IndentMaterials" Relationship="Self.FK_IndentMaterial_Indent" FromRole="Indent" ToRole="IndentMaterial" />
+        </EntityType>
+        <EntityType Name="IndentMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IndentId" Type="Int32" />
+          <Property Name="MaterialId" Type="Int32" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Indent" Relationship="Self.FK_IndentMaterial_Indent" FromRole="IndentMaterial" ToRole="Indent" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_IndentMaterial_Material" FromRole="IndentMaterial" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobItemId" Type="Int32" />
+          <Property Name="UIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="JobItem" Relationship="Self.FK_Item_ToJobItem" FromRole="Item" ToRole="JobItems" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Item_ToLocation" FromRole="Item" ToRole="Location" />
+          <NavigationProperty Name="ItemLocations" Relationship="Self.FK_ItemLocation_Item" FromRole="Item" ToRole="ItemLocation" />
+          <NavigationProperty Name="MaterialItems" Relationship="Self.FK_MaterialItem_ToItemId" FromRole="Item" ToRole="MaterialItem" />
+        </EntityType>
+        <EntityType Name="ItemLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="Ceated_At" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_ItemLocation_Item" FromRole="ItemLocation" ToRole="Item" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_ItemLocation_Location" FromRole="ItemLocation" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CANo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContractorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AmountApproval" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FinancialYear" Type="DateTime" Precision="3" />
+          <Property Name="JobDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AmountContract" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CompletionDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Category" Type="Int32" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_Job_Category" FromRole="Job" ToRole="Category" />
+          <NavigationProperty Name="JobItems" Relationship="Self.FK_JobItems_ToJob" FromRole="Job" ToRole="JobItems" />
+        </EntityType>
+        <EntityType Name="JobItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" />
+          <Property Name="ArticleId" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_JobItems_ToArticle" FromRole="JobItems" ToRole="Articles" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_Item_ToJobItem" FromRole="JobItems" ToRole="Item" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_JobItems_ToJob" FromRole="JobItems" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Category" Type="Int32" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_Location_Category" FromRole="Location" ToRole="Category" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_Item_ToLocation" FromRole="Location" ToRole="Item" />
+          <NavigationProperty Name="ItemLocations" Relationship="Self.FK_ItemLocation_Location" FromRole="Location" ToRole="ItemLocation" />
+          <NavigationProperty Name="Officers" Relationship="Self.FK_Officer_Location" FromRole="Location" ToRole="Officer" />
+          <NavigationProperty Name="Units" Relationship="Self.FK_Unit_Location" FromRole="Location" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="1" />
+          <NavigationProperty Name="IndentMaterials" Relationship="Self.FK_IndentMaterial_Material" FromRole="Material" ToRole="IndentMaterial" />
+          <NavigationProperty Name="MaterialItems" Relationship="Self.FK_MaterialItem_ToMaterialID" FromRole="Material" ToRole="MaterialItem" />
+        </EntityType>
+        <EntityType Name="MaterialItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="MaterialId" Type="Int32" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_MaterialItem_ToItemId" FromRole="MaterialItem" ToRole="Item" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_MaterialItem_ToMaterialID" FromRole="MaterialItem" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="Officer">
+          <Key>
+            <PropertyRef Name="Officer_id" />
+          </Key>
+          <Property Name="Officer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Occupant_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArmyNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date_MarchIn" Type="DateTime" Precision="0" />
+          <Property Name="Location" Type="Int32" />
+          <Property Name="Location_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Marchout" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Location1" Relationship="Self.FK_Officer_Location" FromRole="Officer" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="unit_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="Int32" />
+          <NavigationProperty Name="Location1" Relationship="Self.FK_Unit_Location" FromRole="Unit" ToRole="Location" />
+        </EntityType>
+        <Association Name="FK_Articles_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Articles" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_Id" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobItems_ToArticle">
+          <End Role="Articles" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="JobItems" Type="Self.JobItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articles">
+              <PropertyRef Name="Article_Id" />
+            </Principal>
+            <Dependent Role="JobItems">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_Id" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndentMaterial_Indent">
+          <End Role="Indent" Type="Self.Indent" Multiplicity="0..1" />
+          <End Role="IndentMaterial" Type="Self.IndentMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Indent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndentMaterial">
+              <PropertyRef Name="IndentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndentMaterial_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="IndentMaterial" Type="Self.IndentMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndentMaterial">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ToJobItem">
+          <End Role="JobItems" Type="Self.JobItem" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="JobItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ToLocation">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemLocation_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="ItemLocation" Type="Self.ItemLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemLocation">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialItem_ToItemId">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="MaterialItem" Type="Self.MaterialItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialItem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemLocation_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="ItemLocation" Type="Self.ItemLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemLocation">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobItems_ToJob">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="JobItems" Type="Self.JobItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobItems">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Officer_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Officer" Type="Self.Officer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Officer">
+              <PropertyRef Name="Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unit_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialItem_ToMaterialID">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="MaterialItem" Type="Self.MaterialItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialItem">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FurnitureEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Indents" EntityType="Self.Indent" />
+          <EntitySet Name="IndentMaterials" EntityType="Self.IndentMaterial" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="ItemLocations" EntityType="Self.ItemLocation" />
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="JobItems" EntityType="Self.JobItem" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Materials" EntityType="Self.Material" />
+          <EntitySet Name="MaterialItems" EntityType="Self.MaterialItem" />
+          <EntitySet Name="Officers" EntityType="Self.Officer" />
+          <EntitySet Name="Units" EntityType="Self.Unit" />
+          <AssociationSet Name="FK_Articles_Category" Association="Self.FK_Articles_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobItems_ToArticle" Association="Self.FK_JobItems_ToArticle">
+            <End Role="Articles" EntitySet="Articles" />
+            <End Role="JobItems" EntitySet="JobItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Category" Association="Self.FK_Job_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Job" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Category" Association="Self.FK_Location_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndentMaterial_Indent" Association="Self.FK_IndentMaterial_Indent">
+            <End Role="Indent" EntitySet="Indents" />
+            <End Role="IndentMaterial" EntitySet="IndentMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndentMaterial_Material" Association="Self.FK_IndentMaterial_Material">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="IndentMaterial" EntitySet="IndentMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ToJobItem" Association="Self.FK_Item_ToJobItem">
+            <End Role="JobItems" EntitySet="JobItems" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ToLocation" Association="Self.FK_Item_ToLocation">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemLocation_Item" Association="Self.FK_ItemLocation_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="ItemLocation" EntitySet="ItemLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialItem_ToItemId" Association="Self.FK_MaterialItem_ToItemId">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="MaterialItem" EntitySet="MaterialItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemLocation_Location" Association="Self.FK_ItemLocation_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="ItemLocation" EntitySet="ItemLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobItems_ToJob" Association="Self.FK_JobItems_ToJob">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="JobItems" EntitySet="JobItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Officer_Location" Association="Self.FK_Officer_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Officer" EntitySet="Officers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unit_Location" Association="Self.FK_Unit_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Unit" EntitySet="Units" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialItem_ToMaterialID" Association="Self.FK_MaterialItem_ToMaterialID">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="MaterialItem" EntitySet="MaterialItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FurnitureModelStoreContainer" CdmEntityContainer="FurnitureEntities">
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="FurnitureModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
+                <ScalarProperty Name="Article_DESC" ColumnName="Article_DESC" />
+                <ScalarProperty Name="Acc_Unit" ColumnName="Acc_Unit" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="FurnitureModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_DESC" ColumnName="Category_DESC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Indents">
+            <EntityTypeMapping TypeName="FurnitureModel.Indent">
+              <MappingFragment StoreEntitySet="Indent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IndentNo" ColumnName="IndentNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndentMaterials">
+            <EntityTypeMapping TypeName="FurnitureModel.IndentMaterial">
+              <MappingFragment StoreEntitySet="IndentMaterial">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IndentId" ColumnName="IndentId" />
+                <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="FurnitureModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobItemId" ColumnName="JobItemId" />
+                <ScalarProperty Name="UIN" ColumnName="UIN" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemLocations">
+            <EntityTypeMapping TypeName="FurnitureModel.ItemLocation">
+              <MappingFragment StoreEntitySet="ItemLocation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Ceated_At" ColumnName="Ceated At" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="FurnitureModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobNo" ColumnName="JobNo" />
+                <ScalarProperty Name="CANo" ColumnName="CANo" />
+                <ScalarProperty Name="ContractorName" ColumnName="ContractorName" />
+                <ScalarProperty Name="AmountApproval" ColumnName="AmountApproval" />
+                <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="AmountContract" ColumnName="AmountContract" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobItems">
+            <EntityTypeMapping TypeName="FurnitureModel.JobItem">
+              <MappingFragment StoreEntitySet="JobItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="FurnitureModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="FurnitureModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialItems">
+            <EntityTypeMapping TypeName="FurnitureModel.MaterialItem">
+              <MappingFragment StoreEntitySet="MaterialItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Officers">
+            <EntityTypeMapping TypeName="FurnitureModel.Officer">
+              <MappingFragment StoreEntitySet="Officer">
+                <ScalarProperty Name="Officer_id" ColumnName="Officer_id" />
+                <ScalarProperty Name="Occupant_Name" ColumnName="Occupant_Name" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="ArmyNo" ColumnName="ArmyNo" />
+                <ScalarProperty Name="Date_MarchIn" ColumnName="Date_MarchIn" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Location_Name" ColumnName="Location_Name" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Date_Marchout" ColumnName="Date_Marchout" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="FurnitureModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="unit_Number" ColumnName="unit_Number" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

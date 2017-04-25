@@ -1,0 +1,75 @@
+﻿<Page x:Class="FurnitureManagement.Views.MaterialView.AssignMaterial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurnitureManagement.Views.MaterialView"
+        xmlns:my="clr-namespace:FurnitureManagement"
+
+        mc:Ignorable="d"
+        Title="AssignMaterial" >
+    <Grid >
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,0,5" />
+            </Style>
+
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"  />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="1" Grid.Column="0"  Style="{ StaticResource SubHeading }"  >Assign Material </Label>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,5,0,5">
+
+            <StackPanel Orientation="Horizontal">
+                <Label FontWeight="DemiBold" >ID : </Label>
+                <Label Name="Input_ID"  Margin="0,0,10,0"></Label>
+                <Label  FontWeight="DemiBold"  >Job No :</Label>
+                <Label Name="Input_JobNo" Margin="0,0,10,0"></Label>
+                <Label FontWeight="DemiBold"  >Type :</Label>
+                <Label Name="Input_Type" Margin="0,0,10,0" ></Label>
+                <Label FontWeight="DemiBold"  >Category :</Label>
+                <Label Name="Input_Category" Margin="0,0,10,0"></Label>
+                <Label FontWeight="DemiBold" > Location :</Label>
+                <Label Name="Input_Location" Margin="0,0,10,0"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="5" >
+                <Label Width="130"  HorizontalContentAlignment="Center" >Material</Label>
+                <Label Width="100" Margin="10,0,0,0" HorizontalContentAlignment="Center" >Quantity</Label>
+                <Label Margin="10,0,0,0" >Remaining Quantity</Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <ComboBox Name="CB_Material" HorizontalContentAlignment="Center" Width="120" Height="25" Margin="0,0,0,0" DisplayMemberPath="Display"
+                SelectedValuePath="Id"
+                  SelectionChanged="Material_SelectionChanged" >
+                </ComboBox>
+
+                <TextBox Width="90" Name="Input_Quantity" Height="25" Margin="30,0,0,0" Style="{StaticResource  RoundedTextBox}" ></TextBox>
+
+                <Label Name="Input_RemaingQuantity" Margin="70,0,0,0"></Label>
+                
+            </StackPanel>
+
+            <Button Width="100"  Margin="5,10" Click="MaterialAssign_Click" HorizontalAlignment="Left" >Assign</Button>
+
+            <Label FontWeight="Bold" HorizontalAlignment="Left" Margin="0,5">OR</Label>
+            
+            <Label FontSize="15" FontWeight="DemiBold"  Margin="0,5" >Material Bundle</Label>
+            <ComboBox Width="100" Margin="0,0,0,10" HorizontalAlignment="Left"></ComboBox>
+            <Button Width="100" Click="MaterialBundleAssign_Click" HorizontalAlignment="Left">Assign</Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

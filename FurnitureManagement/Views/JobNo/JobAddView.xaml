@@ -1,0 +1,131 @@
+﻿<Page x:Class="FurnitureManagement.Views.JobNo.JobAddView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurnitureManagement.Views.JobNo"
+        xmlns:my="clr-namespace:FurnitureManagement"
+        mc:Ignorable="d"
+        Title="JobAddView" >
+    <Grid Margin="10" >
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,0,5" />
+            </Style>
+
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"  />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+
+
+        <Label  Grid.Row="1"  Grid.Column="0" Style="{StaticResource SubHeading}">Add Job</Label>
+
+        <Label Grid.Row="2" Grid.Column="0" >Job No</Label>
+        <TextBox Name="Input_JobNo" Grid.Row="2" Grid.Column="1" Style="{StaticResource  RoundedTextBox}" Width="150"></TextBox>
+
+        <Label Grid.Row="2" Grid.Column="2" >CA No</Label>
+        <TextBox Name="Input_CANo" Grid.Row="2" Grid.Column="3" Width="150" Style="{StaticResource  RoundedTextBox}" ></TextBox>
+
+        <Label Grid.Row="3" Grid.Column="0" >Contractor Name</Label>
+        <TextBox Name="Input_ContractorName" Grid.Row="3" Grid.Column="1" Width="150" Style="{StaticResource  RoundedTextBox}" ></TextBox>
+
+        <Label Grid.Row="3" Grid.Column="2" >Amount Approval</Label>
+        <TextBox Name="Input_AmountApproval"  Grid.Row="3" Grid.Column="3" Width="150" Style="{StaticResource  RoundedTextBox}"></TextBox>
+
+        <Label Grid.Row="4" Grid.Column="0" >Financial Year</Label>
+        <DatePicker Name="Input_FinancialYear" Grid.Row="4" Grid.Column="1" Width="150"
+             CalendarOpened="Input_FinancialYear_CalendarOpened"
+              
+                    
+                    ></DatePicker>
+        
+
+        <Label Grid.Row="4" Grid.Column="2" >Job Description</Label>
+        <TextBox Name="Input_Description" Grid.Row="4" Grid.Column="3" Width="150" Grid.RowSpan="2"></TextBox>
+
+        <Label Grid.Row="5" Grid.Column="0" >Amount Contract</Label>
+        <TextBox Name="Input_AmountContract" Grid.Row="5" Grid.Column="1" Width="150" Style="{StaticResource  RoundedTextBox}" ></TextBox>
+
+        <Label Grid.Row="6" Grid.Column="2" >Completion Date</Label>
+        <DatePicker Name="Input_CompletionDate"  Grid.Row="6" Grid.Column="3" Width="150"></DatePicker>
+
+        <Label Grid.Row="6" Grid.Column="0" >Category </Label>
+        <ComboBox Name="cmb_Category" Grid.Row="6" Grid.Column="1" Width="150"
+               DisplayMemberPath="Category_DESC"
+               SelectedValuePath="Category_Id"
+                  >
+            
+            
+            
+        </ComboBox>
+
+
+
+
+
+        <Button  Grid.Row="7" Grid.Column="1" Width="70"  Click="AddEdit_Click">Add</Button>
+
+
+
+
+        <Grid Margin="10" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="5" >
+            <DataGrid Name="dataGrid"  AutoGenerateColumns="False" CanUserAddRows="False"  >
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete" Click="DeleteJob_Click">
+                            <MenuItem.Icon>
+                                <Image Name="Edit"  Height="20" Width="20"></Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="showItems" Click="ShowItems_Click">
+                            <MenuItem.Icon>
+                                <Image Name="ShowItem" Height="20" Width="20"></Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
+
+
+                    </ContextMenu>
+
+                </DataGrid.ContextMenu>
+                
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Job No" Binding="{Binding JobNo}" />
+                    <DataGridTextColumn Header="CA No" Binding="{Binding CANo}" />
+                    <DataGridTextColumn Header="Contractor Name" Binding="{Binding ContractorName}" />
+                    <DataGridTextColumn Header="Amount Approval" Binding="{Binding AmountApproval}" />
+                    <DataGridTextColumn Header="Financial Year" Binding="{Binding FinancialYear}" />
+                    <DataGridTextColumn Header="Job Description" Binding="{Binding JobDescription}" />
+                    <DataGridTextColumn Header="Amount Contract" Binding="{Binding AmountContract}" />
+                    <DataGridTextColumn Header="Completion Date" Binding="{Binding CompletionDate}" />
+                    <DataGridTextColumn Header="Category" Binding="{Binding CATEGORYDESC }" />
+                    <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt }" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+
+
+    </Grid>
+</Page>

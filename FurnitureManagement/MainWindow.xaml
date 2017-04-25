@@ -1,0 +1,87 @@
+﻿<Window x:Class="FurnitureManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurnitureManagement"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1200" Width="1580" >
+    <Grid Margin="10" >
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,0,5" />
+            </Style>
+
+            <Style BasedOn="{StaticResource {x:Type Label}}"
+           TargetType="Label"
+           x:Key="LabelStyle">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+
+
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"  />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!--HEADER-->
+
+        <StackPanel Grid.Row="0"  Margin="0,0,0,5">
+            <Label HorizontalAlignment="Left" FontSize="25" FontWeight="Medium" >Furniture Management</Label>
+            <DockPanel x:Name="docPanWeaponsView" LastChildFill="False" Margin="0,5">
+                <Menu Name="menuMain" Height="20" DockPanel.Dock="Top" >
+
+                    <MenuItem Header="Home" >
+                        <MenuItem Header="View Warehouse" Click="Warehouse_Click" />
+                    </MenuItem>
+
+
+                    <MenuItem Header="Furniture" >
+                        <MenuItem Header="Add Furniture" Click="AddFurniture_Click" />
+                        <MenuItem Header="View Furniture" Click="ViewFurniture_Click" />
+                        <MenuItem Header="Assign Furniture" Click="AssignFurniture_Click" />
+                    </MenuItem>
+
+                    <MenuItem Header="Location" Name="menuItemAmmunation">
+                        <MenuItem Header="Add Location" Click="AddLocation_Click" />
+                    </MenuItem>
+
+
+                    <MenuItem Header="Maintenance" Name="menuItemUniform">
+                        <MenuItem Header="Material" Click="Material_Click" />
+                        <MenuItem Header="Update Material Rates" Click="MaterialRateChange_Click" />
+                        <MenuItem Header="Add Indent" Click="MaterialAddEdit_Click" />
+                        <MenuItem Header="View Locations" Click="LocationList_Click" />
+                    </MenuItem>
+
+                    <MenuItem Header="Job" >
+                        <MenuItem Header="Add Job" Click="AddJob_Click" />
+                    </MenuItem>
+
+
+
+
+
+                </Menu>
+            </DockPanel>
+        </StackPanel>
+
+
+
+
+        <Frame Name="Frame"  Grid.Row="1" Height="500" NavigationUIVisibility="Hidden" ></Frame>
+
+    </Grid>
+</Window>

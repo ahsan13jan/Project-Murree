@@ -1,0 +1,25 @@
+﻿<Window x:Class="FurnitureManagement.Views.JobNo.ShowJobItems"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ShowJobItems" Height="300" Width="300">
+    <Grid>
+        <DataGrid Name="dg_ShowItems" CanUserAddRows="False" AutoGenerateColumns="False" >
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="showItemag" Click="ShowItems_click" Header="Item History">
+                        
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Type" Width="100" Binding="{Binding Article.Article_DESC}"/>
+                <DataGridTextColumn Header="Category" Width="100" Binding="{Binding Category}"/>
+                <DataGridTextColumn Header="Quantity" Width="100" Binding="{Binding Quantity}"/>
+
+
+
+            </DataGrid.Columns>
+            
+        </DataGrid>
+    </Grid>
+</Window>

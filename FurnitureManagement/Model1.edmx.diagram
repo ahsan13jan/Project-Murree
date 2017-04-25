@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1b19746a22dc460988b31f78cfd55242" Name="Diagram1">
+        <EntityTypeShape EntityType="FurnitureModel.Article" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.Category" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.Indent" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.IndentMaterial" Width="1.5" PointX="9.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.Item" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.ItemLocation" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.Job" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.JobItem" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.Location" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.Material" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.MaterialItem" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.Officer" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureModel.Unit" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <AssociationConnector Association="FurnitureModel.FK_Articles_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_JobItems_ToArticle" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_Job_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_Location_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_IndentMaterial_Indent" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_IndentMaterial_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_Item_ToJobItem" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_Item_ToLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_ItemLocation_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_MaterialItem_ToItemId" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_ItemLocation_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_JobItems_ToJob" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_Officer_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_Unit_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureModel.FK_MaterialItem_ToMaterialID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,62 @@
+﻿<Page x:Class="FurnitureManagement.Views.ItemViews.AddItem"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FurnitureManagement.Views.ItemViews"
+      xmlns:local2="clr-namespace:FurnitureManagement"
+      mc:Ignorable="d" 
+      Title="AddItem">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0"    >Assign Material</Label>
+        
+        <ScrollViewer Grid.Row="1" Height="450" Width="500">
+            <StackPanel    Name="ItemsStackPanel"  >
+
+                <StackPanel Orientation="Horizontal" >
+                    <Label Width="50" Margin="10"  FontWeight="DemiBold" >Job ID</Label>
+                    <ComboBox Name="CB_Job" Width="100"
+                       SelectionChanged="CB_Job_SelectionChanged"   SelectedValuePath="Id" DisplayMemberPath="Display"
+                            Height="20" Margin="5"  ></ComboBox>
+                    <Button Click="addEntry_Click" Margin="50,0,0,0" >Add</Button>
+                    <Button Click="lessEntry_Click" Margin="10,0,0,0" >Less</Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label FontWeight="DemiBold" Width="90" Margin="10" >Article</Label>
+                    <Label FontWeight="DemiBold" Width="90" Margin="10" >Quantity</Label>
+                    <Label FontWeight="DemiBold" Width="90" Margin="10" >Rate</Label>
+                    <Label FontWeight="DemiBold" Width="90" Margin="10" >Acc Unit</Label>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Name="Item0_0" Width="100" Margin="5" 
+                DisplayMemberPath="Article_DESC"
+                SelectedValuePath="Article_Id"
+                SelectionChanged="cmbArticle_SelectionChange"       
+                              >
+
+                    </ComboBox>
+                    <TextBox Name="Item1_0" Width="100" Margin="5"  ></TextBox>
+                    <Label Name="Item2_0" Width="100" Margin="5"  ></Label>
+                    <Label Name="Item3_0" Width="100" Margin="5"  ></Label>
+
+                </StackPanel>
+
+
+            </StackPanel>
+        </ScrollViewer>
+        <Button Margin="15,0,0,0" Grid.Row="2" HorizontalAlignment="Left" Click="Save_Click">Save</Button>
+
+    </Grid>
+</Page>

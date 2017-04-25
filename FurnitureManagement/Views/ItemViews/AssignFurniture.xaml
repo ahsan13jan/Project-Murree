@@ -1,0 +1,80 @@
+﻿<Page x:Class="FurnitureManagement.AssignFurniture"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurnitureManagement"
+        mc:Ignorable="d"
+        Title="AssignFurniture" Height="500" >
+    <Grid Margin="10" >
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,0,5" />
+            </Style>
+
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"  />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+
+        <local:Header Grid.Row="0" Grid.ColumnSpan="4"  Margin="0,0,0,10"/>
+
+        <Label  Grid.Row="1"  Grid.Column="0" FontSize="14" FontWeight="Normal">Assign Furniture</Label>
+
+        <Label Grid.Row="2" Grid.Column="0" >Location</Label>
+        <ComboBox Grid.Row="2" Name="cmblocation" Grid.Column="1" Width="150" Height="25"
+                DisplayMemberPath="Name"
+                SelectedValuePath="Id"
+                  SelectionChanged="cmblocation_SelectionChanged"
+                  
+                  >
+        </ComboBox>
+
+
+        <Label Grid.Row="3" Grid.Column="0" >Furniture</Label>
+        <ComboBox  Name="cmbfurniture"  Grid.Row="3" Grid.Column="1" Width="150" Height="25"
+                DisplayMemberPath="Display"
+                SelectedValuePath="Id"
+                   
+                   >
+        </ComboBox>
+        <Button Grid.Row="4" Grid.Column="1" Width="100" Click="Assign_Click" Name="btnAssign" >Assign</Button>
+
+        <Grid Margin="10" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" >
+            <DataGrid Name="dataGrid"  CanUserAddRows="False"
+                      AutoGenerateColumns="False">
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="UnAssign" Click="UnAssignItem_Click">
+                            <MenuItem.Icon>
+                                <Image Name="Edit" Height="20" Width="20"></Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Location" Binding="{Binding Location.Name}" />
+                    <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</Page>

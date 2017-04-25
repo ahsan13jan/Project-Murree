@@ -1,0 +1,63 @@
+﻿<Page x:Class="FurnitureManagement.Views.MaterialView.MaterialAddEdit
+        "
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurnitureManagement.Views.MaterialView"
+        xmlns:my="clr-namespace:FurnitureManagement"
+        mc:Ignorable="d"
+        Title="MaterialAddEditxaml" >
+    <Grid  >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"  />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+
+        <Label Grid.Row="1" Style="{ StaticResource SubHeading }" >Add an Indent</Label>
+        
+
+        <StackPanel  Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="4" >
+
+            <StackPanel Orientation="Horizontal">
+                <Label  Width="100">Indent No</Label>
+                <TextBox Name="Input_IndentNo"  Width="100" HorizontalContentAlignment="Left"  Style="{StaticResource  RoundedTextBox}" ></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label  Width="100">Date</Label>
+                <DatePicker Name="Input_Date"  Width="150" HorizontalContentAlignment="Left" ></DatePicker>
+            </StackPanel>
+
+
+        </StackPanel>
+        
+        
+
+        <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Height="270">
+            <Grid Margin="5,10"  >
+                <DataGrid Name="dataGrid"  AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Rate" Binding="{Binding Rate}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"  />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
+        <Button Grid.Row="4" Grid.ColumnSpan="2" Click="Add_Click" >Add</Button>
+
+    </Grid>
+</Page>

@@ -1,0 +1,59 @@
+﻿<Page x:Class="FurnitureManagement.Views.ItemViews.ItemsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurnitureManagement.Views.ItemViews"
+        xmlns:my="clr-namespace:FurnitureManagement"
+        mc:Ignorable="d" 
+        Title="ItemsView" >
+    <Grid Margin="10" >
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,0,5" />
+            </Style>
+
+        </Grid.Resources> 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <Label Grid.Row="0" Style="{StaticResource SubHeading}" >Items</Label>
+
+
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Width="100">Jobs</Label>
+                <Label Width="100">Location</Label>
+                <Label Width="100">Article</Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Name="CB_Jobs" Width="100" DisplayMemberPath="Display"  SelectedValuePath="Id" SelectionChanged="Jobs_SelectionChanged" />
+                <ComboBox Name="CB_Locations" Width="100" DisplayMemberPath="Name" SelectedValuePath="Id"  SelectionChanged="Location_SelectionChanged" />
+                <ComboBox Name="CB_Articles" Width="100" DisplayMemberPath="Article_DESC" SelectedValuePath="Article_Id" SelectionChanged="Articles_SelectionChanged" />
+                <Button Click="Update_Click"> Update</Button>
+            </StackPanel>
+        </StackPanel>
+        <ScrollViewer Margin="5,10,0,0" Grid.Row="2" Grid.Column="0"  Height="350" >
+        <Grid  >
+            <DataGrid Name="dataGrid"  >
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
+                     <DataGridTextColumn Header="Job No" Binding="{Binding JobItem.Job.JobNo}" />
+                        <DataGridTextColumn Header="Category" Binding="{Binding JobItem.Job.Category1.Category_DESC}" />
+                        <DataGridTextColumn Header="Article" Binding="{Binding JobItem.Article.Article_DESC}" />
+                    <DataGridTextColumn Header="Contractor Name" Binding="{Binding JobItem.Job.ContractorName}" />
+                        <DataGridTextColumn Header="Location" Binding="{Binding Location.Name}" />
+                        <DataGridTextColumn Header="Financial Year" Binding="{Binding JobItem.Job.FinancialYear}" />
+                    <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>
