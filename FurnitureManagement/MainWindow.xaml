@@ -44,7 +44,7 @@
                 <Menu Name="menuMain" Height="20" DockPanel.Dock="Top" >
 
                     <MenuItem Header="Home" >
-                        <MenuItem Header="View Warehouse" Click="Warehouse_Click" />
+                        <!--<MenuItem Header="View Warehouse" Click="Warehouse_Click" />-->
                     </MenuItem>
 
 
