@@ -98,7 +98,7 @@ namespace FurnitureManagement.Views.ItemViews
 
         private void Articles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            updateGrid();
         }
 
         private void Location_SelectionChanged(object sender, SelectionChangedEventArgs e)
