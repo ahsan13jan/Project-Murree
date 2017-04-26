@@ -57,6 +57,8 @@ namespace FurnitureManagement.Views.ItemViews
             itemCounter++;
             int margin = 5;
             StackPanel sp = new StackPanel();
+            sp.Margin = new Thickness(10, 5, 0, 0);
+            sp.Height = 30;
             sp.Name = "sp" + itemCounter;
             RegisterName("sp" + itemCounter, sp);
             sp.Orientation = Orientation.Horizontal;
@@ -84,11 +86,13 @@ namespace FurnitureManagement.Views.ItemViews
             rate.Width = 100;
             rate.Margin = new Thickness(margin);
             rate.Name = "Item2_" + itemCounter;
+            rate.FontSize = 9;
             RegisterName("Item2_" + itemCounter, rate);
             sp.Children.Add(rate);
             //
             Label accUnit = new Label();
             accUnit.Width = 100;
+            accUnit.FontSize = 9;
             accUnit.Margin = new Thickness(margin);
             accUnit.Name = "Item3_" + itemCounter;
             RegisterName("Item3_" + itemCounter, accUnit);

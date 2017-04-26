@@ -27,14 +27,14 @@
 
         <StackPanel Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <Label Width="100">Jobs</Label>
-                <Label Width="100">Location</Label>
-                <Label Width="100">Article</Label>
+                <Label Width="100" Margin="0,0,5,0">Jobs</Label>
+                <Label Width="100" Margin="0,0,5,0">Location</Label>
+                <Label Width="100" Margin="0,0,5,0">Article</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <ComboBox Name="CB_Jobs" Width="100" DisplayMemberPath="Display"  SelectedValuePath="Id" SelectionChanged="Jobs_SelectionChanged" />
-                <ComboBox Name="CB_Locations" Width="100" DisplayMemberPath="Name" SelectedValuePath="Id"  SelectionChanged="Location_SelectionChanged" />
-                <ComboBox Name="CB_Articles" Width="100" DisplayMemberPath="Article_DESC" SelectedValuePath="Article_Id" SelectionChanged="Articles_SelectionChanged" />
+                <ComboBox Name="CB_Jobs" Width="100" Margin="0,0,5,0" DisplayMemberPath="Display"  SelectedValuePath="Id" SelectionChanged="Jobs_SelectionChanged" />
+                <ComboBox Name="CB_Locations" Width="100" Margin="0,0,5,0" DisplayMemberPath="Name" SelectedValuePath="Id"  SelectionChanged="Location_SelectionChanged" />
+                <ComboBox Name="CB_Articles" Width="100" Margin="0,0,5,0" DisplayMemberPath="Article_DESC" SelectedValuePath="Article_Id" SelectionChanged="Articles_SelectionChanged" />
                 <Button Click="Update_Click"> Update</Button>
             </StackPanel>
         </StackPanel>

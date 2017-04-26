@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0"    >Assign Material</Label>
+        <Label Grid.Row="0" Grid.Column="0"  Style="{StaticResource SubHeading}">Add Items</Label>
         
         <ScrollViewer Grid.Row="1" Height="450" Width="500">
             <StackPanel    Name="ItemsStackPanel"  >
@@ -39,8 +39,8 @@
                 </StackPanel>
 
 
-                <StackPanel Orientation="Horizontal">
-                    <ComboBox Name="Item0_0" Width="100" Margin="5" 
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Height="30">
+                    <ComboBox Name="Item0_0" Width="100" Margin="5"
                 DisplayMemberPath="Article_DESC"
                 SelectedValuePath="Article_Id"
                 SelectionChanged="cmbArticle_SelectionChange"       
@@ -48,8 +48,8 @@
 
                     </ComboBox>
                     <TextBox Name="Item1_0" Width="100" Margin="5"  ></TextBox>
-                    <Label Name="Item2_0" Width="100" Margin="5"  ></Label>
-                    <Label Name="Item3_0" Width="100" Margin="5"  ></Label>
+                    <Label Name="Item2_0" Width="100" Margin="5" FontSize="9"  ></Label>
+                    <Label Name="Item3_0" Width="100" Margin="5" FontSize="9" ></Label>
 
                 </StackPanel>
 

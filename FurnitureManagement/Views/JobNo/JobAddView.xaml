@@ -82,7 +82,7 @@
 
 
 
-        <Button  Grid.Row="7" Grid.Column="1" Width="70"  Click="AddEdit_Click">Add</Button>
+        <Button  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" Width="120" Margin="0,10" Click="AddEdit_Click">Add</Button>
 
 
 
