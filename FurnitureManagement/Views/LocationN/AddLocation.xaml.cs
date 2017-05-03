@@ -181,7 +181,7 @@ namespace FurnitureManagement.Views.LocationN
                     dataGrid.ContextMenu.Items.Remove(removedItem);
                 }
 
-                if (loc.Category == 2)
+                if ( loc != null && loc.Category == 2)
                 {
                     ContextMenu cm = dataGrid.ContextMenu;
                     MenuItem m = new MenuItem();

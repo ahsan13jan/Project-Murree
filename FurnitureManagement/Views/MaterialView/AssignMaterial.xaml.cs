@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Linq;
 
 namespace FurnitureManagement.Views.MaterialView
 {
@@ -13,6 +14,7 @@ namespace FurnitureManagement.Views.MaterialView
     {
         Item item;
         List<Material> materialList;
+        List<MaterialBundle> bundleList;
 
         public AssignMaterial( int Id )
         {
@@ -41,6 +43,10 @@ namespace FurnitureManagement.Views.MaterialView
             CB_Material.SelectedIndex = -1;
             materialList = MaterialService.getMaterialModels();
             CB_Material.ItemsSource = materialList;
+
+            bundleList = MaterialBundleService.MaterialBundles();
+            CB_Bundle.ItemsSource = null;
+            CB_Bundle.ItemsSource = bundleList;
         }
 
         private void Material_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,6 +83,28 @@ namespace FurnitureManagement.Views.MaterialView
 
         private void MaterialBundleAssign_Click(object sender, RoutedEventArgs e)
         {
+
+            if ( CB_Bundle.SelectedIndex != -1 )
+            {
+                    var selectedBundle = bundleList[CB_Bundle.SelectedIndex];
+
+                if (MaterialBundleService.IsBundleAvailable(selectedBundle.Id))
+                {
+
+                    selectedBundle.MaterialBundleItems.ToList().ForEach(x =>
+                    {
+
+                        MaterialItemService.assignMaterialToItem(item.Id, (int)x.MaterialId, (decimal)x.Quantity, (int)x.Material.Rate);
+
+                    });
+                    MessageBox.Show("Bundle Assigned ");
+                    getData();
+                }
+                else
+                {
+                    MessageBox.Show("No Enough Material");
+                }
+            }
 
         }
     }

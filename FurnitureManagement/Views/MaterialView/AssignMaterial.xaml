@@ -67,7 +67,7 @@
             <Label FontWeight="Bold" HorizontalAlignment="Left" Margin="0,5">OR</Label>
             
             <Label FontSize="15" FontWeight="DemiBold"  Margin="0,5" >Material Bundle</Label>
-            <ComboBox Width="100" Margin="0,0,0,10" HorizontalAlignment="Left"></ComboBox>
+            <ComboBox Name="CB_Bundle" Width="100" Margin="0,0,0,10" HorizontalAlignment="Left" DisplayMemberPath="Display"></ComboBox>
             <Button Width="100" Click="MaterialBundleAssign_Click" HorizontalAlignment="Left">Assign</Button>
         </StackPanel>
 

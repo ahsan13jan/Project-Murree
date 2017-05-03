@@ -54,6 +54,7 @@ namespace FurnitureManagement
             
             locationList = LocationService.getLocations();
             assignedItemList = ItemService.getAssignedItems();
+            
         }
 
         private void Assign_Click(object sender, RoutedEventArgs e)

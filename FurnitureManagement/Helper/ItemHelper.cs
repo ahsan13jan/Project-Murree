@@ -46,4 +46,18 @@ namespace FurnitureManagement
         }
 
     }
+
+    public partial class MaterialBundle
+    {
+
+
+        public string Display
+        {
+            get
+            {
+                return Name;
+            }
+        }
+
+    }
 }
