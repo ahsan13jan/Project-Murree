@@ -60,7 +60,12 @@ namespace FurnitureManagement.Service
             //});
             //return listModel;
         }
-       
+
+        public static List<Item> getUnAssignedItemsWithJobItemId( int jobItemId )
+        {
+            return Context.sharedInstance.Items.Where(x => !x.IsDeleted && x.LocationID == null && x.JobItemId == jobItemId).ToList();
+        }
+
         public static Item getItemById(int id )
         {
             return  Context.sharedInstance.Items.Find(id) ;

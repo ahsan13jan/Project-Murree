@@ -32,4 +32,18 @@ namespace FurnitureManagement
         }
 
     }
+
+    public partial class JobItem
+    {
+
+
+        public string Display
+        {
+            get
+            {
+                return Article.Article_DESC + "-" +  Quantity;
+            }
+        }
+
+    }
 }

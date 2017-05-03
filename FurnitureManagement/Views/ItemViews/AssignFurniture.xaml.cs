@@ -24,32 +24,35 @@ namespace FurnitureManagement
         List<Item> unAssignedItemList;
         List<Item> assignedItemList;
         List<Location> locationList;
-
+        List<Job> jobList;
+        List<JobItem> jobItemList;
 
         string selectedCategory = "";
 
 
-        List<Item> filteredItemList
+
+        List<Job> filteredJobList
         {
             get
             {
-                return unAssignedItemList.Where(x => x.JobItem.Job.Category1.Category_DESC == selectedCategory).ToList();
+                return jobList.Where(x => x.Category1.Category_DESC == selectedCategory).ToList();
             }
         }
 
         public AssignFurniture()
         {
             InitializeComponent();
+            jobList = JobService.getJobs();
             updateGrid();
-            getData();
             BindCombo();
+
 
         }
 
         void getData()
         {
+            
             locationList = LocationService.getLocations();
-            unAssignedItemList = ItemService.getUnAssignedItems();
             assignedItemList = ItemService.getAssignedItems();
         }
 
@@ -72,41 +75,22 @@ namespace FurnitureManagement
         }
 
 
-        private void cmblocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-            int selectedIndex = cmblocation.SelectedIndex;
-
-            if (selectedIndex >= 0 && selectedIndex < locationList.Count)
-            {
-                var selectedLocation = locationList[selectedIndex];
-                selectedCategory = selectedLocation.Category1.Category_DESC;
-                BindFurnitureCombo();
-            }
-
-
-
-        }
 
         private void BindCombo()
         {
             cmblocation.ItemsSource = locationList;
-            cmbfurniture.IsEnabled = false;
         }
 
         void resetCombo()
         {
             cmblocation.SelectedValue = -1;
+            cmbJob.SelectedValue = -1;
+            cmbjobItem.SelectedValue = -1;
             cmbfurniture.SelectedValue = -1;
         }
 
-        private void BindFurnitureCombo()
-        {
-            var a = filteredItemList;
-            cmbfurniture.ItemsSource = a;
-            cmbfurniture.IsEnabled = true;
-            btnAssign.IsEnabled = true;
-        }
+
 
         private void UnAssignItem_Click(object sender, RoutedEventArgs e)
         {
@@ -121,7 +105,40 @@ namespace FurnitureManagement
 
         }
 
+        private void cmblocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+            int selectedIndex = cmblocation.SelectedIndex;
 
+            if (selectedIndex >= 0 && selectedIndex < locationList.Count)
+            {
+                var selectedLocation = locationList[selectedIndex];
+                selectedCategory = selectedLocation.Category1.Category_DESC;
+
+                cmbJob.ItemsSource = null;
+                cmbJob.ItemsSource = filteredJobList;
+
+            }
+        }
+
+        private void Job_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ( cmbJob.SelectedIndex != -1)
+            {
+                jobItemList = JobItemService.getJobItems(jobList[cmbJob.SelectedIndex].Id);
+                cmbjobItem.ItemsSource = null;
+                cmbjobItem.ItemsSource = jobItemList;
+            }
+        }
+
+        private void JobItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbjobItem.SelectedIndex != -1)
+            {
+                unAssignedItemList = ItemService.getUnAssignedItemsWithJobItemId( jobItemList[cmbjobItem.SelectedIndex].Id );
+                cmbfurniture.ItemsSource = null;
+                cmbfurniture.ItemsSource = unAssignedItemList;
+            }
+        }
     }
 }

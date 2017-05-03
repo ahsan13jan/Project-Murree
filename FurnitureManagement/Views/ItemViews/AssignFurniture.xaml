@@ -22,6 +22,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -45,15 +47,31 @@
 
 
         <Label Grid.Row="3" Grid.Column="0" >Furniture</Label>
-        <ComboBox  Name="cmbfurniture"  Grid.Row="3" Grid.Column="1" Width="150" Height="25"
+
+        <ComboBox  Name="cmbJob"  Grid.Row="3" Grid.Column="1" Width="150" Height="25"
+                DisplayMemberPath="Display"
+                SelectedValuePath="Id" SelectionChanged="Job_SelectionChanged"
+                   
+                   >
+        </ComboBox>
+
+        <ComboBox  Name="cmbjobItem"  Grid.Row="4" Grid.Column="1" Width="150" Height="25"
+                DisplayMemberPath="Display" SelectionChanged="JobItem_SelectionChanged"
+                SelectedValuePath="Id" Margin="5"
+                   
+                   >
+        </ComboBox>
+        <ComboBox  Name="cmbfurniture"  Grid.Row="5" Grid.Column="1" Width="150" Height="25"
                 DisplayMemberPath="Display"
                 SelectedValuePath="Id"
                    
                    >
         </ComboBox>
-        <Button Grid.Row="4" Grid.Column="1" Width="100" Click="Assign_Click" Name="btnAssign" >Assign</Button>
+        
 
-        <Grid Margin="10" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" >
+        <Button Grid.Row="6" Grid.Column="1" Width="100" Click="Assign_Click" Name="btnAssign" Margin="5" >Assign</Button>
+
+        <Grid Margin="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" >
             <DataGrid Name="dataGrid"  CanUserAddRows="False"
                       AutoGenerateColumns="False">
 
