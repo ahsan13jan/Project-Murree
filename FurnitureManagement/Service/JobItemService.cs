@@ -9,7 +9,7 @@ namespace FurnitureManagement.Service
     static class JobItemService
     {
 
-        public static void addJobItem( JobItem jobItem )
+        public static JobItem addJobItem( JobItem jobItem )
         {
 
             var latestUIN = ArticleService.getArticleCount((int)jobItem.ArticleId);
@@ -30,6 +30,20 @@ namespace FurnitureManagement.Service
                 ItemService.addItem(new Item() { JobItemId = jobItem.Id, UIN = jobItem.Article.Prefix + "-" + (latestUIN + 1 + i ).ToString() });
             }
 
+            return jobItem;
+
+        }
+
+        public static List<JobItem> addJobItems( List<JobItem> jobItems )
+        {
+
+            List<JobItem> ret = new List<JobItem>();
+            jobItems.ForEach(x => {
+                ret.Add( addJobItem(x) );
+                }
+            );
+
+            return ret;
         }
 
 

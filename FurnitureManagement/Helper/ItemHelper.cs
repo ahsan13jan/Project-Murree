@@ -8,26 +8,12 @@ namespace FurnitureManagement
 {
     public partial class Item
     {
-        //string locationDescription;
-        //string date;
-
-        //public string Date
-        //{
-        //    get { return date; }
-        //    set { date = value; }
-        //}
-
-        //public string LocationDescription
-        //{
-        //    get { return locationDescription; }
-        //    set { locationDescription = value; }
-        //}
 
         public string Display
         {
             get
             {
-                return Id + "-" + JobItem.Article.Article_DESC;
+                return UIN + "-" + JobItem.Article.Article_DESC;
             }
         }
 

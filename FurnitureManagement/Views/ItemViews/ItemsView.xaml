@@ -43,7 +43,7 @@
             <DataGrid Name="dataGrid"  >
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="UIN" Binding="{Binding UIN}" />
                      <DataGridTextColumn Header="Job No" Binding="{Binding JobItem.Job.JobNo}" />
                         <DataGridTextColumn Header="Category" Binding="{Binding JobItem.Job.Category1.Category_DESC}" />
                         <DataGridTextColumn Header="Article" Binding="{Binding JobItem.Article.Article_DESC}" />

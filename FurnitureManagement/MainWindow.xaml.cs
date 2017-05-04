@@ -19,6 +19,7 @@ using FurnitureManagement.Views;
 using FurnitureManagement.Views.MaterialView;
 using FurnitureManagement.Views.Warehouse;
 using FurnitureManagement.Views.LocationN;
+using FurnitureManagement.Views.LocationBlocks;
 
 namespace FurnitureManagement
 {
@@ -102,6 +103,12 @@ namespace FurnitureManagement
         private void MaterialRateChange_Click(object sender, RoutedEventArgs e)
         {
             MaterialRateEdit ViewNextForm = new MaterialRateEdit();
+            Frame.Content = ViewNextForm;
+        }
+
+        private void AddBlock_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditBlock ViewNextForm = new AddEditBlock();
             Frame.Content = ViewNextForm;
         }
     }

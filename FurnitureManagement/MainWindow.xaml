@@ -56,6 +56,7 @@
 
                     <MenuItem Header="Location" Name="menuItemAmmunation">
                         <MenuItem Header="Add Location" Click="AddLocation_Click" />
+                        <MenuItem Header="Add Block" Click="AddBlock_Click" />
                     </MenuItem>
 
 

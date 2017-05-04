@@ -161,9 +161,20 @@ namespace FurnitureManagement.Views.ItemViews
             if (validate())
             {
                 var jobItems = getItemsFromUI();
-                jobItems.ForEach(x => JobItemService.addJobItem(x));
+
+                var retJobItems = JobItemService.addJobItems(jobItems);
+
+                string str = "";
+
+                retJobItems.ForEach(x=> {
+
+                    str += x.Article.Article_DESC + " :  " + x.Items.First().UIN + " - " + x.Items.Last().UIN + "\n";
+                });
+
+
+                str += "Saved Successfully";
                 resetView();
-                MessageBox.Show("Saved Successfully");
+                MessageBox.Show(str);
                 resetView();
             }
             else
