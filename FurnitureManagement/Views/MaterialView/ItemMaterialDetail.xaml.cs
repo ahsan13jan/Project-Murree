@@ -35,5 +35,11 @@ namespace FurnitureManagement.Views.MaterialView
             dataGrid.ItemsSource = null;
             dataGrid.ItemsSource = list;
         }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Frame frame = Application.Current.MainWindow.FindName("Frame") as Frame;
+            frame.NavigationService.GoBack();
+
+        }
     }
 }

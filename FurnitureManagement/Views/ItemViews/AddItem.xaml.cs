@@ -48,6 +48,7 @@ namespace FurnitureManagement.Views.ItemViews
             CB_Job.ItemsSource = null;
             CB_Job.ItemsSource = jobList;
             articles = ArticleService.getArticles();
+
         }
 
         int itemCounter = 0;

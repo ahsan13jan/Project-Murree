@@ -11,15 +11,23 @@ namespace FurnitureManagement.Service
 
         public static void addJobItem( JobItem jobItem )
         {
+
+            var latestUIN = ArticleService.getArticleCount((int)jobItem.ArticleId);
+
+
             var context = Context.sharedInstance;
             jobItem.IsDeleted = false;
             jobItem.CreatedAt = DateTime.Now;
             context.JobItems.Add(jobItem);
             context.SaveChanges();
 
+            jobItem = Context.sharedInstance.JobItems.Find(jobItem.Id);
+
+            
+
             for (int i = 0; i< jobItem.Quantity ; i++)
             {
-                ItemService.addItem(new Item() { JobItemId = jobItem.Id, UIN = "99"});
+                ItemService.addItem(new Item() { JobItemId = jobItem.Id, UIN = jobItem.Article.Prefix + "-" + (latestUIN + 1 + i ).ToString() });
             }
 
         }

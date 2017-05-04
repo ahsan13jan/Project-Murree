@@ -33,14 +33,24 @@
 
         <Label Grid.Row="1" Grid.ColumnSpan="4" Style="{ StaticResource SubHeading }"  >Locations </Label>
 
-        <Grid Margin="0,0,5,5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" >
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal">
+            <Label>Nature of Work</Label>
+            <ComboBox Margin="5" Width="100" Name="CB_NOW">
+                <ComboBoxItem>Upholstery</ComboBoxItem>
+                <ComboBoxItem>Polishing</ComboBoxItem>
+                <ComboBoxItem>Conversion of Cot Nawar into Hard Bed</ComboBoxItem>
+                <ComboBoxItem>Replacement of Tops</ComboBoxItem>
+                <ComboBoxItem>Miscellaneous Repair</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        
+        <Grid Margin="0,0,5,5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
             <DataGrid Name="dataGrid"  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
-                <DataGrid.ContextMenu>
-                    <ContextMenu   >
-                        <MenuItem Header="Location Details" Click="LocationDetails_Click"/>
-                    </ContextMenu>
-
-                </DataGrid.ContextMenu>
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="LocationDetails_Click"/>
+                    </Style>
+                </DataGrid.Resources>
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" />

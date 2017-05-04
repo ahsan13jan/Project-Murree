@@ -37,11 +37,11 @@ namespace FurnitureManagement.Views.MaterialView
             dataGrid.ItemsSource = listLocation;
         }
 
-        private void LocationDetails_Click(object sender, RoutedEventArgs e)
+        private void LocationDetails_Click(object sender, MouseButtonEventArgs e)
         {
-            if (dataGrid.SelectedIndex >= 0 && dataGrid.SelectedIndex < listLocation.Count)
+            if (dataGrid.SelectedIndex >= 0 && dataGrid.SelectedIndex < listLocation.Count && CB_NOW.SelectedIndex != -1)
             {
-                LocationArticlesListView next = new LocationArticlesListView(listLocation[dataGrid.SelectedIndex].Id);
+                LocationArticlesListView next = new LocationArticlesListView(listLocation[dataGrid.SelectedIndex].Id, CB_NOW.SelectedIndex);
                 Frame frame = Application.Current.MainWindow.FindName("Frame") as Frame;
                 frame.Content = next;
             }

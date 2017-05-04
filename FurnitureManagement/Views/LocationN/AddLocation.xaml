@@ -29,7 +29,7 @@
 
         <local:Header Grid.Row="0" Grid.ColumnSpan="4"  Margin="0,0,0,10"/>
 
-        <Label  Grid.Row="1"  Grid.Column="0" FontSize="14" FontWeight="Normal">Add Location</Label>
+        <Label  Grid.Row="1"  Grid.Column="0"  Style="{StaticResource SubHeading}" >Add Location</Label>
 
         <Label Grid.Row="2" Grid.Column="0"  >Name</Label>
         <TextBox Name="Input_Name" Grid.Row="2" Grid.Column="1" Margin="0,2" Width="150" SelectionChanged="Input_Name_SelectionChanged"></TextBox>
@@ -44,10 +44,10 @@
 
         <StackPanel Name="SP_Officer" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Visibility="Collapsed">
             <StackPanel Orientation="Horizontal">
-                <Label Width="100" Margin="5,5,5,5">Location</Label>
-                <Label Width="100" Margin="5,5,5,5">Occupant Name</Label>
-                <Label Width="100" Margin="5,5,5,5">Rank</Label>
-                <Label Width="100" Margin="5,5,5,5">Army No</Label>
+                <Label Width="100" Margin="0,5,5,5">Location</Label>
+                <Label Width="100" Margin="7,5,5,5">Occupant Name</Label>
+                <Label Width="100" Margin="8,5,5,5">Rank</Label>
+                <Label Width="100" Margin="7,5,5,5">Army No</Label>
                 <Label Width="100" Margin="5,5,5,5">Designation</Label>
                 <Label Width="100" Margin="5,5,5,5">Date march in</Label>
             </StackPanel>
@@ -72,7 +72,7 @@
                 <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black" Margin="5,5,5,5">
                     <TextBox Name="txt_Designation" Background="Transparent" BorderThickness="0" Height="15" Width="100" />
                 </Border>
-                <DatePicker Name="dtp_MarchIn" Width="100">
+                <DatePicker Name="dtp_MarchIn"  Width="100">
 
 
                 </DatePicker>

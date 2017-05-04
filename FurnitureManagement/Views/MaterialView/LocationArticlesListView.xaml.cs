@@ -21,10 +21,12 @@ namespace FurnitureManagement.Views.MaterialView
     /// </summary>
     public partial class LocationArticlesListView : Page
     {
+        int natureOfWorkIndex = -1;
         List<Item> itemList;
         IEnumerable<ArticleQuantity> list;
-        public LocationArticlesListView( int locationId)
+        public LocationArticlesListView( int locationId ,int  natureOfWorkIndex)
         {
+            this.natureOfWorkIndex = natureOfWorkIndex;
             InitializeComponent();
             itemList = ItemService.getItemsByLocation(locationId);
 
@@ -50,7 +52,7 @@ namespace FurnitureManagement.Views.MaterialView
             dataGrid.ItemsSource = list;
         }
 
-        private void ItemDetails_Click(object sender, RoutedEventArgs e)
+        private void ItemDetails_Click(object sender, MouseButtonEventArgs e)
         {
             if (dataGrid.SelectedIndex >= 0 )
             {
@@ -71,6 +73,13 @@ namespace FurnitureManagement.Views.MaterialView
                     index++;
                 }
             }
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Frame frame = Application.Current.MainWindow.FindName("Frame") as Frame;
+            frame.NavigationService.GoBack();
+
         }
     }
 

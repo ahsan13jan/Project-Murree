@@ -54,5 +54,11 @@ namespace FurnitureManagement.Views.MaterialView
             Frame frame = Application.Current.MainWindow.FindName("Frame") as Frame;
             frame.Content = nextView;
         }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Frame frame = Application.Current.MainWindow.FindName("Frame") as Frame;
+            frame.NavigationService.GoBack();
+
+        }
     }
 }
