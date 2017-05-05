@@ -46,4 +46,21 @@ namespace FurnitureManagement
         }
 
     }
+
+    public partial class Block
+    {
+
+
+        public string Display
+        {
+            get
+            {
+                if (ParentId == null)
+                    return Name + " - " + Category.Category_DESC;
+                else
+                    return Name;
+            }
+        }
+
+    }
 }

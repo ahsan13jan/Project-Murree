@@ -24,6 +24,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
 
 
@@ -31,15 +33,27 @@
 
         <Label  Grid.Row="1"  Grid.Column="0"  Style="{StaticResource SubHeading}" >Add Location</Label>
 
-        <Label Grid.Row="2" Grid.Column="0"  >Name</Label>
-        <TextBox Name="Input_Name" Grid.Row="2" Grid.Column="1" Margin="0,2" Width="150" SelectionChanged="Input_Name_SelectionChanged"></TextBox>
 
-        <Label Grid.Row="3" Grid.Column="0" >Category</Label>
-        <ComboBox Name="cmb_CategoryLocation" Grid.Row="3" Grid.Column="1" Width="150"  Margin="0,2"
+        <Label Grid.Row="2" Grid.Column="0" >Category</Label>
+        <ComboBox Name="cmb_CategoryLocation" Grid.Row="2" Grid.Column="1" Width="150"  Margin="0,2"
                DisplayMemberPath="Category_DESC"
                SelectedValuePath="Category_Id"
                   SelectionChanged="cmb_CategoryLocation_SelectionChanged"
-                  IsEnabled="False"></ComboBox>
+                  ></ComboBox>
+        
+        <Label Grid.Row="3" Grid.Column="0"  >Block</Label>
+
+        <ComboBox Name="CB_Block" Grid.Row="3" Grid.Column="1" Width="150"  Margin="0,2" SelectionChanged="Block_SelectionChanged"
+               DisplayMemberPath="Display"
+             ></ComboBox>
+
+        <Label Grid.Row="3" Grid.Column="2"  >Sub Block</Label>
+
+        <ComboBox Name="CB_SubBlock" Grid.Row="3" Grid.Column="3" Width="150"  Margin="0,2"
+               DisplayMemberPath="Display"
+             ></ComboBox>
+
+
 
 
         <StackPanel Name="SP_Officer" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Visibility="Collapsed">
@@ -97,7 +111,7 @@
 
 
 
-        <Button  Grid.Row="6" Grid.Column="1" Width="70" Margin="87,1"  Click="AddEdit_Click" Name="btn_add" IsEnabled="False">Add</Button>
+        <Button  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Width="70" Margin="87,1"  Click="AddEdit_Click" Name="btn_add" IsEnabled="False">Add</Button>
 
 
 

@@ -24,7 +24,21 @@ namespace FurnitureManagement.Views.LocationN
     public partial class AddLocation : Page
     {
         List<Location> listOfLocations;
+        List<Block> listBlock;
+        List<Block> listSubBlock;
         FurnitureEntities context = new FurnitureEntities();
+
+        public List<Block> filteredBlocks
+        {
+            get
+            {
+
+                if (cmb_CategoryLocation.SelectedIndex != -1 && listBlock != null)
+                    return listBlock.Where(x => x.CategoryId == cmb_CategoryLocation.SelectedIndex + 1).ToList();
+                else
+                    return new List<Block>();
+            }
+        }
         public AddLocation()
         {
             InitializeComponent();
@@ -32,6 +46,7 @@ namespace FurnitureManagement.Views.LocationN
             listOfLocations = LocationService.getLocations();
             listOfLocations.Insert(0, new Location() { Id = 0, Name = "Warehouse", Items = ItemService.getUnAssignedItems().Where(x => !x.IsDeleted).ToList() });
             refreshGrid();
+            listBlock = BlockService.getBlocks();
 
 
 
@@ -40,7 +55,7 @@ namespace FurnitureManagement.Views.LocationN
         private void AddEdit_Click(object sender, RoutedEventArgs e)
 
         {
-            if (Input_Name.Text == "" || (int)cmb_CategoryLocation.SelectedIndex <= 0)
+            if ( CB_Block.SelectedIndex == -1 || CB_SubBlock.SelectedIndex == -1 ||  (int)cmb_CategoryLocation.SelectedIndex <= 0)
             {
                 MessageBox.Show("Please enter all feilds :", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -56,9 +71,9 @@ namespace FurnitureManagement.Views.LocationN
                 }
                 else
                 {
-                    LocationService.saveLocation(new Location() { Name = Input_Name.Text, Category = (int)cmb_CategoryLocation.SelectedValue });
+                    LocationService.saveLocation(new Location() { Name = "", Category = (int)cmb_CategoryLocation.SelectedValue });
                     listOfLocations = LocationService.getLocations();
-                    string locationName = listOfLocations.Where(x => x.Name == Input_Name.Text).First().Name;
+                    string locationName = listOfLocations.Where(x => x.Name == "").First().Name;
                     LocationService.saveOfficer(new Officer()
                     {
                         Location_Name = txt_LocationName.Text,
@@ -80,9 +95,9 @@ namespace FurnitureManagement.Views.LocationN
                 }
                 else
                 {
-                    LocationService.saveLocation(new Location() { Name = Input_Name.Text, Category = (int)cmb_CategoryLocation.SelectedValue });
+                    LocationService.saveLocation(new Location() {  Category = (int)cmb_CategoryLocation.SelectedValue });
                     listOfLocations = LocationService.getLocations();
-                    string locationName = listOfLocations.Where(x => x.Name == Input_Name.Text).First().Name;
+                    string locationName = listOfLocations.Where(x => x.Name == "XYZ").First().Name;
                     LocationService.saveunit(new Unit()
                     {
                         unit_Number = txt_unitNumber.Text
@@ -110,6 +125,7 @@ namespace FurnitureManagement.Views.LocationN
 
         private void cmb_CategoryLocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            resetBlockComboBox();
             if ((int)cmb_CategoryLocation.SelectedValue == 2)
             {
                 SP_Unit.Visibility = Visibility.Collapsed;
@@ -239,6 +255,30 @@ namespace FurnitureManagement.Views.LocationN
             itemShow.Show();
         }
 
+
+        void resetSubBlockComboBox()
+        {
+            if (CB_Block.SelectedIndex != -1)
+            {
+                CB_SubBlock.ItemsSource = null;
+                CB_SubBlock.ItemsSource = BlockService.getSubBlocks(filteredBlocks[CB_Block.SelectedIndex].Id);
+            }
+
+        }
+        void resetBlockComboBox()
+        {
+            if (cmb_CategoryLocation.SelectedIndex != -1)
+            {
+                CB_Block.ItemsSource = null;
+                CB_Block.ItemsSource = filteredBlocks;
+            }
+
+        }
+
+        private void Block_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            resetSubBlockComboBox();
+        }
 
     }
 }

@@ -111,5 +111,11 @@ namespace FurnitureManagement
             AddEditBlock ViewNextForm = new AddEditBlock();
             Frame.Content = ViewNextForm;
         }
+
+        private void AddSubBlock_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditSubBlock ViewNextForm = new AddEditSubBlock();
+            Frame.Content = ViewNextForm;
+        }
     }
 }

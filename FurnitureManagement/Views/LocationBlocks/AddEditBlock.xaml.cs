@@ -22,12 +22,18 @@ namespace FurnitureManagement.Views.LocationBlocks
     /// 
     public partial class AddEditBlock : Page
     {
-
-
-
+        List<Block> listblocks;
         public AddEditBlock()
         {
             InitializeComponent();
+            resetGrid();
+        }
+
+        void resetGrid()
+        {
+            dataGrid.ItemsSource = null;
+            listblocks = BlockService.getBlocks();
+            dataGrid.ItemsSource = listblocks;
         }
 
         private void AddEdit_Click(object sender, RoutedEventArgs e)
@@ -37,6 +43,7 @@ namespace FurnitureManagement.Views.LocationBlocks
                 BlockService.addBlock(Input_Name.Text, cmb_CategoryLocation.SelectedIndex + 1);
                 Input_Name.Text = "";
                 cmb_CategoryLocation.SelectedIndex = -1;
+                resetGrid();
                 MessageBox.Show("Added Successfully");
             }
 

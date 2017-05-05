@@ -23,14 +23,14 @@ namespace FurnitureManagement.Service
 
         }
 
-        public static void addSubBlock( int parentId ,  string Name, int catId)
+        public static void addSubBlock( int parentId ,  string Name)
         {
             var con = Context.sharedInstance;
 
             Block block = new Block();
             block.Name = Name;
-            block.CategoryId = catId;
             block.ParentId = parentId;
+            block.CategoryId = con.Blocks.Find(parentId).CategoryId;
             block.CreatedAt = DateTime.Now;
             block.IsDeleted = false;
             con.Blocks.Add(block);
