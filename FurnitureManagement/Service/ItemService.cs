@@ -76,14 +76,32 @@ namespace FurnitureManagement.Service
             return Context.sharedInstance.Items.Find(id).LocationID == null;
         }
 
-        public static List<Item> getItemsByLocation(int locationId)
+        public static List<Item> getItemsByLocation(int locationId 
+            , List<int> articleIds = null)
         {
             int? locId = locationId;
 
             if (locId == 0)
                 locId = null;
 
-            return Context.sharedInstance.Items.Where(x => x.LocationID == locId && x.IsDeleted == false ).ToList();
+
+            if ( articleIds == null )
+            {
+                        return Context.sharedInstance.Items.Where(x =>
+                   x.LocationID == locId &&
+                   x.IsDeleted == false
+                   ).ToList();
+            }
+            else
+            {
+                    return Context.sharedInstance.Items.Where(x =>
+               x.LocationID == locId &&
+               x.IsDeleted == false
+               && (articleIds.Contains((int)x.JobItem.ArticleId))
+               ).ToList();
+            }
+
+           
         }
         public static List<Item> getItemsByJobItemId(int jobItemId)
         {

@@ -8,33 +8,72 @@ namespace FurnitureManagement.Helper
 {
 
 
-    static class NatureOfWork
+    public static class NatureOfWork
     {
-        static class Upholstery
+        public static class Upholstery
         {
-            static class GroupOne
+            static public List<int> combineIds = new List<int>() { 1022, 1023, 1024, 1025, 1026, 1040, 1041, 1012, 1014, 1015, 1016, 1018, 1019, 1020, 1043 };
+            public static class GroupOne
             {
-                static public List<int> ids = new List<int>() {24 , 25 , 26 ,27 , 28 };
+                static public List<int> ids = new List<int>() { 1022, 1023, 1024, 1025, 1026 };
             }
-            static class GroupTwo
+            public static class GroupTwo
             {
-                static public List<int> ids = new List<int>() {42 , 43 };
+                static public List<int> ids = new List<int>() { 1040, 1041 };
             }
-            static class GroupThree
+            public static class GroupThree
             {
-                static public List<int> ids = new List<int>() { 14, 16 , 17 , 18 , 38 };
+                static public List<int> ids = new List<int>() { 1012, 1014, 1015, 1016 };
             }
-            static class GroupFour
+            public static class GroupFour
             {
-                static public List<int> ids = new List<int>() { 14, 16, 17, 18, 38 };
+                static public List<int> ids = new List<int>() { 1018, 1019, 1020, 1043 };
             }
+        }
+
+        public static class ConversionofCotNawarintoHardBed
+        {
+            static public List<int> combineIds = new List<int>() { 1039 };
+
+            public static class GroupSix
+            {
+                static public List<int> ids = new List<int>() { 1039 };
+            }
+
+        }
+
+        public static class ReplacementofTops
+        {
+            static public List<int> combineIds = new List<int>() { 1018, 1019, 1020, 1043, 1027, 1034, 1035, 1038, 1045 };
+            public static class GroupSeven
+            {
+                static public List<int> ids = new List<int>() { 1018, 1019, 1020, 1043 };
+            }
+            public static class GroupEight
+            {
+                static public List<int> ids = new List<int>() { 1027, 1034, 1035, 1038, 1045 };
+            }
+
         }
     }
 
-    class Group
-    {
-        public int No { get; set; }
-        public List<int> Ids { get; set; }
 
+    static public class MainainenceHelper
+    {
+        static public decimal quantityRatio( int articleId )
+        {
+            if (articleId == 1003 || articleId == 1)
+                return  (decimal)(1.0 / 4.0);
+
+            if (articleId == 1044)
+                return 1 / 2;
+
+            if (articleId == 1027)
+                return 1 / 3;
+
+
+            return 1;
+        }
     }
+
 }

@@ -1,4 +1,5 @@
-﻿using FurnitureManagement.Service;
+﻿using FurnitureManagement.Helper;
+using FurnitureManagement.Service;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,10 +29,17 @@ namespace FurnitureManagement.Views.MaterialView
         {
             this.natureOfWorkIndex = natureOfWorkIndex;
             InitializeComponent();
-            itemList = ItemService.getItemsByLocation(locationId);
 
+            if ( natureOfWorkIndex == 0)
+                itemList = ItemService.getItemsByLocation(locationId, NatureOfWork.Upholstery.combineIds);
+            else if ( natureOfWorkIndex == 2)
+                itemList = ItemService.getItemsByLocation(locationId, NatureOfWork.ConversionofCotNawarintoHardBed.combineIds);
+            else if (natureOfWorkIndex == 3)
+                itemList = ItemService.getItemsByLocation(locationId, NatureOfWork.ReplacementofTops.combineIds);
+            else
+                itemList = ItemService.getItemsByLocation(locationId);
 
-             list =   itemList
+            list =   itemList
             .GroupBy(x => x.JobItem.Article)
             .Select(x =>
                 new ArticleQuantity

@@ -16,7 +16,7 @@ namespace FurnitureManagement.Views.MaterialView
         List<Material> materialList;
         List<MaterialBundle> bundleList;
 
-        public AssignMaterial( int Id )
+        public AssignMaterial(int Id)
         {
             InitializeComponent();
             item = ItemService.getItemById(Id);
@@ -25,9 +25,9 @@ namespace FurnitureManagement.Views.MaterialView
 
         void SetupView()
         {
-            Input_ID.Content = item.Id.ToString();
-            Input_JobNo.Content =  item.JobItem.Job.JobNo;
-            Input_Category.Content =  item.JobItem.Job.Category1.Category_DESC;
+            Input_ID.Content = item.UIN.ToString();
+            Input_JobNo.Content = item.JobItem.Job.JobNo;
+            Input_Category.Content = item.JobItem.Job.Category1.Category_DESC;
             Input_Type.Content = item.JobItem.Article.Article_DESC;
             Input_Location.Content = Input_Location.Content + (item.Location == null ? "Warehouse" : item.Location.Name);
 
@@ -44,7 +44,7 @@ namespace FurnitureManagement.Views.MaterialView
             materialList = MaterialService.getMaterialModels();
             CB_Material.ItemsSource = materialList;
 
-            bundleList = MaterialBundleService.MaterialBundles();
+            bundleList = MaterialBundleService.MaterialBundles((int)item.JobItem.ArticleId);
             CB_Bundle.ItemsSource = null;
             CB_Bundle.ItemsSource = bundleList;
         }
@@ -52,7 +52,7 @@ namespace FurnitureManagement.Views.MaterialView
         private void Material_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int selectedIndex = CB_Material.SelectedIndex;
-           if (selectedIndex >= 0  && selectedIndex <= materialList.Count )
+            if (selectedIndex >= 0 && selectedIndex <= materialList.Count)
             {
                 Input_RemaingQuantity.Content = materialList[selectedIndex].Quantity;
             }
@@ -66,12 +66,12 @@ namespace FurnitureManagement.Views.MaterialView
             float f;
             var text = Input_Quantity.Text;
 
-            if (selectedIndex >= 0  && text != ""  &&
-                float.TryParse(text, out f ) && 
+            if (selectedIndex >= 0 && text != "" &&
+                float.TryParse(text, out f) &&
                 Convert.ToDouble(text) <= (double)materialList[selectedIndex].Quantity &&
-                 Convert.ToDouble(text) > 0 )
+                 Convert.ToDouble(text) > 0)
             {
-                MaterialItemService.assignMaterialToItem(item.Id, materialList[selectedIndex].Id, Convert.ToDecimal(text) , (int)materialList[selectedIndex].Rate );
+                MaterialItemService.assignMaterialToItem(item.Id, materialList[selectedIndex].Id, Convert.ToDecimal(text), (int)materialList[selectedIndex].Rate);
                 MessageBox.Show("Material Assigned ");
                 getData();
             }
@@ -84,11 +84,11 @@ namespace FurnitureManagement.Views.MaterialView
         private void MaterialBundleAssign_Click(object sender, RoutedEventArgs e)
         {
 
-            if ( CB_Bundle.SelectedIndex != -1 )
+            if (CB_Bundle.SelectedIndex != -1)
             {
-                    var selectedBundle = bundleList[CB_Bundle.SelectedIndex];
+                var selectedBundle = bundleList[CB_Bundle.SelectedIndex];
 
-                if (MaterialBundleService.IsBundleAvailable(selectedBundle.Id))
+                if (MaterialBundleService.IsBundleAvailable(selectedBundle.Id , (int)item.JobItem.ArticleId ))
                 {
 
                     selectedBundle.MaterialBundleItems.ToList().ForEach(x =>
@@ -112,6 +112,23 @@ namespace FurnitureManagement.Views.MaterialView
             Frame frame = Application.Current.MainWindow.FindName("Frame") as Frame;
             frame.NavigationService.GoBack();
 
+        }
+
+        void resetMaterialBundleGrid()
+        {
+            if (CB_Bundle.SelectedIndex != -1)
+            {
+                dataGrid.ItemsSource = null;
+                dataGrid.ItemsSource = bundleList[CB_Bundle.SelectedIndex].MaterialBundleItems;
+            }
+            else
+                dataGrid.ItemsSource = null;
+
+        }
+
+        private void BundleMaterial_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            resetMaterialBundleGrid();
         }
     }
 }
