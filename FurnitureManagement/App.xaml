@@ -38,7 +38,12 @@
             <Setter Property = "FontSize" Value = "15" />
             <Setter Property = "FontWeight" Value = "DemiBold" />
         </Style>
-        
+
+        <Style x:Key="MenuHeading" TargetType = "MenuItem" >
+            <Setter Property = "FontSize" Value = "15" />
+            <Setter Property = "FontWeight" Value = "DemiBold" />
+        </Style>
+
         <!---->
 
         
@@ -48,6 +53,7 @@
             <Setter Property = "RowHeight" Value = "20" />
             <Setter Property = "AutoGenerateColumns" Value = "False" />
             <Setter Property = "CanUserAddRows" Value = "False" />
+            <Setter Property="CanUserSortColumns" Value="False"/>
 
         </Style>
 
