@@ -7,8 +7,8 @@
         <DataGrid Name="dg_ShowItemHistory" CanUserAddRows="False" AutoGenerateColumns="False" >
             <DataGrid.Columns>
 
-                <DataGridTextColumn Header="Location" Width="70" Binding="{Binding Location.Name}"/>
-                <DataGridTextColumn Header="Assigned At" Width="150" Binding="{Binding Ceated_At}"/>
+                <DataGridTextColumn Header="Location" Width="70" Binding="{Binding Location.Display}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Assigned At" Width="150" Binding="{Binding Ceated_At}" IsReadOnly="True"/>
                
                
             </DataGrid.Columns>

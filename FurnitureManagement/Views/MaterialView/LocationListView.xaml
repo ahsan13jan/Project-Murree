@@ -54,7 +54,7 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Display}" />
                     <DataGridTextColumn Header="No Items Assinged" Binding="{Binding Items.Count}" />
                     <DataGridTextColumn Header="Category" Binding="{Binding Category1.Category_DESC}" />
                     <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}" />

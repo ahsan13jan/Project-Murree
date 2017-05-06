@@ -29,7 +29,7 @@ namespace FurnitureManagement.Views.MaterialView
             Input_JobNo.Content = item.JobItem.Job.JobNo;
             Input_Category.Content = item.JobItem.Job.Category1.Category_DESC;
             Input_Type.Content = item.JobItem.Article.Article_DESC;
-            Input_Location.Content = Input_Location.Content + (item.Location == null ? "Warehouse" : item.Location.Name);
+            Input_Location.Content = Input_Location.Content + (item.Location == null ? "Warehouse" : item.Location.Display);
 
             getData();
 
