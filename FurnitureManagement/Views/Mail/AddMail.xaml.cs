@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 
 namespace FurnitureManagement.Views.Mail
 {
+    //usama change
     /// <summary>
     /// Interaction logic for AddMail.xaml
     /// </summary>
