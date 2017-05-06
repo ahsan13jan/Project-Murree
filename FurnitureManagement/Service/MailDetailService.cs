@@ -23,7 +23,31 @@ namespace FurnitureManagement.Service
          {
              List<MailDetail> list = Context.sharedInstance.MailDetails.ToList();
              list = list.Where(x => x.MailType == 1 && x.RepliedEmailId == null).ToList();
-             return list;
+             List<MailDetail> updatedList = new List<MailDetail>();
+             foreach (var item in list)
+             {
+                 if (isMailReplyExist(item))
+                 {
+                     updatedList.Add(item);
+                 }
+             }
+                return updatedList;
+         }
+
+         private static bool isMailReplyExist(MailDetail m)
+         {
+             List<MailDetail> list = Context.sharedInstance.MailDetails.ToList();
+
+             foreach (var item in list)
+             {
+                 if (m.Id == item.RepliedEmailId)
+                 {
+                     return false;
+                 }
+
+             }
+
+             return true;
          }
     }
 }
