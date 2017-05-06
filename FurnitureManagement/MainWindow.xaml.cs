@@ -21,7 +21,7 @@ using FurnitureManagement.Views.Warehouse;
 using FurnitureManagement.Views.LocationN;
 using FurnitureManagement.Views.LocationBlocks;
 using FurnitureManagement.Views.Mail;
-
+//
 namespace FurnitureManagement
 {
     /// <summary>
