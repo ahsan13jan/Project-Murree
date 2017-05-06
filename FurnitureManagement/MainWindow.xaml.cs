@@ -20,6 +20,7 @@ using FurnitureManagement.Views.MaterialView;
 using FurnitureManagement.Views.Warehouse;
 using FurnitureManagement.Views.LocationN;
 using FurnitureManagement.Views.LocationBlocks;
+using FurnitureManagement.Views.Mail;
 
 namespace FurnitureManagement
 {
@@ -115,6 +116,12 @@ namespace FurnitureManagement
         private void AddSubBlock_Click(object sender, RoutedEventArgs e)
         {
             AddEditSubBlock ViewNextForm = new AddEditSubBlock();
+            Frame.Content = ViewNextForm;
+        }
+
+        private void MailView_Click(object sender, RoutedEventArgs e)
+        {
+            AddMail ViewNextForm = new AddMail();
             Frame.Content = ViewNextForm;
         }
     }

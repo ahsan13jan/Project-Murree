@@ -99,8 +99,10 @@ namespace FurnitureManagement.Service
             context.SaveChanges();
         }
 
-        public static List<Item> getAllItemByLocationId(int locationId)
+        public static List<Item> getAllItemByLocationId(int? locationId)
         {
+            if (locationId == 0)
+                locationId = null;
             return Context.sharedInstance.Items.Where(x => x.LocationID == locationId).ToList(); 
         }
     }

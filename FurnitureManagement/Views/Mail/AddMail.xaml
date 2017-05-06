@@ -1,0 +1,90 @@
+﻿<Page x:Class="FurnitureManagement.Views.Mail.AddMail"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+
+	Title="AddMail">
+
+    <Grid Margin="10" >
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,0,5" />
+            </Style>
+
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="90*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="100*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="90*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="10*">
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="1"  Style="{StaticResource SubHeading}">Add Mails</Label>
+        <Label Grid.Column="1" Grid.Row="1" FontWeight="DemiBold" Width="90" Margin="10" >Mail Type</Label>
+        <ComboBox Name="cmb_mailType" Grid.Column="1" Grid.Row="1" Width="100" Height="20" Margin="195,10,199,17" Grid.ColumnSpan="2"
+                  SelectionChanged="cmb_mailType_SelectionChanged"   SelectedValuePath="Id" DisplayMemberPath="Type">
+        </ComboBox>
+        <Label FontWeight="DemiBold" Width="90" Margin="10" Grid.Column="1" Grid.Row="2">Type</Label>
+        <ComboBox Name="cmb_mailDetailType" Grid.Column="1" Grid.Row="2" Width="100" Height="20" Margin="134,10,0,33" RenderTransformOrigin="0.509,1.119"  SelectionChanged="cmb_mailDetailType_SelectionChanged"></ComboBox>
+        <Label FontWeight="DemiBold" Width="90" Margin="10" Grid.Column="2" Grid.Row="2">Date</Label>
+        <DatePicker Name="dtp_mail" Grid.Column="2" Grid.Row="2" Width="100" Margin=" 134,10,0,33" Height="20"/>
+        <Label FontWeight="DemiBold" Margin="10,9,95,1" Grid.Column="3" Grid.Row="2" >Subject</Label>
+        <TextBox  Name="txt_subject" Grid.Column="3" Grid.Row="2" Width="120" Margin="74,11,-14,10" Visibility="Visible" Grid.ColumnSpan="2"/>
+        <Label Width="90" FontWeight="DemiBold" Margin="10" Grid.Column="1" Grid.Row="3">Filed In</Label>
+        <TextBox Name="txt_fileIn" Width="100" Grid.Column="1" Grid.Row="3" Height="20" Margin="134,10,0,33"/>
+        <Label Width="90" FontWeight="DemiBold" Margin="10" Grid.Column="2" Grid.Row="3">Page No</Label>
+        <TextBox Name="txt_pageNo" Grid.Column="2" Width="100" Margin="134,10,0,33" Grid.Row="3" KeyDown="txt_pageNo_KeyDown"/>
+        <Label Width="90" FontWeight="DemiBold" Margin="10,11,134,10" Grid.Column="3" Grid.Row="3">Scanned Copy</Label>
+        <Button Name="btn_imgEmail" Grid.Column="3" Grid.Row="3" Content="Browse" Width="100" Margin="105,13,29,31" Click="btn_imgEmail_Click" ></Button>
+        <Label Width="90" FontWeight="DemiBold" Margin="10" Grid.Column="1" Grid.Row="4" Visibility="Hidden" Name="lbl_Replyagainst">Reply Against</Label>
+        <ComboBox Name="cmb_Replyaginst" Grid.Column="1" Grid.Row="4" Width="100" Height="20" Margin="195,14,199,37" RenderTransformOrigin="0.509,1.119" Grid.ColumnSpan="2" Visibility="Hidden" DisplayMemberPath="replyAgaist" ></ComboBox>
+
+        <Button Name="btn_save" Grid.Column="3" Grid.Row="4" Content="Save" Width="100" Margin="105,13,29,31" Click="btn_save_Click" ></Button>
+
+        <ScrollViewer Margin="5,10,0,0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Height="180" >
+            <Grid  >
+                <DataGrid Name="dataGrid"  >
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="ID" Width="25" Binding="{Binding Id}" />
+                        <DataGridTextColumn Header="Type" Width="50" Binding="{Binding Type}" />
+                        <DataGridTextColumn Header="Subject" Width="160" Binding="{Binding Subject}" />
+                        <DataGridTextColumn Header="Filed In " Width="100" Binding="{Binding FiledIn}" />
+                        <DataGridTextColumn Header="Page No" Width="60" Binding="{Binding PageNo}" />
+                        <DataGridTextColumn Header="Mail Type"  Width="100" Binding="{Binding MailType.MailType1.Type}" />
+                        <DataGridTextColumn Header="Date"  Width="130" Binding="{Binding Date}" />
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btn_scanned" Click="btn_scannedPath" >
+                                        <Button.Content>
+                                            <Image Source="D:\Work\ProjectMuree\FurnitureManagement\bin\Debug\images.png" />
+                                        </Button.Content>
+
+                                    </Button>
+
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

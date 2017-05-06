@@ -72,6 +72,10 @@
                         <MenuItem Header="Add Job" Click="AddJob_Click" />
                     </MenuItem>
 
+                    <MenuItem Header="Mail"  Style="{StaticResource MenuHeading}">
+                        <MenuItem Header="Mail View" Click="MailView_Click" />
+                    </MenuItem>
+
 
 
 
