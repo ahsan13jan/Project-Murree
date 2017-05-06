@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1b19746a22dc460988b31f78cfd55242" Name="Diagram1">
+      <Diagram DiagramId="8a2af2f68b0a473096b4e05b2ffe3312" Name="Diagram1">
         <EntityTypeShape EntityType="FurnitureModel.Article" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FurnitureModel.Category" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FurnitureModel.Indent" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
@@ -33,6 +33,16 @@
         <AssociationConnector Association="FurnitureModel.FK_Officer_Location" ManuallyRouted="false" />
         <AssociationConnector Association="FurnitureModel.FK_Unit_Location" ManuallyRouted="false" />
         <AssociationConnector Association="FurnitureModel.FK_MaterialItem_ToMaterialID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FurnitureModel.MaterialBundle" Width="1.5" PointX="10.5" PointY="0.75" />
+        <EntityTypeShape EntityType="FurnitureModel.MaterialBundleItem" Width="1.5" PointX="12.75" PointY="5.5" />
+        <AssociationConnector Association="FurnitureModel.FK_MaterialBundleItems_ToMaterial" />
+        <AssociationConnector Association="FurnitureModel.FK_MaterialBundleItems_ToMaterialBundle" />
+        <EntityTypeShape EntityType="FurnitureModel.Block" Width="1.5" PointX="3" PointY="16.625" />
+        <AssociationConnector Association="FurnitureModel.FK_Block_ToBlock" />
+        <AssociationConnector Association="FurnitureModel.FK_Block_ToCategory" />
+        <EntityTypeShape EntityType="FurnitureModel.MailDetail" Width="1.5" PointX="14.625" PointY="9" />
+        <EntityTypeShape EntityType="FurnitureModel.MailType" Width="1.5" PointX="12.375" PointY="9.625" />
+        <AssociationConnector Association="FurnitureModel.FK_MailDetail_MailType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

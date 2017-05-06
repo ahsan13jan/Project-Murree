@@ -12,17 +12,18 @@ namespace FurnitureManagement
     using System;
     using System.Collections.Generic;
     
-    public partial class MaterialItem
+    public partial class MailDetail
     {
         public int Id { get; set; }
-        public Nullable<int> ItemId { get; set; }
-        public Nullable<int> MaterialId { get; set; }
-        public Nullable<decimal> Quantity { get; set; }
-        public Nullable<int> Rate { get; set; }
-        public bool IsDeleted { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public string Subject { get; set; }
+        public string FiledIn { get; set; }
+        public string Type { get; set; }
+        public Nullable<int> MailType { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string ScannedCopy { get; set; }
+        public Nullable<int> PageNo { get; set; }
+        public Nullable<int> RepliedEmailId { get; set; }
     
-        public virtual Item Item { get; set; }
-        public virtual Material Material { get; set; }
+        public virtual MailType MailType1 { get; set; }
     }
 }

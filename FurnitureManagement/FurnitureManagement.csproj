@@ -85,12 +85,16 @@
     <Compile Include="Article.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Block.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Header.xaml.cs">
       <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\MaintenanceGrouping.cs" />
     <Compile Include="Helper\MaterialHelper.cs" />
     <Compile Include="Helper\MaterialItemHelper.cs" />
     <Compile Include="Helper\ItemHelper.cs" />
@@ -116,7 +120,19 @@
     <Compile Include="Location.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MailDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MailType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Material.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialBundle.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialBundleItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="MaterialItem.cs">
@@ -140,6 +156,11 @@
     <Compile Include="Officer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Service\BlockService.cs" />
+    <Compile Include="Helper\MailDetailHelper.cs" />
+    <Compile Include="Service\MailDetailService.cs" />
+    <Compile Include="Service\MailTypeService.cs" />
+    <Compile Include="Service\MaterialBundleService.cs" />
     <Compile Include="Service\ItemLocationService.cs" />
     <Compile Include="Service\MaterialItemService.cs" />
     <Compile Include="Service\IndentMateralService.cs" />
@@ -158,6 +179,12 @@
     <Compile Include="Views\JobNo\ShowJobItems.xaml.cs">
       <DependentUpon>ShowJobItems.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LocationBlocks\AddEditSubBlock.xaml.cs">
+      <DependentUpon>AddEditSubBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LocationBlocks\AddEditBlock.xaml.cs">
+      <DependentUpon>AddEditBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LocationN\ItemsShow.xaml.cs">
       <DependentUpon>ItemsShow.xaml</DependentUpon>
     </Compile>
@@ -166,6 +193,12 @@
     </Compile>
     <Compile Include="Views\LocationN\ShowOfficers.xaml.cs">
       <DependentUpon>ShowOfficers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mail\AddMail.xaml.cs">
+      <DependentUpon>AddMail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mail\ImageViewer.xaml.cs">
+      <DependentUpon>ImageViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MaterialView\AssignMaterial.xaml.cs">
       <DependentUpon>AssignMaterial.xaml</DependentUpon>
@@ -218,6 +251,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\LocationBlocks\AddEditSubBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LocationBlocks\AddEditBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LocationN\AddLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -264,6 +305,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LocationN\ShowOfficers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Mail\AddMail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Mail\ImageViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

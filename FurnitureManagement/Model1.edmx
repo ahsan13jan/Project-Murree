@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FurnitureModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FurnitureModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Articles">
           <Key>
             <PropertyRef Name="Article_Id" />
@@ -14,6 +14,18 @@
           <Property Name="Acc_Unit" Type="nvarchar" MaxLength="50" />
           <Property Name="Category" Type="int" />
           <Property Name="Rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Block">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CategoryId" Type="int" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -102,6 +114,27 @@
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
           <Property Name="Category" Type="int" />
         </EntityType>
+        <EntityType Name="MailDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="FiledIn" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="MailType" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="ScannedCopy" Type="nvarchar(max)" />
+          <Property Name="PageNo" Type="int" />
+          <Property Name="RepliedEmailId" Type="int" />
+        </EntityType>
+        <EntityType Name="MailType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Material">
           <Key>
             <PropertyRef Name="Id" />
@@ -110,7 +143,23 @@
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Unit" Type="nvarchar" MaxLength="50" />
           <Property Name="Rate" Type="int" />
-          <Property Name="Quantity" Type="decimal" Precision="18" Scale="1" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MaterialBundle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="MaterialBundleItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="MaterialBundleId" Type="int" />
+          <Property Name="MaterialId" Type="int" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="MaterialItem">
           <Key>
@@ -119,7 +168,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ItemId" Type="int" />
           <Property Name="MaterialId" Type="int" />
-          <Property Name="Quantity" Type="decimal" Precision="18" Scale="1" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Rate" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
@@ -155,6 +204,30 @@
             </Principal>
             <Dependent Role="Articles">
               <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Block_ToBlock">
+          <End Role="Block" Type="Self.Block" Multiplicity="0..1" />
+          <End Role="Block1" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Block">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Block1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Block_ToCategory">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_Id" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -278,6 +351,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MailDetail_MailType">
+          <End Role="MailType" Type="Self.MailType" Multiplicity="0..1" />
+          <End Role="MailDetail" Type="Self.MailDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MailDetail">
+              <PropertyRef Name="MailType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialBundleItems_ToMaterial">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="MaterialBundleItems" Type="Self.MaterialBundleItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialBundleItems">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialBundleItems_ToMaterialBundle">
+          <End Role="MaterialBundle" Type="Self.MaterialBundle" Multiplicity="0..1" />
+          <End Role="MaterialBundleItems" Type="Self.MaterialBundleItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaterialBundle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialBundleItems">
+              <PropertyRef Name="MaterialBundleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MaterialItem_ToItemId">
           <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
           <End Role="MaterialItem" Type="Self.MaterialItem" Multiplicity="*" />
@@ -328,6 +437,7 @@
         </Association>
         <EntityContainer Name="FurnitureModelStoreContainer">
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Block" EntityType="Self.Block" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Indent" EntityType="Self.Indent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IndentMaterial" EntityType="Self.IndentMaterial" Schema="dbo" store:Type="Tables" />
@@ -336,13 +446,25 @@
           <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobItems" EntityType="Self.JobItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailDetail" EntityType="Self.MailDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailType" EntityType="Self.MailType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialBundle" EntityType="Self.MaterialBundle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialBundleItems" EntityType="Self.MaterialBundleItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaterialItem" EntityType="Self.MaterialItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Officer" EntityType="Self.Officer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Articles_Category" Association="Self.FK_Articles_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Block_ToBlock" Association="Self.FK_Block_ToBlock">
+            <End Role="Block" EntitySet="Block" />
+            <End Role="Block1" EntitySet="Block" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Block_ToCategory" Association="Self.FK_Block_ToCategory">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Block" EntitySet="Block" />
           </AssociationSet>
           <AssociationSet Name="FK_IndentMaterial_Indent" Association="Self.FK_IndentMaterial_Indent">
             <End Role="Indent" EntitySet="Indent" />
@@ -384,6 +506,18 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Location" EntitySet="Location" />
           </AssociationSet>
+          <AssociationSet Name="FK_MailDetail_MailType" Association="Self.FK_MailDetail_MailType">
+            <End Role="MailType" EntitySet="MailType" />
+            <End Role="MailDetail" EntitySet="MailDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialBundleItems_ToMaterial" Association="Self.FK_MaterialBundleItems_ToMaterial">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="MaterialBundleItems" EntitySet="MaterialBundleItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialBundleItems_ToMaterialBundle" Association="Self.FK_MaterialBundleItems_ToMaterialBundle">
+            <End Role="MaterialBundle" EntitySet="MaterialBundle" />
+            <End Role="MaterialBundleItems" EntitySet="MaterialBundleItems" />
+          </AssociationSet>
           <AssociationSet Name="FK_MaterialItem_ToItemId" Association="Self.FK_MaterialItem_ToItemId">
             <End Role="Item" EntitySet="Item" />
             <End Role="MaterialItem" EntitySet="MaterialItem" />
@@ -401,8 +535,7 @@
             <End Role="Unit" EntitySet="Unit" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FurnitureModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -417,6 +550,7 @@
           <Property Name="Rate" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_Articles_Category" FromRole="Articles" ToRole="Category" />
           <NavigationProperty Name="JobItems" Relationship="Self.FK_JobItems_ToArticle" FromRole="Articles" ToRole="JobItems" />
+          <Property Name="Prefix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -427,6 +561,7 @@
           <NavigationProperty Name="Articles" Relationship="Self.FK_Articles_Category" FromRole="Category" ToRole="Articles" />
           <NavigationProperty Name="Jobs" Relationship="Self.FK_Job_Category" FromRole="Category" ToRole="Job" />
           <NavigationProperty Name="Locations" Relationship="Self.FK_Location_Category" FromRole="Category" ToRole="Location" />
+          <NavigationProperty Name="Blocks" Relationship="FurnitureModel.FK_Block_ToCategory" FromRole="Category" ToRole="Block" />
         </EntityType>
         <EntityType Name="Indent">
           <Key>
@@ -535,9 +670,10 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Rate" Type="Int32" />
-          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="IndentMaterials" Relationship="Self.FK_IndentMaterial_Material" FromRole="Material" ToRole="IndentMaterial" />
           <NavigationProperty Name="MaterialItems" Relationship="Self.FK_MaterialItem_ToMaterialID" FromRole="Material" ToRole="MaterialItem" />
+          <NavigationProperty Name="MaterialBundleItems" Relationship="FurnitureModel.FK_MaterialBundleItems_ToMaterial" FromRole="Material" ToRole="MaterialBundleItem" />
         </EntityType>
         <EntityType Name="MaterialItem">
           <Key>
@@ -546,7 +682,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemId" Type="Int32" />
           <Property Name="MaterialId" Type="Int32" />
-          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Rate" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
@@ -831,7 +967,148 @@
             <End Role="Material" EntitySet="Materials" />
             <End Role="MaterialItem" EntitySet="MaterialItems" />
           </AssociationSet>
+          <EntitySet Name="MaterialBundles" EntityType="FurnitureModel.MaterialBundle" />
+          <EntitySet Name="MaterialBundleItems" EntityType="FurnitureModel.MaterialBundleItem" />
+          <AssociationSet Name="FK_MaterialBundleItems_ToMaterial" Association="FurnitureModel.FK_MaterialBundleItems_ToMaterial">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="MaterialBundleItem" EntitySet="MaterialBundleItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaterialBundleItems_ToMaterialBundle" Association="FurnitureModel.FK_MaterialBundleItems_ToMaterialBundle">
+            <End Role="MaterialBundle" EntitySet="MaterialBundles" />
+            <End Role="MaterialBundleItem" EntitySet="MaterialBundleItems" />
+          </AssociationSet>
+          <EntitySet Name="Blocks" EntityType="FurnitureModel.Block" />
+          <AssociationSet Name="FK_Block_ToBlock" Association="FurnitureModel.FK_Block_ToBlock">
+            <End Role="Block" EntitySet="Blocks" />
+            <End Role="Block1" EntitySet="Blocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Block_ToCategory" Association="FurnitureModel.FK_Block_ToCategory">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Block" EntitySet="Blocks" />
+          </AssociationSet>
+          <EntitySet Name="MailDetails" EntityType="FurnitureModel.MailDetail" />
+          <EntitySet Name="MailTypes" EntityType="FurnitureModel.MailType" />
+          <AssociationSet Name="FK_MailDetail_MailType" Association="FurnitureModel.FK_MailDetail_MailType">
+            <End Role="MailType" EntitySet="MailTypes" />
+            <End Role="MailDetail" EntitySet="MailDetails" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="MaterialBundle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MaterialBundleItems" Relationship="FurnitureModel.FK_MaterialBundleItems_ToMaterialBundle" FromRole="MaterialBundle" ToRole="MaterialBundleItem" />
+        </EntityType>
+        <EntityType Name="MaterialBundleItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="MaterialBundleId" Type="Int32" />
+          <Property Name="MaterialId" Type="Int32" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Material" Relationship="FurnitureModel.FK_MaterialBundleItems_ToMaterial" FromRole="MaterialBundleItem" ToRole="Material" />
+          <NavigationProperty Name="MaterialBundle" Relationship="FurnitureModel.FK_MaterialBundleItems_ToMaterialBundle" FromRole="MaterialBundleItem" ToRole="MaterialBundle" />
+        </EntityType>
+        <Association Name="FK_MaterialBundleItems_ToMaterial">
+          <End Type="FurnitureModel.Material" Role="Material" Multiplicity="0..1" />
+          <End Type="FurnitureModel.MaterialBundleItem" Role="MaterialBundleItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialBundleItem">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaterialBundleItems_ToMaterialBundle">
+          <End Type="FurnitureModel.MaterialBundle" Role="MaterialBundle" Multiplicity="0..1" />
+          <End Type="FurnitureModel.MaterialBundleItem" Role="MaterialBundleItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaterialBundle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialBundleItem">
+              <PropertyRef Name="MaterialBundleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Block">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CategoryId" Type="Int32" />
+          <NavigationProperty Name="Block1" Relationship="FurnitureModel.FK_Block_ToBlock" FromRole="Block" ToRole="Block1" />
+          <NavigationProperty Name="Block2" Relationship="FurnitureModel.FK_Block_ToBlock" FromRole="Block1" ToRole="Block" />
+          <NavigationProperty Name="Category" Relationship="FurnitureModel.FK_Block_ToCategory" FromRole="Block" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK_Block_ToBlock">
+          <End Type="FurnitureModel.Block" Role="Block" Multiplicity="0..1" />
+          <End Type="FurnitureModel.Block" Role="Block1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Block">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Block1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Block_ToCategory">
+          <End Type="FurnitureModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="FurnitureModel.Block" Role="Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_Id" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MailDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FiledIn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailType" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="ScannedCopy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PageNo" Type="Int32" />
+          <Property Name="RepliedEmailId" Type="Int32" />
+          <NavigationProperty Name="MailType1" Relationship="FurnitureModel.FK_MailDetail_MailType" FromRole="MailDetail" ToRole="MailType" />
+        </EntityType>
+        <EntityType Name="MailType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MailDetails" Relationship="FurnitureModel.FK_MailDetail_MailType" FromRole="MailType" ToRole="MailDetail" />
+        </EntityType>
+        <Association Name="FK_MailDetail_MailType">
+          <End Type="FurnitureModel.MailType" Role="MailType" Multiplicity="0..1" />
+          <End Type="FurnitureModel.MailDetail" Role="MailDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MailType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MailDetail">
+              <PropertyRef Name="MailType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -841,6 +1118,7 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="FurnitureModel.Article">
               <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
                 <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
                 <ScalarProperty Name="Article_DESC" ColumnName="Article_DESC" />
                 <ScalarProperty Name="Acc_Unit" ColumnName="Acc_Unit" />
@@ -989,6 +1267,59 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="unit_Number" ColumnName="unit_Number" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialBundles">
+            <EntityTypeMapping TypeName="FurnitureModel.MaterialBundle">
+              <MappingFragment StoreEntitySet="MaterialBundle">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialBundleItems">
+            <EntityTypeMapping TypeName="FurnitureModel.MaterialBundleItem">
+              <MappingFragment StoreEntitySet="MaterialBundleItems">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+                <ScalarProperty Name="MaterialBundleId" ColumnName="MaterialBundleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blocks">
+            <EntityTypeMapping TypeName="FurnitureModel.Block">
+              <MappingFragment StoreEntitySet="Block">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailDetails">
+            <EntityTypeMapping TypeName="FurnitureModel.MailDetail">
+              <MappingFragment StoreEntitySet="MailDetail">
+                <ScalarProperty Name="RepliedEmailId" ColumnName="RepliedEmailId" />
+                <ScalarProperty Name="PageNo" ColumnName="PageNo" />
+                <ScalarProperty Name="ScannedCopy" ColumnName="ScannedCopy" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="MailType" ColumnName="MailType" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FiledIn" ColumnName="FiledIn" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailTypes">
+            <EntityTypeMapping TypeName="FurnitureModel.MailType">
+              <MappingFragment StoreEntitySet="MailType">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

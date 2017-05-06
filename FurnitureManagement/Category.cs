@@ -20,6 +20,7 @@ namespace FurnitureManagement
             this.Articles = new HashSet<Article>();
             this.Jobs = new HashSet<Job>();
             this.Locations = new HashSet<Location>();
+            this.Blocks = new HashSet<Block>();
         }
     
         public int Category_Id { get; set; }
@@ -31,5 +32,7 @@ namespace FurnitureManagement
         public virtual ICollection<Job> Jobs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Location> Locations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Block> Blocks { get; set; }
     }
 }

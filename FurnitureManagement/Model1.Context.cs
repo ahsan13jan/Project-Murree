@@ -38,5 +38,10 @@ namespace FurnitureManagement
         public virtual DbSet<MaterialItem> MaterialItems { get; set; }
         public virtual DbSet<Officer> Officers { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
+        public virtual DbSet<MaterialBundle> MaterialBundles { get; set; }
+        public virtual DbSet<MaterialBundleItem> MaterialBundleItems { get; set; }
+        public virtual DbSet<Block> Blocks { get; set; }
+        public virtual DbSet<MailDetail> MailDetails { get; set; }
+        public virtual DbSet<MailType> MailTypes { get; set; }
     }
 }

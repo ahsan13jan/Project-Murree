@@ -19,6 +19,7 @@ namespace FurnitureManagement
         {
             this.IndentMaterials = new HashSet<IndentMaterial>();
             this.MaterialItems = new HashSet<MaterialItem>();
+            this.MaterialBundleItems = new HashSet<MaterialBundleItem>();
         }
     
         public int Id { get; set; }
@@ -31,5 +32,7 @@ namespace FurnitureManagement
         public virtual ICollection<IndentMaterial> IndentMaterials { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MaterialItem> MaterialItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MaterialBundleItem> MaterialBundleItems { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace FurnitureManagement
         public string Acc_Unit { get; set; }
         public Nullable<int> Category { get; set; }
         public Nullable<decimal> Rate { get; set; }
+        public string Prefix { get; set; }
     
         public virtual Category Category1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

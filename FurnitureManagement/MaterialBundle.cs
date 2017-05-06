@@ -12,27 +12,18 @@ namespace FurnitureManagement
     using System;
     using System.Collections.Generic;
     
-    public partial class Item
+    public partial class MaterialBundle
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Item()
+        public MaterialBundle()
         {
-            this.ItemLocations = new HashSet<ItemLocation>();
-            this.MaterialItems = new HashSet<MaterialItem>();
+            this.MaterialBundleItems = new HashSet<MaterialBundleItem>();
         }
     
         public int Id { get; set; }
-        public Nullable<int> JobItemId { get; set; }
-        public string UIN { get; set; }
-        public Nullable<int> LocationID { get; set; }
-        public bool IsDeleted { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public string Name { get; set; }
     
-        public virtual JobItem JobItem { get; set; }
-        public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemLocation> ItemLocations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MaterialItem> MaterialItems { get; set; }
+        public virtual ICollection<MaterialBundleItem> MaterialBundleItems { get; set; }
     }
 }

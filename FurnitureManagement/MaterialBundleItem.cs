@@ -12,17 +12,14 @@ namespace FurnitureManagement
     using System;
     using System.Collections.Generic;
     
-    public partial class MaterialItem
+    public partial class MaterialBundleItem
     {
         public int Id { get; set; }
-        public Nullable<int> ItemId { get; set; }
+        public Nullable<int> MaterialBundleId { get; set; }
         public Nullable<int> MaterialId { get; set; }
         public Nullable<decimal> Quantity { get; set; }
-        public Nullable<int> Rate { get; set; }
-        public bool IsDeleted { get; set; }
-        public System.DateTime CreatedAt { get; set; }
     
-        public virtual Item Item { get; set; }
         public virtual Material Material { get; set; }
+        public virtual MaterialBundle MaterialBundle { get; set; }
     }
 }
