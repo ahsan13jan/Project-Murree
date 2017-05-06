@@ -4,22 +4,19 @@
         Title="ItemsShow" Height="auto" Width="350" ResizeMode="NoResize">
     <Grid>
         <DataGrid Name="dg_ItemsShow" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" >
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Item History" Click="ItemHistory_Click">
-                        <MenuItem.Icon>
-                            <Image Name="itemhistory"  Height="20" Width="20"></Image>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="ItemHistory_Click"/>
+                </Style>
+            </DataGrid.Resources>
+
 
             <DataGrid.Columns>
-                <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id }"/>
-                <DataGridTextColumn Width="70" Header="Job Item"   Binding="{Binding JobItemId }"/>
-                <DataGridTextColumn Width="70" Header="Location"   Binding="{Binding Location.Name }"/>
+                <DataGridTextColumn Width="50" Header="UIN" Binding="{Binding UIN }" IsReadOnly="True"/>
+                <DataGridTextColumn Width="70" Header="Job Item"   Binding="{Binding JobItemId }" IsReadOnly="True"/>
+                <DataGridTextColumn Width="70" Header="Location"   Binding="{Binding Location.Display }" IsReadOnly="True"/>
 
-                <DataGridTextColumn Width="150" Header="Created At" Binding="{Binding CreatedAt }"/>
+                <DataGridTextColumn Width="150" Header="Created At" Binding="{Binding CreatedAt }" IsReadOnly="True"/>
             </DataGrid.Columns>
 
             
