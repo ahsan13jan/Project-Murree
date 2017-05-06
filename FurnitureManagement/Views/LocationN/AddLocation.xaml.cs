@@ -71,19 +71,23 @@ namespace FurnitureManagement.Views.LocationN
                 }
                 else
                 {
-                    LocationService.saveLocation(new Location() { Name = "", Category = (int)cmb_CategoryLocation.SelectedValue });
-                    listOfLocations = LocationService.getLocations();
-                    string locationName = listOfLocations.Where(x => x.Name == "").First().Name;
-                    LocationService.saveOfficer(new Officer()
+
+                    var location = new Location() { BlockId = listBlock[CB_Block.SelectedIndex].Id, SubBlockId = filteredBlocks[CB_SubBlock.SelectedIndex].Id, Category = cmb_CategoryLocation.SelectedIndex + 1 };
+
+                    var officer = new Officer()
                     {
                         Location_Name = txt_LocationName.Text,
                         Occupant_Name = txt_OccupantName.Text,
                         ArmyNo = txt_ArmyNo.Text,
                         Rank = txt_Rank.Text,
                         Designation = txt_Designation.Text,
-                        Date_MarchIn = dtp_MarchIn.SelectedDate,
-                        Location = LocationService.LocationId(locationName)
-                    });
+                        Date_MarchIn = dtp_MarchIn.SelectedDate
+                    } ;
+
+
+                    LocationService.saveLocationOfficer(location, officer);
+
+
                 }
             }
             else
@@ -95,13 +99,13 @@ namespace FurnitureManagement.Views.LocationN
                 }
                 else
                 {
-                    LocationService.saveLocation(new Location() {  Category = (int)cmb_CategoryLocation.SelectedValue });
-                    listOfLocations = LocationService.getLocations();
-                    string locationName = listOfLocations.Where(x => x.Name == "XYZ").First().Name;
-                    LocationService.saveunit(new Unit()
+                    var location = new Location() { BlockId = listBlock[CB_Block.SelectedIndex].Id, SubBlockId = filteredBlocks[CB_SubBlock.SelectedIndex].Id, Category = cmb_CategoryLocation.SelectedIndex + 1 };
+                    var unit = new Unit()
                     {
                         unit_Number = txt_unitNumber.Text
-                    });
+                    };
+
+                    LocationService.saveLocationUnit(location, unit);
                 }
             }
             refreshGrid();

@@ -63,4 +63,22 @@ namespace FurnitureManagement
         }
 
     }
+    public partial class Location
+    {
+
+
+        public string Name { get; set; }
+
+        public string Display
+        {
+            get
+            {
+                if (Block  != null)
+                    return Block.Name + " - " + Block1.Name;
+                else
+                    return "Warehouse";
+            }
+        }
+
+    }
 }

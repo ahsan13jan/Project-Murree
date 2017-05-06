@@ -44,13 +44,13 @@
         <Label Grid.Row="3" Grid.Column="0"  >Block</Label>
 
         <ComboBox Name="CB_Block" Grid.Row="3" Grid.Column="1" Width="150"  Margin="0,2" SelectionChanged="Block_SelectionChanged"
-               DisplayMemberPath="Display"
+               DisplayMemberPath="Display" SelectedValue="Id"
              ></ComboBox>
 
         <Label Grid.Row="3" Grid.Column="2"  >Sub Block</Label>
 
         <ComboBox Name="CB_SubBlock" Grid.Row="3" Grid.Column="3" Width="150"  Margin="0,2"
-               DisplayMemberPath="Display"
+               DisplayMemberPath="Display" SelectedValue="Id"
              ></ComboBox>
 
 
@@ -111,7 +111,7 @@
 
 
 
-        <Button  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Width="70" Margin="87,1"  Click="AddEdit_Click" Name="btn_add" IsEnabled="False">Add</Button>
+        <Button  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Width="70" Margin="87,1"  Click="AddEdit_Click" Name="btn_add" >Add</Button>
 
 
 
@@ -142,7 +142,7 @@
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Display}" IsReadOnly="True" />
                     <DataGridTextColumn Header="No Items Assinged" Binding="{Binding Items.Count}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Category" Binding="{Binding Category1.Category_DESC}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}"  IsReadOnly="True" />

@@ -33,7 +33,6 @@ namespace FurnitureManagement
         public virtual DbSet<ItemLocation> ItemLocations { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<JobItem> JobItems { get; set; }
-        public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<MaterialItem> MaterialItems { get; set; }
         public virtual DbSet<Officer> Officers { get; set; }
@@ -43,5 +42,6 @@ namespace FurnitureManagement
         public virtual DbSet<Block> Blocks { get; set; }
         public virtual DbSet<MailDetail> MailDetails { get; set; }
         public virtual DbSet<MailType> MailTypes { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
     }
 }

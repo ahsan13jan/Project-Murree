@@ -29,10 +29,10 @@ namespace FurnitureManagement
         public System.DateTime CreatedAt { get; set; }
     
         public virtual JobItem JobItem { get; set; }
-        public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemLocation> ItemLocations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MaterialItem> MaterialItems { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

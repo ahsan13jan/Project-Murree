@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FurnitureManagement.Service
-{
+{ 
     static class ArticleService
     {
         public static List<Article> getArticlesByCategory( int catId )

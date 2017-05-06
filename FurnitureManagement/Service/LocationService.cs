@@ -9,13 +9,24 @@ namespace FurnitureManagement.Service
     static class LocationService
     {
         static FurnitureEntities context = new FurnitureEntities();
-        public static Location saveLocation(Location loc)
+        public static void saveLocationOfficer(Location loc , Officer officer )
         {
             loc.IsDeleted = false;
             loc.CreatedAt = DateTime.Now;
             var added = context.Locations.Add(loc);
             context.SaveChanges();
-            return added;
+            officer.Location = loc.Id;
+            saveOfficer(officer);
+        }
+
+        public static void saveLocationUnit(Location loc, Unit unit)
+        {
+            loc.IsDeleted = false;
+            loc.CreatedAt = DateTime.Now;
+            var added = context.Locations.Add(loc);
+            context.SaveChanges();
+            unit.Location = loc.Id;
+            saveunit(unit);
         }
         public static void deleteLocation(int id)
         {

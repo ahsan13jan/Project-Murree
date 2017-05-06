@@ -109,7 +109,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="BlockId" Type="int" />
+          <Property Name="SubBlockId" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
           <Property Name="Category" Type="int" />
@@ -351,6 +352,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LocationBlock_Block">
+          <End Role="Block" Type="Self.Block" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Block">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="BlockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationSubBlock_Block">
+          <End Role="Block" Type="Self.Block" Multiplicity="0..1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Block">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="SubBlockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MailDetail_MailType">
           <End Role="MailType" Type="Self.MailType" Multiplicity="0..1" />
           <End Role="MailDetail" Type="Self.MailDetail" Multiplicity="*" />
@@ -506,6 +531,14 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Location" EntitySet="Location" />
           </AssociationSet>
+          <AssociationSet Name="FK_LocationBlock_Block" Association="Self.FK_LocationBlock_Block">
+            <End Role="Block" EntitySet="Block" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationSubBlock_Block" Association="Self.FK_LocationSubBlock_Block">
+            <End Role="Block" EntitySet="Block" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
           <AssociationSet Name="FK_MailDetail_MailType" Association="Self.FK_MailDetail_MailType">
             <End Role="MailType" EntitySet="MailType" />
             <End Role="MailDetail" EntitySet="MailDetail" />
@@ -560,8 +593,8 @@
           <Property Name="Category_DESC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Articles" Relationship="Self.FK_Articles_Category" FromRole="Category" ToRole="Articles" />
           <NavigationProperty Name="Jobs" Relationship="Self.FK_Job_Category" FromRole="Category" ToRole="Job" />
-          <NavigationProperty Name="Locations" Relationship="Self.FK_Location_Category" FromRole="Category" ToRole="Location" />
           <NavigationProperty Name="Blocks" Relationship="FurnitureModel.FK_Block_ToCategory" FromRole="Category" ToRole="Block" />
+          <NavigationProperty Name="Locations" Relationship="FurnitureModel.FK_Location_Category" FromRole="Category" ToRole="Location" />
         </EntityType>
         <EntityType Name="Indent">
           <Key>
@@ -598,9 +631,9 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="JobItem" Relationship="Self.FK_Item_ToJobItem" FromRole="Item" ToRole="JobItems" />
-          <NavigationProperty Name="Location" Relationship="Self.FK_Item_ToLocation" FromRole="Item" ToRole="Location" />
           <NavigationProperty Name="ItemLocations" Relationship="Self.FK_ItemLocation_Item" FromRole="Item" ToRole="ItemLocation" />
           <NavigationProperty Name="MaterialItems" Relationship="Self.FK_MaterialItem_ToItemId" FromRole="Item" ToRole="MaterialItem" />
+          <NavigationProperty Name="Location" Relationship="FurnitureModel.FK_Item_ToLocation" FromRole="Item" ToRole="Location" />
         </EntityType>
         <EntityType Name="ItemLocation">
           <Key>
@@ -611,7 +644,7 @@
           <Property Name="LocationId" Type="Int32" />
           <Property Name="Ceated_At" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Item" Relationship="Self.FK_ItemLocation_Item" FromRole="ItemLocation" ToRole="Item" />
-          <NavigationProperty Name="Location" Relationship="Self.FK_ItemLocation_Location" FromRole="ItemLocation" ToRole="Location" />
+          <NavigationProperty Name="Location" Relationship="FurnitureModel.FK_ItemLocation_Location" FromRole="ItemLocation" ToRole="Location" />
         </EntityType>
         <EntityType Name="Job">
           <Key>
@@ -646,21 +679,6 @@
           <NavigationProperty Name="Article" Relationship="Self.FK_JobItems_ToArticle" FromRole="JobItems" ToRole="Articles" />
           <NavigationProperty Name="Items" Relationship="Self.FK_Item_ToJobItem" FromRole="JobItems" ToRole="Item" />
           <NavigationProperty Name="Job" Relationship="Self.FK_JobItems_ToJob" FromRole="JobItems" ToRole="Job" />
-        </EntityType>
-        <EntityType Name="Location">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Category" Type="Int32" />
-          <NavigationProperty Name="Category1" Relationship="Self.FK_Location_Category" FromRole="Location" ToRole="Category" />
-          <NavigationProperty Name="Items" Relationship="Self.FK_Item_ToLocation" FromRole="Location" ToRole="Item" />
-          <NavigationProperty Name="ItemLocations" Relationship="Self.FK_ItemLocation_Location" FromRole="Location" ToRole="ItemLocation" />
-          <NavigationProperty Name="Officers" Relationship="Self.FK_Officer_Location" FromRole="Location" ToRole="Officer" />
-          <NavigationProperty Name="Units" Relationship="Self.FK_Unit_Location" FromRole="Location" ToRole="Unit" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -702,7 +720,7 @@
           <Property Name="Location_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Date_Marchout" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Location1" Relationship="Self.FK_Officer_Location" FromRole="Officer" ToRole="Location" />
+          <NavigationProperty Name="Location1" Relationship="FurnitureModel.FK_Officer_Location" FromRole="Officer" ToRole="Location" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -711,7 +729,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="unit_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="Int32" />
-          <NavigationProperty Name="Location1" Relationship="Self.FK_Unit_Location" FromRole="Unit" ToRole="Location" />
+          <NavigationProperty Name="Location1" Relationship="FurnitureModel.FK_Unit_Location" FromRole="Unit" ToRole="Location" />
         </EntityType>
         <Association Name="FK_Articles_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -745,18 +763,6 @@
               <PropertyRef Name="Category_Id" />
             </Principal>
             <Dependent Role="Job">
-              <PropertyRef Name="Category" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Location_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Location" Type="Self.Location" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Category_Id" />
-            </Principal>
-            <Dependent Role="Location">
               <PropertyRef Name="Category" />
             </Dependent>
           </ReferentialConstraint>
@@ -797,18 +803,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Item_ToLocation">
-          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
-          <End Role="Item" Type="Self.Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Item">
-              <PropertyRef Name="LocationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ItemLocation_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
           <End Role="ItemLocation" Type="Self.ItemLocation" Multiplicity="*" />
@@ -833,18 +827,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ItemLocation_Location">
-          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
-          <End Role="ItemLocation" Type="Self.ItemLocation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemLocation">
-              <PropertyRef Name="LocationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_JobItems_ToJob">
           <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
           <End Role="JobItems" Type="Self.JobItem" Multiplicity="*" />
@@ -854,30 +836,6 @@
             </Principal>
             <Dependent Role="JobItems">
               <PropertyRef Name="JobId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Officer_Location">
-          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
-          <End Role="Officer" Type="Self.Officer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Officer">
-              <PropertyRef Name="Location" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Unit_Location">
-          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
-          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Unit">
-              <PropertyRef Name="Location" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -902,7 +860,6 @@
           <EntitySet Name="ItemLocations" EntityType="Self.ItemLocation" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
           <EntitySet Name="JobItems" EntityType="Self.JobItem" />
-          <EntitySet Name="Locations" EntityType="Self.Location" />
           <EntitySet Name="Materials" EntityType="Self.Material" />
           <EntitySet Name="MaterialItems" EntityType="Self.MaterialItem" />
           <EntitySet Name="Officers" EntityType="Self.Officer" />
@@ -919,10 +876,6 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Job" EntitySet="Jobs" />
           </AssociationSet>
-          <AssociationSet Name="FK_Location_Category" Association="Self.FK_Location_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Location" EntitySet="Locations" />
-          </AssociationSet>
           <AssociationSet Name="FK_IndentMaterial_Indent" Association="Self.FK_IndentMaterial_Indent">
             <End Role="Indent" EntitySet="Indents" />
             <End Role="IndentMaterial" EntitySet="IndentMaterials" />
@@ -935,10 +888,6 @@
             <End Role="JobItems" EntitySet="JobItems" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK_Item_ToLocation" Association="Self.FK_Item_ToLocation">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="Item" EntitySet="Items" />
-          </AssociationSet>
           <AssociationSet Name="FK_ItemLocation_Item" Association="Self.FK_ItemLocation_Item">
             <End Role="Item" EntitySet="Items" />
             <End Role="ItemLocation" EntitySet="ItemLocations" />
@@ -947,21 +896,9 @@
             <End Role="Item" EntitySet="Items" />
             <End Role="MaterialItem" EntitySet="MaterialItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_ItemLocation_Location" Association="Self.FK_ItemLocation_Location">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="ItemLocation" EntitySet="ItemLocations" />
-          </AssociationSet>
           <AssociationSet Name="FK_JobItems_ToJob" Association="Self.FK_JobItems_ToJob">
             <End Role="Job" EntitySet="Jobs" />
             <End Role="JobItems" EntitySet="JobItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Officer_Location" Association="Self.FK_Officer_Location">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="Officer" EntitySet="Officers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Unit_Location" Association="Self.FK_Unit_Location">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="Unit" EntitySet="Units" />
           </AssociationSet>
           <AssociationSet Name="FK_MaterialItem_ToMaterialID" Association="Self.FK_MaterialItem_ToMaterialID">
             <End Role="Material" EntitySet="Materials" />
@@ -991,6 +928,35 @@
           <AssociationSet Name="FK_MailDetail_MailType" Association="FurnitureModel.FK_MailDetail_MailType">
             <End Role="MailType" EntitySet="MailTypes" />
             <End Role="MailDetail" EntitySet="MailDetails" />
+          </AssociationSet>
+          <EntitySet Name="Locations" EntityType="FurnitureModel.Location" />
+          <AssociationSet Name="FK_LocationBlock_Block" Association="FurnitureModel.FK_LocationBlock_Block">
+            <End Role="Block" EntitySet="Blocks" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationSubBlock_Block" Association="FurnitureModel.FK_LocationSubBlock_Block">
+            <End Role="Block" EntitySet="Blocks" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Category" Association="FurnitureModel.FK_Location_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ToLocation" Association="FurnitureModel.FK_Item_ToLocation">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemLocation_Location" Association="FurnitureModel.FK_ItemLocation_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="ItemLocation" EntitySet="ItemLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Officer_Location" Association="FurnitureModel.FK_Officer_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Officer" EntitySet="Officers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unit_Location" Association="FurnitureModel.FK_Unit_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Unit" EntitySet="Units" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="MaterialBundle">
@@ -1049,6 +1015,8 @@
           <NavigationProperty Name="Block1" Relationship="FurnitureModel.FK_Block_ToBlock" FromRole="Block" ToRole="Block1" />
           <NavigationProperty Name="Block2" Relationship="FurnitureModel.FK_Block_ToBlock" FromRole="Block1" ToRole="Block" />
           <NavigationProperty Name="Category" Relationship="FurnitureModel.FK_Block_ToCategory" FromRole="Block" ToRole="Category" />
+          <NavigationProperty Name="Locations" Relationship="FurnitureModel.FK_LocationBlock_Block" FromRole="Block" ToRole="Location" />
+          <NavigationProperty Name="Locations1" Relationship="FurnitureModel.FK_LocationSubBlock_Block" FromRole="Block" ToRole="Location" />
         </EntityType>
         <Association Name="FK_Block_ToBlock">
           <End Type="FurnitureModel.Block" Role="Block" Multiplicity="0..1" />
@@ -1106,6 +1074,108 @@
             </Principal>
             <Dependent Role="MailDetail">
               <PropertyRef Name="MailType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlockId" Type="Int32" />
+          <Property Name="SubBlockId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Category" Type="Int32" />
+          <NavigationProperty Name="Block" Relationship="FurnitureModel.FK_LocationBlock_Block" FromRole="Location" ToRole="Block" />
+          <NavigationProperty Name="Block1" Relationship="FurnitureModel.FK_LocationSubBlock_Block" FromRole="Location" ToRole="Block" />
+          <NavigationProperty Name="Category1" Relationship="FurnitureModel.FK_Location_Category" FromRole="Location" ToRole="Category" />
+          <NavigationProperty Name="Items" Relationship="FurnitureModel.FK_Item_ToLocation" FromRole="Location" ToRole="Item" />
+          <NavigationProperty Name="ItemLocations" Relationship="FurnitureModel.FK_ItemLocation_Location" FromRole="Location" ToRole="ItemLocation" />
+          <NavigationProperty Name="Officers" Relationship="FurnitureModel.FK_Officer_Location" FromRole="Location" ToRole="Officer" />
+          <NavigationProperty Name="Units" Relationship="FurnitureModel.FK_Unit_Location" FromRole="Location" ToRole="Unit" />
+        </EntityType>
+        <Association Name="FK_LocationBlock_Block">
+          <End Type="FurnitureModel.Block" Role="Block" Multiplicity="0..1" />
+          <End Type="FurnitureModel.Location" Role="Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Block">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="BlockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationSubBlock_Block">
+          <End Type="FurnitureModel.Block" Role="Block" Multiplicity="0..1" />
+          <End Type="FurnitureModel.Location" Role="Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Block">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="SubBlockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Category">
+          <End Type="FurnitureModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="FurnitureModel.Location" Role="Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_Id" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ToLocation">
+          <End Type="FurnitureModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="FurnitureModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemLocation_Location">
+          <End Type="FurnitureModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="FurnitureModel.ItemLocation" Role="ItemLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemLocation">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Officer_Location">
+          <End Type="FurnitureModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="FurnitureModel.Officer" Role="Officer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Officer">
+              <PropertyRef Name="Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unit_Location">
+          <End Type="FurnitureModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="FurnitureModel.Unit" Role="Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="Location" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1211,17 +1281,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Locations">
-            <EntityTypeMapping TypeName="FurnitureModel.Location">
-              <MappingFragment StoreEntitySet="Location">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Materials">
             <EntityTypeMapping TypeName="FurnitureModel.Material">
               <MappingFragment StoreEntitySet="Material">
@@ -1319,6 +1378,18 @@
             <EntityTypeMapping TypeName="FurnitureModel.MailType">
               <MappingFragment StoreEntitySet="MailType">
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="FurnitureModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SubBlockId" ColumnName="SubBlockId" />
+                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

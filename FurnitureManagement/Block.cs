@@ -18,6 +18,8 @@ namespace FurnitureManagement
         public Block()
         {
             this.Block1 = new HashSet<Block>();
+            this.Locations = new HashSet<Location>();
+            this.Locations1 = new HashSet<Location>();
         }
     
         public int Id { get; set; }
@@ -31,5 +33,9 @@ namespace FurnitureManagement
         public virtual ICollection<Block> Block1 { get; set; }
         public virtual Block Block2 { get; set; }
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Location> Locations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Location> Locations1 { get; set; }
     }
 }
