@@ -109,7 +109,7 @@ namespace FurnitureManagement.Service
             return a;
         }
 
-        public static List<Item> filterItems( int? jobId , int? articleId , int? locationId)
+        public static List<Item> filterItems( int? jobId  , int? jobItemId  ,  int? articleId , int? locationId)
         {
             if (locationId == 0)
                 locationId = null;
@@ -118,7 +118,8 @@ namespace FurnitureManagement.Service
 
             var list = Context.sharedInstance.Items.Where(x=> 
             !x.IsDeleted && 
-            (x.JobItem.JobId == jobId  || jobId == null ) && 
+            (x.JobItem.JobId == jobId  || jobId == null ) &&
+            (x.JobItemId == jobItemId || jobItemId == 0) &&
             (x.LocationID == locationId || locationId == 0 ) &&
             (x.JobItem.ArticleId == articleId || articleId == null )
 

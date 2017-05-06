@@ -24,6 +24,7 @@ namespace FurnitureManagement.Views.ItemViews
         List<Article> listArticles;
         List<Location> listLocations;
         List<Job> listJobs;
+        List<JobItem> listJobItem;
 
         List<Item> listItems;
 
@@ -77,6 +78,11 @@ namespace FurnitureManagement.Views.ItemViews
 
         void setCombo()
         {
+
+            CB_JobItems.ItemsSource = null;
+            listJobItem = JobItemService.getJobItems(listJobs[CB_Jobs.SelectedIndex].Id);
+            CB_JobItems.ItemsSource = listJobItem;
+
             CB_Articles.ItemsSource = null;
             CB_Articles.ItemsSource = filteredArticles;
 
@@ -113,7 +119,7 @@ namespace FurnitureManagement.Views.ItemViews
 
         void updateGrid()
         {
-            listItems = ItemService.filterItems((int?)CB_Jobs.SelectedValue, (int?)CB_Articles.SelectedValue, (int?)CB_Locations.SelectedValue);
+            listItems = ItemService.filterItems((int?)CB_Jobs.SelectedValue, (int?)CB_JobItems.SelectedValue , (int?)CB_Articles.SelectedValue, (int?)CB_Locations.SelectedValue);
             dataGrid.ItemsSource = null;
             dataGrid.ItemsSource = listItems;
         }

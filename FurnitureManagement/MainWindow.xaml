@@ -41,34 +41,34 @@
         <StackPanel Grid.Row="0"  Margin="0,0,0,5">
             <Label HorizontalAlignment="Left" FontSize="25" FontWeight="Medium" >Furniture Management</Label>
             <DockPanel x:Name="docPanWeaponsView" LastChildFill="False" Margin="0,5">
-                <Menu Name="menuMain" Height="20" DockPanel.Dock="Top" >
+                <Menu Name="menuMain" Height="25" DockPanel.Dock="Top" >
 
-                    <MenuItem Header="Home" >
+                    <MenuItem Header="Home"  Style="{StaticResource MenuHeading}">
                         <!--<MenuItem Header="View Warehouse" Click="Warehouse_Click" />-->
                     </MenuItem>
 
 
-                    <MenuItem Header="Furniture" >
+                    <MenuItem Header="Furniture" Style="{StaticResource MenuHeading}" >
                         <MenuItem Header="Add Furniture" Click="AddFurniture_Click" />
                         <MenuItem Header="View Furniture" Click="ViewFurniture_Click" />
                         <MenuItem Header="Assign Furniture" Click="AssignFurniture_Click" />
                     </MenuItem>
 
-                    <MenuItem Header="Location" Name="menuItemAmmunation">
+                    <MenuItem Header="Location" Name="menuItemAmmunation" Style="{StaticResource MenuHeading}">
                         <MenuItem Header="Add Location" Click="AddLocation_Click" />
                         <MenuItem Header="Add Block" Click="AddBlock_Click" />
                         <MenuItem Header="Add SubBlock" Click="AddSubBlock_Click" />
                     </MenuItem>
 
 
-                    <MenuItem Header="Maintenance" Name="menuItemUniform">
+                    <MenuItem Header="Maintenance" Name="menuItemUniform" Style="{StaticResource MenuHeading}">
                         <MenuItem Header="Material" Click="Material_Click" />
                         <MenuItem Header="Update Material Rates" Click="MaterialRateChange_Click" />
                         <MenuItem Header="Add Indent" Click="MaterialAddEdit_Click" />
                         <MenuItem Header="View Locations" Click="LocationList_Click" />
                     </MenuItem>
 
-                    <MenuItem Header="Job" >
+                    <MenuItem Header="Job"  Style="{StaticResource MenuHeading}">
                         <MenuItem Header="Add Job" Click="AddJob_Click" />
                     </MenuItem>
 

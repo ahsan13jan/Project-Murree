@@ -46,7 +46,9 @@
         </ComboBox>
 
 
-        <Label Grid.Row="3" Grid.Column="0" >Furniture</Label>
+        <Label Grid.Row="3" Grid.Column="0" >Job</Label>
+        <Label Grid.Row="4" Grid.Column="0" >Job Items</Label>
+        <Label Grid.Row="5" Grid.Column="0" >Itens</Label>
 
         <ComboBox  Name="cmbJob"  Grid.Row="3" Grid.Column="1" Width="150" Height="25"
                 DisplayMemberPath="Display"
