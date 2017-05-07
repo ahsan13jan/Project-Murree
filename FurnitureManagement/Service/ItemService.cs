@@ -116,21 +116,25 @@ namespace FurnitureManagement.Service
             else if (locationId == null)
                 locationId = 0;
 
-            var list = Context.sharedInstance.Items.Where(x=> 
+
+
+            var list =  Context.sharedInstance.Items.Where(x=> 
             !x.IsDeleted && 
             (x.JobItem.JobId == jobId  || jobId == null ) &&
-            (x.JobItemId == jobItemId || jobItemId == 0) &&
+            (x.JobItemId == jobItemId || jobItemId == null) &&
             (x.LocationID == locationId || locationId == 0 ) &&
             (x.JobItem.ArticleId == articleId || articleId == null )
 
-            ).ToList();
+            ).OrderByDescending(x => x.CreatedAt).ToList();
 
-            list.ForEach(x=> {
+            list.ForEach(x => {
                 if (x.Location == null)
                     x.Location = new Location() { Name = "Warehouse" };
             });
 
-            return list.OrderByDescending(x => x.CreatedAt).ToList(); ;
+            return list;
+
+
         }
 
         

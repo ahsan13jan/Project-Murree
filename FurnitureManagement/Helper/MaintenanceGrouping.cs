@@ -12,7 +12,7 @@ namespace FurnitureManagement.Helper
     {
         public static class Upholstery
         {
-            static public List<int> combineIds = new List<int>() { 1022, 1023, 1024, 1025, 1026, 1040, 1041, 1012, 1014, 1015, 1016, 1018, 1019, 1020, 1043 };
+            static public List<int> combineIds = new List<int>() { 1022, 1023, 1024, 1025, 1026, 1040, 1041, 1012, 1014, 1015, 1016, 1036 , 1018, 1019, 1020, 1043 };
             public static class GroupOne
             {
                 static public List<int> ids = new List<int>() { 1022, 1023, 1024, 1025, 1026 };
@@ -23,7 +23,7 @@ namespace FurnitureManagement.Helper
             }
             public static class GroupThree
             {
-                static public List<int> ids = new List<int>() { 1012, 1014, 1015, 1016 };
+                static public List<int> ids = new List<int>() { 1012, 1014, 1015, 1016 , 1036 };
             }
             public static class GroupFour
             {
@@ -47,7 +47,7 @@ namespace FurnitureManagement.Helper
             static public List<int> combineIds = new List<int>() { 1018, 1019, 1020, 1043, 1027, 1034, 1035, 1038, 1045 };
             public static class GroupSeven
             {
-                static public List<int> ids = new List<int>() { 1018, 1019, 1020, 1043 };
+                static public List<int> ids = new List<int>() { 1018, 1019, 1020, 1044 };
             }
             public static class GroupEight
             {
