@@ -9,7 +9,12 @@
       Title="AddItem">
 
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,0,5" />
+            </Style>
 
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -34,12 +39,12 @@
                 <StackPanel Orientation="Horizontal">
                     <Label FontWeight="DemiBold" Width="90" Margin="10" >Article</Label>
                     <Label FontWeight="DemiBold" Width="90" Margin="10" >Quantity</Label>
-                    <Label FontWeight="DemiBold" Width="90" Margin="10" >Rate</Label>
+                    <Label FontWeight="DemiBold" Width="90" Margin="25,10,10,10" >Rate</Label>
                     <Label FontWeight="DemiBold" Width="90" Margin="10" >Acc Unit</Label>
                 </StackPanel>
 
 
-                <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Height="30">
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Height="35">
                     <ComboBox Name="Item0_0" Width="100" Margin="5"
                 DisplayMemberPath="Article_DESC"
                 SelectedValuePath="Article_Id"
@@ -47,7 +52,7 @@
                               >
 
                     </ComboBox>
-                    <TextBox Name="Item1_0" Width="100" Margin="5"  ></TextBox>
+                    <TextBox Name="Item1_0" Width="110" Margin="5" Style="{StaticResource  RoundedTextBox}" ></TextBox>
                     <Label Name="Item2_0" Width="100" Margin="5" FontSize="9"  ></Label>
                     <Label Name="Item3_0" Width="100" Margin="5" FontSize="9" ></Label>
 

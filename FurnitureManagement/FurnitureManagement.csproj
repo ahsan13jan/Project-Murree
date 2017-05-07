@@ -200,6 +200,9 @@
     <Compile Include="Views\Mail\ImageViewer.xaml.cs">
       <DependentUpon>ImageViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mail\SearchMail.xaml.cs">
+      <DependentUpon>SearchMail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MaterialView\AssignMaterial.xaml.cs">
       <DependentUpon>AssignMaterial.xaml</DependentUpon>
     </Compile>
@@ -315,6 +318,10 @@
     <Page Include="Views\Mail\ImageViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Mail\SearchMail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MaterialView\AssignMaterial.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -26,6 +26,7 @@ namespace FurnitureManagement.Views.Mail
     public partial class AddMail : Page
     {
         string destinationPath;
+        string errorMsg;
         List<MailDetail> replyList;
         public AddMail()
         {
@@ -36,19 +37,22 @@ namespace FurnitureManagement.Views.Mail
 
         private void cmb_mailType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(cmb_mailType.SelectedIndex==0)
+            if ((int)cmb_mailType.SelectedIndex != -1)
             {
-                cmb_mailDetailType.Items.Clear();
-                cmb_mailDetailType.Items.Add("File");
+                if (cmb_mailType.SelectedIndex == 0)
+                {
+                    cmb_mailDetailType.Items.Clear();
+                    cmb_mailDetailType.Items.Add("File");
 
-                cmb_mailDetailType.Items.Add("Reply");
-            }
-            else
-            {
-                cmb_mailDetailType.Items.Clear();
-                cmb_mailDetailType.Items.Add("Initiated");
+                    cmb_mailDetailType.Items.Add("Reply");
+                }
+                else
+                {
+                    cmb_mailDetailType.Items.Clear();
+                    cmb_mailDetailType.Items.Add("Initiated");
 
-                cmb_mailDetailType.Items.Add("Replied");
+                    cmb_mailDetailType.Items.Add("Replied");
+                }
             }
             
         }
@@ -109,7 +113,12 @@ namespace FurnitureManagement.Views.Mail
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-
+            if(!Validate())
+            {
+                MessageBox.Show(errorMsg, "ERROR", MessageBoxButton.OK);
+                errorMsg = null;
+                return;
+            }
             MailDetail obj = new MailDetail()
             {
                 Subject=txt_subject.Text,
@@ -126,10 +135,23 @@ namespace FurnitureManagement.Views.Mail
             if(obj.Type=="Replied")
             {
                 int index = cmb_Replyaginst.SelectedIndex;
+                if (replyList.Count==0 && cmb_Replyaginst.SelectedIndex<0)
+                {
+                    errorMsg = errorMsg + "Please Select Email to whcih you are Replying \n";
+                    MessageBox.Show(errorMsg, "ERROR", MessageBoxButton.OK);
+                    return;
+                }
                 obj.RepliedEmailId = replyList[index].Id;
             }
             MailDetailService.addMailDetail(obj);
             destinationPath = "";
+
+            cmb_mailType.SelectedIndex = -1;
+            cmb_mailDetailType.SelectedIndex = -1;
+            txt_pageNo.Text = "";
+            txt_subject.Text = "";
+            txt_fileIn.Text = "";
+            BindDataGrid();
 
         }
 
@@ -147,11 +169,20 @@ namespace FurnitureManagement.Views.Mail
 
         private void cmb_mailDetailType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(cmb_mailDetailType.SelectedItem.ToString()=="Replied")
+            if ((int)cmb_mailDetailType.SelectedIndex != -1)
             {
-                lbl_Replyagainst.Visibility = Visibility.Visible;
-                cmb_Replyaginst.Visibility = Visibility.Visible;
-                BindReplyCombo();
+                if (cmb_mailDetailType.SelectedItem.ToString() == "Replied")
+                {
+                    lbl_Replyagainst.Visibility = Visibility.Visible;
+                    cmb_Replyaginst.Visibility = Visibility.Visible;
+                    BindReplyCombo();
+                }
+                else
+                {
+                    lbl_Replyagainst.Visibility = Visibility.Hidden;
+                    cmb_Replyaginst.Visibility = Visibility.Hidden;
+                }
+
             }
         }
 
@@ -164,6 +195,49 @@ namespace FurnitureManagement.Views.Mail
                 
             }
             cmb_Replyaginst.ItemsSource = replyList;
+        }
+
+        private void btn_SearchClick(object sender, RoutedEventArgs e)
+        {
+            SearchMail searchMail = new SearchMail();
+            searchMail.Show();
+        }
+
+
+        private bool Validate()
+        {
+            if ((int)cmb_mailType.SelectedIndex <0)
+            {
+                errorMsg = errorMsg + "Please Input Value in Mail Type \n";
+               
+            }
+            if((int)cmb_mailDetailType.SelectedIndex<0)
+            {
+                errorMsg = errorMsg + "Please Input Value in Mail Type Detail \n";
+              
+            }
+            if(txt_subject.Text=="")
+            {
+                errorMsg = errorMsg + "Please Input Value in Subject \n";
+               
+            }
+
+            if (txt_fileIn.Text == "")
+            {
+                errorMsg = errorMsg + "Please Input Value in File In \n";
+                
+            }
+
+            if (txt_pageNo.Text == "")
+            {
+                errorMsg = errorMsg + "Please Input Value in PageNo \n";
+                
+            }
+            if (errorMsg != null)
+                return false;
+            else
+            return true;
+
         }
     }
 }
