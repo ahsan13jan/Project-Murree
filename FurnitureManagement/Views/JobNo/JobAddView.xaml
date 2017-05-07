@@ -91,18 +91,18 @@
             <DataGrid Name="dataGrid"  AutoGenerateColumns="False" CanUserAddRows="False"  >
                 <DataGrid.ContextMenu>
                     <ContextMenu>
+                        <MenuItem Header="Show Items" Click="ShowItems_Click">
+                            <MenuItem.Icon>
+                                <Image Name="ShowItem" Height="20" Width="20"></Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        
                         <MenuItem Header="Delete" Click="DeleteJob_Click">
                             <MenuItem.Icon>
                                 <Image Name="Edit"  Height="20" Width="20"></Image>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="showItems" Click="ShowItems_Click">
-                            <MenuItem.Icon>
-                                <Image Name="ShowItem" Height="20" Width="20"></Image>
-                            </MenuItem.Icon>
-                        </MenuItem>
-
-
+                      
                     </ContextMenu>
 
                 </DataGrid.ContextMenu>
@@ -111,6 +111,7 @@
 
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
                     <DataGridTextColumn Header="Job No" Binding="{Binding JobNo}" />
+                    <DataGridTextColumn Header="Category" Binding="{Binding CATEGORYDESC }" />
                     <DataGridTextColumn Header="CA No" Binding="{Binding CANo}" />
                     <DataGridTextColumn Header="Contractor Name" Binding="{Binding ContractorName}" />
                     <DataGridTextColumn Header="Amount Approval" Binding="{Binding AmountApproval}" />
@@ -118,7 +119,7 @@
                     <DataGridTextColumn Header="Job Description" Binding="{Binding JobDescription}" />
                     <DataGridTextColumn Header="Amount Contract" Binding="{Binding AmountContract}" />
                     <DataGridTextColumn Header="Completion Date" Binding="{Binding CompletionDate}" />
-                    <DataGridTextColumn Header="Category" Binding="{Binding CATEGORYDESC }" />
+                    
                     <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt }" />
                 </DataGrid.Columns>
             </DataGrid>

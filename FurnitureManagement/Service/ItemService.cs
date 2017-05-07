@@ -84,22 +84,30 @@ namespace FurnitureManagement.Service
             if (locId == 0)
                 locId = null;
 
-
+            List<Item> listToReturn;
             if ( articleIds == null )
             {
-                        return Context.sharedInstance.Items.Where(x =>
+                listToReturn =  Context.sharedInstance.Items.Where(x =>
                    x.LocationID == locId &&
                    x.IsDeleted == false
                    ).ToList();
             }
             else
             {
-                    return Context.sharedInstance.Items.Where(x =>
+                listToReturn =  Context.sharedInstance.Items.Where(x =>
                x.LocationID == locId &&
                x.IsDeleted == false
                && (articleIds.Contains((int)x.JobItem.ArticleId))
                ).ToList();
             }
+
+
+            listToReturn.ForEach(x => {
+                if (x.Location == null)
+                    x.Location = new Location() { Name = "Warehouse" };
+            });
+
+            return listToReturn;
 
            
         }

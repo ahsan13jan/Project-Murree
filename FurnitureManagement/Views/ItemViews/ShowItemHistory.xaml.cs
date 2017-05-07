@@ -20,10 +20,11 @@ namespace FurnitureManagement.Views.ItemViews
     /// </summary>
     public partial class ShowItemHistory : Window
     {
-        public ShowItemHistory(int id)
+        public ShowItemHistory(Item item)
         {
             InitializeComponent();
-            BindDataGrid(id);
+            Label_UIN.Content += item.UIN;
+            BindDataGrid(item.Id);
         }
 
         private void BindDataGrid(int itemId)

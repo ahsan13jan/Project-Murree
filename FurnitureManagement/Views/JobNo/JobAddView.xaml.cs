@@ -142,7 +142,7 @@ namespace FurnitureManagement.Views.JobNo
         private void ShowItems_Click(object sender, RoutedEventArgs e)
         {
             Job job = ((Job)dataGrid.SelectedItem);
-            ShowJobItems showJI = new ShowJobItems(job.Id);
+            ShowJobItems showJI = new ShowJobItems(job);
             showJI.Show();
         }
     }

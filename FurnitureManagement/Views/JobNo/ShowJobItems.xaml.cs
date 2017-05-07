@@ -21,10 +21,11 @@ namespace FurnitureManagement.Views.JobNo
     /// </summary>
     public partial class ShowJobItems : Window
     {
-        public ShowJobItems(int jobId)
+        public ShowJobItems(Job job)
         {
             InitializeComponent();
-            BindDataGrid(jobId);
+            Title =  job.JobNo + " : Job Items" ;
+            BindDataGrid(job.Id);
         
         }
 
