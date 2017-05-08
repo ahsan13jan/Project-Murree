@@ -124,5 +124,11 @@ namespace FurnitureManagement
             AddMail ViewNextForm = new AddMail();
             Frame.Content = ViewNextForm;
         }
+
+        private void MaterialAssignView_Click(object sender, RoutedEventArgs e)
+        {
+            MaterialAssignView ViewNextForm = new MaterialAssignView();
+            Frame.Content = ViewNextForm;
+        }
     }
 }

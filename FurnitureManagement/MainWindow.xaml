@@ -66,6 +66,7 @@
                         <MenuItem Header="Update Material Rates" Click="MaterialRateChange_Click" />
                         <MenuItem Header="Add Indent" Click="MaterialAddEdit_Click" />
                         <MenuItem Header="View Locations" Click="LocationList_Click" />
+                        <MenuItem Header="Assign History" Click="MaterialAssignView_Click" />
                     </MenuItem>
 
                     <MenuItem Header="Job"  Style="{StaticResource MenuHeading}">

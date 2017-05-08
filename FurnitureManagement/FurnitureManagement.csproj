@@ -203,6 +203,9 @@
     <Compile Include="Views\MaterialView\AssignMaterial.xaml.cs">
       <DependentUpon>AssignMaterial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MaterialView\MaterialAssignView.xaml.cs">
+      <DependentUpon>MaterialAssignView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MaterialView\LocationArticlesListView.xaml.cs">
       <DependentUpon>LocationArticlesListView.xaml</DependentUpon>
     </Compile>
@@ -317,6 +320,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MaterialView\AssignMaterial.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MaterialView\MaterialAssignView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

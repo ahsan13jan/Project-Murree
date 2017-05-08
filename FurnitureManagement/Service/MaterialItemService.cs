@@ -33,6 +33,19 @@ namespace FurnitureManagement.Service
             return list;
         }
 
+        public static List<MaterialItem> getMaterialItemFilter( DateTime? from , DateTime? to , int? articleId )
+        {
+            var instance = Context.sharedInstance;
+
+            var list = instance.MaterialItems.Where(x =>
+            ( x.CreatedAt >= from || from == null ) && 
+            (x.CreatedAt <= to || to == null) && 
+            (x.Item.JobItem.ArticleId == articleId  || articleId == null  )  && 
+            !x.IsDeleted).ToList();
+
+            return list;
+        }
+
 
     }
 }
