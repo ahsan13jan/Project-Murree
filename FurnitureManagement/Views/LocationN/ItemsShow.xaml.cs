@@ -30,7 +30,7 @@ namespace FurnitureManagement.Views.LocationN
         private void BindDataGrid(int locationId)
         {
            
-            dg_ItemsShow.ItemsSource = LocationService.getAllItemByLocationId(locationId);
+            dg_ItemsShow.ItemsSource = ItemService.getItemsByLocation(locationId);
         }
         public ItemsShow (int jobItemId , bool val)
         {
@@ -54,7 +54,7 @@ namespace FurnitureManagement.Views.LocationN
         private void ItemHistory_Click(object sender, RoutedEventArgs e)
         {
             Item item = ((Item)dg_ItemsShow.SelectedItem);
-            ShowItemHistory ih = new ShowItemHistory(item.Id);
+            ShowItemHistory ih = new ShowItemHistory(item);
             ih.Show();
         }
     }

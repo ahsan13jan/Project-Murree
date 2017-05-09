@@ -45,12 +45,6 @@ namespace FurnitureManagement.Service
             return list;
 
         }
-
-        public static int LocationId(String name)
-        {
-
-            return context.Locations.Where(x => x.Name == name).First().Id;
-        }
         public static bool isAssigned(int id)
         {
             return context.Locations.Find(id).Items.Count > 0;

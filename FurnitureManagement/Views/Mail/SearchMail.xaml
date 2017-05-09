@@ -1,0 +1,67 @@
+﻿<Window x:Class="FurnitureManagement.Views.Mail.SearchMail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SearchMail" ResizeMode="NoResize" >
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource SubHeading}" >Search Mails</Label>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" >
+            <StackPanel Orientation="Horizontal">
+                <Label Width="100" Margin="0,0,5,0">Mail Type</Label>
+                <Label Width="100" Margin="0,0,5,0">To</Label>
+                <Label Width="100" Margin="0,0,5,0">From</Label>
+                <Label Width="100" Margin="0,0,5,0">Replied</Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Name="cmb_MailType" Width="100" Margin="0,0,5,0" DisplayMemberPath="Type"  SelectedValuePath="Id" SelectionChanged="cmb_MailType_SelectionChanged" />
+                <DatePicker Name="dtp_toDate" Width="100" Margin="0,0,5,0"  SelectedDateChanged="dtp_selectedDate_changed" />
+                <DatePicker Name="dtp_fromDate" Width="100" Margin="0,0,5,0"  SelectedDateChanged="dtp_fromDate_selectionChanged"   />
+                <ComboBox Name="cmb_Replied" Width="100" Margin="0,0,5,0" DisplayMemberPath="Type" SelectedValuePath="Id" SelectionChanged="cmb_Replied_SelectionChanged" />
+                <Button Click="btn_Search_Click">Search</Button>
+            </StackPanel>
+        </StackPanel>
+        <ScrollViewer Margin="5,94,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="5" >
+            <Grid  >
+                <DataGrid Name="dataGrid"  >
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="ID" Width="25" Binding="{Binding Id}" />
+                        <DataGridTextColumn Header="Type" Width="50" Binding="{Binding Type}" />
+                        <DataGridTextColumn Header="Subject" Width="160" Binding="{Binding Subject}" />
+                        <DataGridTextColumn Header="Filed In " Width="100" Binding="{Binding FiledIn}" />
+                        <DataGridTextColumn Header="Page No" Width="60" Binding="{Binding PageNo}" />
+                        <DataGridTextColumn Header="Mail Type"  Width="100" Binding="{Binding MailType.MailType1.Type}" />
+                        <DataGridTextColumn Header="Date"  Width="130" Binding="{Binding Date}" />
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btn_scanned" Click="btn_scannedPath" >
+
+
+
+
+                                    </Button>
+
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</Window>

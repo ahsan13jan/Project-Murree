@@ -13,13 +13,15 @@ namespace FurnitureManagement.Service
     {
         public static List<MaterialBundle> MaterialBundles( int articleId )
         {
-            List<MaterialBundle> listRed = Context.sharedInstance.MaterialBundles.ToList();
+            List<MaterialBundle> listRed = new List<MaterialBundle>();
 
-            listRed[4].MaterialBundleItems.ToList().ForEach( x=> x.Quantity = x.Quantity* MainainenceHelper.quantityRatio(articleId) );
+            var bundles = Context.sharedInstance.MaterialBundles.ToList();
+
+            bundles[4].MaterialBundleItems.ToList().ForEach( x=> x.Quantity = x.Quantity* MainainenceHelper.quantityRatio(articleId) );
 
 
 
-            var bundles =  Context.sharedInstance.MaterialBundles.ToList();
+            
 
             if (NatureOfWork.Upholstery.GroupOne.ids.Contains(articleId))
                 listRed.Add(bundles[0]);
