@@ -91,12 +91,7 @@ namespace FurnitureManagement.Views.MaterialView
                 if (MaterialBundleService.IsBundleAvailable(selectedBundle.Id , (int)item.JobItem.ArticleId ))
                 {
 
-                    selectedBundle.MaterialBundleItems.ToList().ForEach(x =>
-                    {
-
-                        MaterialItemService.assignMaterialToItem(item.Id, (int)x.MaterialId, (decimal)x.Quantity, (int)x.Material.Rate);
-
-                    });
+                    AssignBundle(selectedBundle);
                     MessageBox.Show("Bundle Assigned ");
                     getData();
                 }
@@ -129,6 +124,24 @@ namespace FurnitureManagement.Views.MaterialView
         private void BundleMaterial_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             resetMaterialBundleGrid();
+        }
+
+        void AssignBundle( MaterialBundle bundle , decimal Multiplier = 1 )
+        {
+            if ( bundle.Id == 7 )
+            {
+                AssignBundle(  MaterialBundleService.getMaterialBundleById(5) , (decimal)(3.0/2.0)) ;
+            }
+            if (bundle.Id == 8)
+            {
+                AssignBundle(MaterialBundleService.getMaterialBundleById(5), (decimal)(5.0 / 4.0));
+            }
+            bundle.MaterialBundleItems.ToList().ForEach(x =>
+            {
+
+                MaterialItemService.assignMaterialToItem(item.Id, (int)x.MaterialId, (decimal)x.Quantity * Multiplier, (int)x.Material.Rate);
+
+            });
         }
     }
 }

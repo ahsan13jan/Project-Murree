@@ -43,6 +43,11 @@ namespace FurnitureManagement.Service
             if (NatureOfWork.ReplacementofTops.GroupSeven.ids.Contains(articleId))
                 listRed.Add(bundles[6]);
 
+            if (NatureOfWork.ReplacementofTops.GroupEight.ids.Contains(articleId))
+                listRed.Add(bundles[7]);
+
+
+            listRed.Add(bundles[8]);
 
             return listRed;
 
@@ -51,8 +56,12 @@ namespace FurnitureManagement.Service
         {
             return Context.sharedInstance.MaterialBundles.ToList();
         }
+        public static MaterialBundle getMaterialBundleById( int id)
+        {
+            return Context.sharedInstance.MaterialBundles.Find(id);
+        }
 
-        public static bool IsBundleAvailable(int Id , int articleId )
+        public static bool IsBundleAvailable(int Id , int articleId , decimal Multipler = 1 )
         {
 
             var Bundle = Context.sharedInstance.MaterialBundles.Find(Id);
@@ -60,7 +69,21 @@ namespace FurnitureManagement.Service
 
             if ( Id ==  5 )
             {
-                Bundle.MaterialBundleItems.ToList().ForEach(x=> x.Quantity = x.Quantity * MainainenceHelper.quantityRatio(articleId) );
+                Bundle.MaterialBundleItems.ToList().ForEach(x=> x.Quantity = x.Quantity * MainainenceHelper.quantityRatio(articleId) * Multipler);
+            }
+
+            if ( Id == 7  )
+            {
+                var state = IsBundleAvailable(5, articleId, (decimal)(3.0/2.0) );
+                if (!state)
+                    return false;
+            }
+
+            if (Id == 8)
+            {
+                var state = IsBundleAvailable(5, articleId, (decimal)(5.0 / 4.0));
+                if (!state)
+                    return false;
             }
 
             Bundle.MaterialBundleItems.ToList().ForEach(x=> 
