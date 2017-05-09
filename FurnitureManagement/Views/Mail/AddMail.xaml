@@ -54,15 +54,15 @@
         <TextBox Style="{StaticResource  RoundedTextBox}" Name="txt_pageNo" Grid.Column="2" Width="100"  Grid.Row="3" KeyDown="txt_pageNo_KeyDown" Height="28" Margin="41,0,119,170" RenderTransformOrigin="0.262,1.137"/>
         <Label Width="90" FontWeight="DemiBold" Margin="192,86,212,9" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2">Scanned Copy</Label>
         <Button Name="btn_imgEmail" Grid.Column="3" Grid.Row="2" Content="Browse" Width="100" Margin="22,72,112,165" Click="btn_imgEmail_Click" Grid.RowSpan="2" ></Button>
-        <Label Width="90" FontWeight="DemiBold" Margin="0,41,144,50" Grid.Column="1" Grid.Row="3" Visibility="Hidden" Name="lbl_Replyagainst">Reply Against</Label>
-        <ComboBox  Name="cmb_Replyaginst" Grid.Column="1" Grid.Row="3" Width="100" Height="20" Margin="95,41,39,82" RenderTransformOrigin="0.509,1.119" Visibility="Hidden" DisplayMemberPath="replyAgaist" />
+        <Label Width="90" FontWeight="DemiBold" Margin="0,75,144,50" Grid.Column="1" Grid.Row="3" Visibility="Hidden" Name="lbl_Replyagainst">Reply Against</Label>
+        <ComboBox  Name="cmb_Replyaginst" Grid.Column="1" Grid.Row="3" Width="100" Height="20" Margin="95,20,39,82" RenderTransformOrigin="0.509,1.119" Visibility="Hidden" DisplayMemberPath="replyAgaist" />
 
-        <Button Name="btn_save" Grid.Column="3" Grid.Row="3" Content="Save" Width="100" Margin="22,45,112,77" Click="btn_save_Click" />
-        <Button Name="btn_Search" Grid.Column="2" Grid.Row="3" Content="Search" Click="btn_SearchClick" Width="100" Margin="41,46,119,78"/>
+        <Button Name="btn_save" Grid.Column="3" Grid.Row="3" Content="Save" Width="100" Margin="22,20,112,77" Click="btn_save_Click" />
+        <Button Name="btn_Search" Grid.Column="2" Grid.Row="3" Content="Search" Click="btn_SearchClick" Width="100" Margin="41,20,119,78"/>
 
         <ScrollViewer Margin="5,110,0,0" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Height="180" Grid.RowSpan="4" >
             <Grid  >
-                <DataGrid Name="dataGrid" AlternatingRowBackground="Gray" HeadersVisibility="All" >
+                <DataGrid Name="dataGrid" AlternatingRowBackground="LightGray" HeadersVisibility="All"  >
                     <DataGrid.Columns>
 
                         <DataGridTextColumn Header="ID" Width="25" Binding="{Binding Id}" />
