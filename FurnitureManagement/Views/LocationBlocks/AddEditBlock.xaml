@@ -48,16 +48,22 @@
 
 
 
-        <Grid Margin="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="datagrid">
-            <DataGrid Name="dataGrid"  AutoGenerateColumns="False" CanUserAddRows="False"  >
-                
+        <Grid Margin="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="datagrid" >
+            <DataGrid Name="dataGrid"  AutoGenerateColumns="False" CanUserAddRows="False"  MouseDoubleClick="dataGrid_MouseDoubleClick_Edit" >
+                <DataGrid.ContextMenu>
+                    
+                        <ContextMenu>
+                            <MenuItem Header="EDIT SubBlock" Click="EditSubBlock_Click">
+                            </MenuItem>
+                        </ContextMenu>
+                </DataGrid.ContextMenu>
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Category" Binding="{Binding Category.Category_DESC}" />
                     <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}" />
 
-
+                
 
 
 

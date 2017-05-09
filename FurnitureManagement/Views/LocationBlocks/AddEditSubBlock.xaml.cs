@@ -23,6 +23,7 @@ namespace FurnitureManagement.Views.LocationBlocks
     public partial class AddEditSubBlock : Page
     {
         List<Block> listblocks;
+        List<Block> listSubBlock;
         public AddEditSubBlock()
         {
             InitializeComponent();
@@ -54,7 +55,9 @@ namespace FurnitureManagement.Views.LocationBlocks
             if (CB_Block.SelectedIndex != -1)
             {
                 CB_SubBlock.ItemsSource = null;
-                CB_SubBlock.ItemsSource =  BlockService.getSubBlocks( listblocks[CB_Block.SelectedIndex].Id);
+                listSubBlock=BlockService.getSubBlocks( listblocks[CB_Block.SelectedIndex].Id);
+                CB_SubBlock.ItemsSource = listSubBlock; 
+
             }
 
         }
@@ -62,6 +65,18 @@ namespace FurnitureManagement.Views.LocationBlocks
         private void Block_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             resetSubComboBox();
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            Block obj = new Block();
+            obj.Name = Input_Name.Text;
+            obj.Id = listSubBlock[CB_SubBlock.SelectedIndex].Id;
+            obj.ParentId = listSubBlock[CB_SubBlock.SelectedIndex].ParentId;
+
+            EditSubBlock sb = new EditSubBlock(obj);
+            sb.Show();
+
         }
     }
 }

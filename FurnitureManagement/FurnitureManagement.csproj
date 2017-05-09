@@ -185,6 +185,12 @@
     <Compile Include="Views\LocationBlocks\AddEditBlock.xaml.cs">
       <DependentUpon>AddEditBlock.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LocationBlocks\Edit Block.xaml.cs">
+      <DependentUpon>Edit Block.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LocationBlocks\EditSubBlock.xaml.cs">
+      <DependentUpon>EditSubBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LocationN\ItemsShow.xaml.cs">
       <DependentUpon>ItemsShow.xaml</DependentUpon>
     </Compile>
@@ -259,6 +265,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LocationBlocks\AddEditBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LocationBlocks\Edit Block.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LocationBlocks\EditSubBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

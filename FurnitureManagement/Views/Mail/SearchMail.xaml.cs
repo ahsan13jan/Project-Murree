@@ -32,6 +32,7 @@ namespace FurnitureManagement.Views.Mail
             InitializeComponent();
             BindTypeCombo();
             BindCombo();
+            var obj = dtp_fromDate;
         }
 
         private void btn_Search_Click(object sender, RoutedEventArgs e)

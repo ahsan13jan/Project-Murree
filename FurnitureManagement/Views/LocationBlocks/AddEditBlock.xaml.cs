@@ -48,5 +48,25 @@ namespace FurnitureManagement.Views.LocationBlocks
             }
 
         }
+
+        
+
+        private void dataGrid_MouseDoubleClick_Edit(object sender, MouseButtonEventArgs e)
+        {
+            Block b = ((Block)dataGrid.SelectedItem);
+            Edit_Block editBlock = new Edit_Block(b);
+            editBlock.Show();
+            resetGrid();
+
+        }
+
+        private void EditSubBlock_Click(object sender, RoutedEventArgs e)
+        {
+            Block b = ((Block)dataGrid.SelectedItem);
+            EditSubBlock subBlock = new EditSubBlock(b);
+
+            subBlock.Show();
+            resetGrid();
+        }
     }
 }
