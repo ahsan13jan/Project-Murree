@@ -42,6 +42,7 @@
         </ComboBox>
 
         <Button  Grid.Row="5" Grid.Column="1" Width="70"  Click="AddEdit_Click" Name="btn_add" >Add</Button>
+        <Button  Grid.Row="5" Grid.Column="0" Width="70"  Click="Edit_Click" Name="btn_edit" >Edit</Button>
 
 
 

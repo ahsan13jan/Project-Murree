@@ -22,7 +22,7 @@ namespace FurnitureManagement.Views.Mail
         public ImageViewer(string path)
         {
             InitializeComponent();
-            if (path == "")
+            if (path == "" || path==null)
                 return;
             var uriSource = new Uri(path, UriKind.Absolute);
             ImageControl.Source = new BitmapImage(uriSource);

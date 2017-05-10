@@ -30,6 +30,8 @@ namespace FurnitureManagement.Views.ItemViews
         private void BindDataGrid(int itemId)
         {
             dg_ShowItemHistory.ItemsSource = FurnitureManagement.Service.ItemLocationService.getItemHistoryByItemId(itemId);
+            
+            
         }
     }
 }

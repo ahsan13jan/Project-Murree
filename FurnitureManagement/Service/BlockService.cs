@@ -49,5 +49,44 @@ namespace FurnitureManagement.Service
         }
 
 
+        public static bool UpdateBlock(Block obj)
+        {
+            var context=Context.sharedInstance;
+            Block b = context.Blocks.Find(obj.Id);
+            if (b != null)
+            {
+                b.CategoryId = obj.CategoryId;
+                b.Name = obj.Name;
+                context.SaveChanges();
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public static Block getSubBlock(Block b)
+        {
+            return Context.sharedInstance.Blocks.Where(x => x.ParentId == b.Id).FirstOrDefault();
+        }
+
+        public static bool UpdateSubBlock(Block subBlock)
+        {
+            var context = Context.sharedInstance;
+            if (subBlock != null)
+            {
+                Block b = context.Blocks.Find(subBlock.Id);
+                b.Name = subBlock.Name;
+                b.ParentId = subBlock.ParentId;
+                context.SaveChanges();
+
+                return true;
+            }
+            else
+                return false;
+
+
+        }
+
+
     }
 }
