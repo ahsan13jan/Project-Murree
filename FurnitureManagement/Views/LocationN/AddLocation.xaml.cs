@@ -43,25 +43,43 @@ namespace FurnitureManagement.Views.LocationN
         {
             InitializeComponent();
             BindCombo();
-            listOfLocations = LocationService.getLocations();
-            listOfLocations.Insert(0, new Location() { Id = 0, Name = "Warehouse", Items = ItemService.getUnAssignedItems().Where(x => !x.IsDeleted).ToList() });
             refreshGrid();
             listBlock = BlockService.getBlocks();
-
-
 
         }
 
         private void AddEdit_Click(object sender, RoutedEventArgs e)
 
         {
-            if ( CB_Block.SelectedIndex == -1 || CB_SubBlock.SelectedIndex == -1 ||  (int)cmb_CategoryLocation.SelectedIndex <= 0)
+
+            if (cmb_CategoryLocation.SelectedIndex == -1)
             {
-                MessageBox.Show("Please enter all feilds :", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please Enter all feilds");
                 return;
             }
 
-            if ((int)cmb_CategoryLocation.SelectedValue == 2)
+
+
+            if (cmb_CategoryLocation.SelectedIndex == 0)
+            {
+                if (CB_Block.SelectedIndex == -1 || CB_SubBlock.SelectedIndex == -1 || txt_unitNumber.Text == "" )
+                {
+                    MessageBox.Show("Please Enter all feilds");
+                    return;
+                }
+                else
+                {
+                    var location = new Location() { BlockId = filteredBlocks[CB_Block.SelectedIndex].Id, SubBlockId = listSubBlock[CB_SubBlock.SelectedIndex].Id, Category = cmb_CategoryLocation.SelectedIndex + 1 };
+                    var unit = new Unit()
+                    {
+                        unit_Number = txt_unitNumber.Text
+                    };
+
+                    LocationService.saveLocationUnit(location, unit);
+                }
+            }
+
+            if (cmb_CategoryLocation.SelectedIndex == 1)
             {
                 string validateMessage = ValidateOfficer();
                 if (validateMessage != null)
@@ -76,7 +94,7 @@ namespace FurnitureManagement.Views.LocationN
 
                     var officer = new Officer()
                     {
-                        Location_Name = txt_LocationName.Text,
+                        Location_Name = "",
                         Occupant_Name = txt_OccupantName.Text,
                         ArmyNo = txt_ArmyNo.Text,
                         Rank = txt_Rank.Text,
@@ -90,29 +108,32 @@ namespace FurnitureManagement.Views.LocationN
 
                 }
             }
-            else
-            {
-                if (txt_unitNumber == null)
-                {
-                    MessageBox.Show("Please Enter Unit Number ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                else
-                {
-                    var location = new Location() { BlockId = listBlock[CB_Block.SelectedIndex].Id, SubBlockId = filteredBlocks[CB_SubBlock.SelectedIndex].Id, Category = cmb_CategoryLocation.SelectedIndex + 1 };
-                    var unit = new Unit()
-                    {
-                        unit_Number = txt_unitNumber.Text
-                    };
-
-                    LocationService.saveLocationUnit(location, unit);
-                }
-            }
+            MessageBox.Show("Location added Successfully");
             refreshGrid();
 
         }
         void refreshGrid()
         {
+
+            cmb_CategoryLocation.SelectedIndex = -1;
+            CB_Block.SelectedIndex = -1;
+            CB_SubBlock.SelectedIndex = -1;
+            txt_OccupantName.Text = "";
+            txt_Rank.Text = "";
+            txt_ArmyNo.Text = "";
+            txt_Designation.Text = "";
+            txt_Designation.Text = "";
+            txt_Designation.Text = "";
+            dtp_MarchIn.SelectedDate = null;
+            txt_unitNumber.Text = "";
+
+
+            CB_Block.ItemsSource = null;
+            CB_SubBlock.ItemsSource = null;
+
+            listOfLocations = LocationService.getLocations();
+            listOfLocations.Insert(0, new Location() { Id = 0, Name = "Warehouse", Items = ItemService.getUnAssignedItems().Where(x => !x.IsDeleted).ToList() });
+
             dataGrid.ItemsSource = null;
             dataGrid.ItemsSource = listOfLocations;
         }
@@ -130,14 +151,19 @@ namespace FurnitureManagement.Views.LocationN
         private void cmb_CategoryLocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             resetBlockComboBox();
-            if ((int)cmb_CategoryLocation.SelectedValue == 2)
+            if (cmb_CategoryLocation.SelectedIndex == 1)
             {
                 SP_Unit.Visibility = Visibility.Collapsed;
                 SP_Officer.Visibility = Visibility.Visible;
             }
-            else
+            else if  (cmb_CategoryLocation.SelectedIndex == 0 )
             {
                 SP_Unit.Visibility = Visibility.Visible;
+                SP_Officer.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                SP_Unit.Visibility = Visibility.Collapsed;
                 SP_Officer.Visibility = Visibility.Collapsed;
             }
 
@@ -230,8 +256,6 @@ namespace FurnitureManagement.Views.LocationN
             string message = null;
             if (txt_OccupantName.Text == "")
                 message = message + "Please enter Occupant Name :\n";
-            if (txt_LocationName.Text == "")
-                message = message + "Please enter Location Name :\n";
             if (txt_Rank.Text == "")
                 message = message + "Please enter Rank of Officer :\n";
             if (txt_Designation.Text == "")

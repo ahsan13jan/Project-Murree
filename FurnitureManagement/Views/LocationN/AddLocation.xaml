@@ -60,7 +60,6 @@
 
         <StackPanel Name="SP_Officer" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6"  Visibility="Collapsed">
             <StackPanel Orientation="Horizontal">
-                <Label  Visibility="Hidden" Width="100" Margin="0,5,5,5">Location</Label>
                 <Label Width="100" Margin="7,5,5,5">Occupant Name</Label>
                 <Label Width="100" Margin="8,5,5,5">Rank</Label>
                 <Label Width="100" Margin="7,5,5,5">Army No</Label>
@@ -69,10 +68,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <!--<TextBox Name="txt_LocationName" Width="100" ></TextBox>-->
-                <Border CornerRadius="5" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Margin="5,5,5,5">
-                    <TextBox Name="txt_LocationName" Background="Transparent" BorderThickness="0" Height="15" Width="100" />
-                </Border>
+ 
 
                 <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black" Margin="5,5,5,5">
                     <TextBox Name="txt_OccupantName" Background="Transparent" BorderThickness="0" Height="15" Width="100" />
@@ -120,8 +116,9 @@
 
 
 
+        <ScrollViewer Margin="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Height="300">
 
-        <Grid Margin="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="datagrid1">
+        <Grid  Name="datagrid1">
             <DataGrid Name="dataGrid"  AutoGenerateColumns="False" CanUserAddRows="False"  LoadingRow="dataGrid_LoadingRow" SelectionChanged="DatGridOfficer_selectionChanged">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
@@ -165,7 +162,7 @@
 
         </Grid>
 
-
+        </ScrollViewer>
 
 
     </Grid>

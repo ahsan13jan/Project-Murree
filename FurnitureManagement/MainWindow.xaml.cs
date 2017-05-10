@@ -44,12 +44,14 @@ namespace FurnitureManagement
             //Opening requred form
             AddItem ViewNextForm = new AddItem();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
         private void AddLocation_Click(object sender, RoutedEventArgs e)
         {
             //Opening requred form
             AddLocation ViewNextForm = new AddLocation();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
 
         private void AssignFurniture_Click(object sender, RoutedEventArgs e)
@@ -57,6 +59,7 @@ namespace FurnitureManagement
             //Opening requred form
             AssignFurniture ViewNextForm = new AssignFurniture();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
             //Closing current form
         }
 
@@ -65,6 +68,7 @@ namespace FurnitureManagement
             //Opening requred form
             ItemsView ViewNextForm = new ItemsView();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
             //Closing current form
         }
 
@@ -79,6 +83,7 @@ namespace FurnitureManagement
             //Opening requred form
             MaterialViewP ViewNextForm = new MaterialViewP();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
 
         private void MaterialAddEdit_Click(object sender, RoutedEventArgs e)
@@ -86,6 +91,7 @@ namespace FurnitureManagement
             //Opening requred form
             MaterialAddEdit ViewNextForm = new MaterialAddEdit();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
 
         private void Warehouse_Click(object sender, RoutedEventArgs e)
@@ -93,42 +99,49 @@ namespace FurnitureManagement
             //Opening requred form
             WarehouseView ViewNextForm = new WarehouseView();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
         private void LocationList_Click(object sender, RoutedEventArgs e)
         {
             //Opening requred form
             LocationListView ViewNextForm = new LocationListView();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
 
         private void MaterialRateChange_Click(object sender, RoutedEventArgs e)
         {
             MaterialRateEdit ViewNextForm = new MaterialRateEdit();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
 
         private void AddBlock_Click(object sender, RoutedEventArgs e)
         {
             AddEditBlock ViewNextForm = new AddEditBlock();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
 
         private void AddSubBlock_Click(object sender, RoutedEventArgs e)
         {
             AddEditSubBlock ViewNextForm = new AddEditSubBlock();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
 
         private void MailView_Click(object sender, RoutedEventArgs e)
         {
             AddMail ViewNextForm = new AddMail();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
 
         private void MaterialAssignView_Click(object sender, RoutedEventArgs e)
         {
             MaterialAssignView ViewNextForm = new MaterialAssignView();
             Frame.Content = ViewNextForm;
+            Frame.NavigationService.RemoveBackEntry();
         }
     }
 }

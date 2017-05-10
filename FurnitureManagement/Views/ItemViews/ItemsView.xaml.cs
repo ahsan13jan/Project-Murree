@@ -123,5 +123,54 @@ namespace FurnitureManagement.Views.ItemViews
             dataGrid.ItemsSource = null;
             dataGrid.ItemsSource = listItems;
         }
+
+        private void CheckBoxChangedJobs(object sender, RoutedEventArgs e)
+        {
+            if ((bool)C_Jobs.IsChecked)
+            {
+                CB_Jobs.IsEnabled = true;
+            }
+            else
+            {
+                CB_Jobs.IsEnabled = false;
+                CB_Jobs.SelectedIndex = -1;
+            }
+        }
+        private void CheckBoxChangedJobItems(object sender, RoutedEventArgs e)
+        {
+            if ((bool)C_JobItems.IsChecked)
+            {
+                CB_JobItems.IsEnabled = true;
+            }
+            else
+            {
+                CB_JobItems.IsEnabled = false;
+                CB_JobItems.SelectedIndex = -1;
+            }
+        }
+        private void CheckBoxChangedLocation(object sender, RoutedEventArgs e)
+        {
+            if ((bool)C_Locations.IsChecked)
+            {
+                CB_Locations.IsEnabled = true;
+            }
+            else
+            {
+                CB_Locations.IsEnabled = false;
+                CB_Locations.SelectedIndex = -1;
+            }
+        }
+        private void CheckBoxChangedArticles(object sender, RoutedEventArgs e)
+        {
+            if ((bool)C_Articles.IsChecked)
+            {
+                CB_Articles.IsEnabled = true;
+            }
+            else
+            {
+                CB_Articles.IsEnabled = false;
+                CB_Articles.SelectedIndex = -1;
+            }
+        }
     }
 }

@@ -14,11 +14,18 @@ namespace FurnitureManagement
     /// </summary>
     public partial class App : Application
     {
+        public  FurnitureEntities sharedInstance
+        {
+            get
+            {
+                return new FurnitureEntities();
+            }
+        }
     }
 
     public static class Context
     {
-        
+
 
         public static FurnitureEntities sharedInstance
         {
