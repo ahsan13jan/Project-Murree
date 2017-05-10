@@ -33,9 +33,9 @@
                 <Button Click="btn_Search_Click">Search</Button>
             </StackPanel>
         </StackPanel>
-        <ScrollViewer Margin="5,94,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="5" >
+        <ScrollViewer Margin="5,94,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="5"  >
             <Grid  >
-                <DataGrid Name="dataGrid"  >
+                <DataGrid Name="dataGrid"  RowHeight="30" >
                     <DataGrid.Columns>
 
                         <DataGridTextColumn Header="ID" Width="25" Binding="{Binding Id}" />
@@ -43,16 +43,13 @@
                         <DataGridTextColumn Header="Subject" Width="160" Binding="{Binding Subject}" />
                         <DataGridTextColumn Header="Filed In " Width="100" Binding="{Binding FiledIn}" />
                         <DataGridTextColumn Header="Page No" Width="60" Binding="{Binding PageNo}" />
-                        <DataGridTextColumn Header="Mail Type"  Width="100" Binding="{Binding MailType.MailType1.Type}" />
+                        <DataGridTextColumn Header="Mail Type"  Width="100" Binding="{Binding MailType1.Type}" />
                         <DataGridTextColumn Header="Date"  Width="130" Binding="{Binding Date}" />
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Name="btn_scanned" Click="btn_scannedPath" >
-
-
-
-
+                                        <Image Source="/Resources/images.png" Width="100" Height="25"></Image>
                                     </Button>
 
                                 </DataTemplate>

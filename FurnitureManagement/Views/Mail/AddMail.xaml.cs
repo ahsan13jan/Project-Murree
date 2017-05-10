@@ -55,6 +55,13 @@ namespace FurnitureManagement.Views.Mail
                 }
             }
             
+            cmb_mailDetailType.SelectedIndex = -1;
+            txt_pageNo.Text = "";
+            txt_subject.Text = "";
+            txt_fileIn.Text = "";
+            dtp_mail.SelectedDate = new DateTime();
+            dtp_mail.DisplayDate = DateTime.Now;
+            
         }
 
         private void BindCombo()
@@ -141,7 +148,7 @@ namespace FurnitureManagement.Views.Mail
                     MessageBox.Show(errorMsg, "ERROR", MessageBoxButton.OK);
                     return;
                 }
-                obj.RepliedEmailId = replyList[index].Id;
+                obj.RepliedEmailId = replyList[cmb_Replyaginst.SelectedIndex].Id;
             }
             MailDetailService.addMailDetail(obj);
             destinationPath = "";
@@ -151,13 +158,17 @@ namespace FurnitureManagement.Views.Mail
             txt_pageNo.Text = "";
             txt_subject.Text = "";
             txt_fileIn.Text = "";
+            dtp_mail.SelectedDate = new DateTime();
+            dtp_mail.DisplayDate = DateTime.Now;
             BindDataGrid();
 
         }
 
         private void BindDataGrid()
         {
-            dataGrid.ItemsSource = MailDetailService.getAllMailDetails();
+
+            List<MailDetail> list=MailDetailService.getAllMailDetails();
+            dataGrid.ItemsSource = list;
         }
 
         private void btn_scannedPath(object sender, RoutedEventArgs e)
@@ -171,7 +182,7 @@ namespace FurnitureManagement.Views.Mail
         {
             if ((int)cmb_mailDetailType.SelectedIndex != -1)
             {
-                if (cmb_mailDetailType.SelectedItem.ToString() == "Replied")
+                if (cmb_mailDetailType.SelectedItem.ToString() == "Replied" && (int) cmb_mailType.SelectedValue==2)
                 {
                     lbl_Replyagainst.Visibility = Visibility.Visible;
                     cmb_Replyaginst.Visibility = Visibility.Visible;

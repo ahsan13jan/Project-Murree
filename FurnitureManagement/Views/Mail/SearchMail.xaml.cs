@@ -22,9 +22,9 @@ namespace FurnitureManagement.Views.Mail
     {
         List<MailDetail> listMailDetail;
         int mailType;
-        DateTime? toDate=null;
+        DateTime? toDate;
        
-        DateTime? fromDate=null;
+        DateTime? fromDate;
         int type;
         List<TypeClass> listType;
         public SearchMail()
@@ -45,8 +45,8 @@ namespace FurnitureManagement.Views.Mail
             mailType = (int)cmb_MailType.SelectedValue;
              toDate = null;
             fromDate = null;
-            dtp_toDate.SelectedDate = fromDate;
-            dtp_fromDate = new DatePicker();
+            dtp_toDate.SelectedDate = new DateTime(); ;
+            dtp_fromDate.SelectedDate = new DateTime();
             cmb_Replied.SelectedValue = 0;
            
              type=0;
@@ -57,8 +57,12 @@ namespace FurnitureManagement.Views.Mail
         private void btn_scannedPath(object sender, RoutedEventArgs e)
         {
             var obj = (MailDetail)dataGrid.SelectedItem;
-            ImageViewer img = new ImageViewer(obj.ScannedCopy);
-            img.Show(); 
+            if (obj.ScannedCopy != null)
+            {
+                ImageViewer img = new ImageViewer(obj.ScannedCopy);
+                img.Show();
+            }
+            
         }
 
         private void cmb_Replied_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -81,16 +85,30 @@ namespace FurnitureManagement.Views.Mail
 
         private void dtp_selectedDate_changed(object sender, SelectionChangedEventArgs e)
         {
-            
-            toDate = (DateTime)dtp_toDate.SelectedDate;
-            BindDataGrid();
+            if (dtp_toDate.SelectedDate.ToString() != "1/1/0001 12:00:00 AM")
+            {
+                toDate = (DateTime)dtp_toDate.SelectedDate;
+                BindDataGrid();
+            }
+            else
+            {
+                dtp_toDate.DisplayDate = DateTime.Now;
+                toDate = null;
+            }
         }
 
         private void dtp_fromDate_selectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          
-            fromDate =(DateTime) dtp_fromDate.SelectedDate;
-            BindDataGrid();
+            if (dtp_fromDate.SelectedDate.ToString() != "1/1/0001 12:00:00 AM")
+            {
+                fromDate = (DateTime)dtp_fromDate.SelectedDate;
+                BindDataGrid();
+            }
+            else
+            {
+                dtp_fromDate.DisplayDate = DateTime.Now;
+                fromDate = null;
+            }
         }
 
          private void BindDataGrid()

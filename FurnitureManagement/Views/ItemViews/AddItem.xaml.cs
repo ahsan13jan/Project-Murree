@@ -58,14 +58,15 @@ namespace FurnitureManagement.Views.ItemViews
             itemCounter++;
             int margin = 5;
             StackPanel sp = new StackPanel();
-            sp.Margin = new Thickness(10, 5, 0, 0);
-            sp.Height = 30;
+            sp.Margin = new Thickness(10, 10, 0, 0);
+            sp.Height = 35;
             sp.Name = "sp" + itemCounter;
             RegisterName("sp" + itemCounter, sp);
             sp.Orientation = Orientation.Horizontal;
             //
             ComboBox article = new ComboBox();
             article.Width = 100;
+            
             article.Margin = new Thickness(margin);
             article.ItemsSource = filteredArticles;
             article.SelectedValue = "Article_Id";
@@ -76,11 +77,14 @@ namespace FurnitureManagement.Views.ItemViews
             sp.Children.Add(article);
             //
             TextBox quantity = new TextBox();
-            quantity.Width = 100;
+            quantity.Width = 110;
             quantity.Margin = new Thickness(margin);
             quantity.Name = "Item1_" + itemCounter;
             RegisterName("Item1_" + itemCounter, quantity);
             sp.Children.Add(quantity);
+
+            Style style = Application.Current.FindResource("RoundedTextBox") as Style;
+            quantity.Style = style;
             
             //
             Label rate = new Label();

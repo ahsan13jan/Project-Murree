@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,17 @@ namespace FurnitureManagement.Views.Mail
         public ImageViewer(string path)
         {
             InitializeComponent();
-            if (path == "" || path==null)
+            if (path == "" || path == null)
+            {
+                ImageControl.Source = new BitmapImage(new Uri("\\Resources\\mailImage.png", UriKind.RelativeOrAbsolute));
                 return;
+            }
             var uriSource = new Uri(path, UriKind.Absolute);
+            if(File.Exists(uriSource.LocalPath))
             ImageControl.Source = new BitmapImage(uriSource);
+            else
+                ImageControl.Source =new BitmapImage(new Uri("\\Resources\\mailImage.png", UriKind.RelativeOrAbsolute));
+
         }
 
         private void SV_ScrollChanged(object sender, ScrollChangedEventArgs e)

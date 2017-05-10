@@ -60,7 +60,7 @@
         
 
         <Label Grid.Row="4" Grid.Column="2" >Job Description</Label>
-        <TextBox Name="Input_Description" Grid.Row="4" Grid.Column="3" Width="150" Grid.RowSpan="2"></TextBox>
+        <TextBox Style="{StaticResource  RoundedTextBox1}" Name="Input_Description" Grid.Row="4" Grid.Column="3" Width="150" Grid.RowSpan="2"></TextBox>
 
         <Label Grid.Row="5" Grid.Column="0" >Amount Contract</Label>
         <TextBox Name="Input_AmountContract" Grid.Row="5" Grid.Column="1" Width="150" Style="{StaticResource  RoundedTextBox}" ></TextBox>

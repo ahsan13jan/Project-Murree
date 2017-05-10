@@ -87,22 +87,29 @@
                                Visibility="Collapsed" Foreground="Gray" FontFamily="Arial" FontSize="15"/>
 
                         </Grid>
-                        <!--<ControlTemplate.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Text" Value=""/>
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
-                            </MultiTrigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" Value="DimGray"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>-->
                     </ControlTemplate>
-
-                </Setter.Value>
+</Setter.Value>
             </Setter>
         </Style>
+        
+         <Style x:Key="RoundedTextBox1" TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid Height="auto"  >
+                            <Border Background="White" BorderBrush="Black" BorderThickness="1" CornerRadius="5" />
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="Gray" FontFamily="Arial" FontSize="15"/>
+
+                        </Grid>
+                    </ControlTemplate>
+</Setter.Value>
+            </Setter>
+        </Style>
+        
+        
 
 
 
