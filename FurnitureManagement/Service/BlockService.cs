@@ -39,7 +39,9 @@ namespace FurnitureManagement.Service
         }
         public static List<Block> getBlocks()
         {
-            return Context.sharedInstance.Blocks.Where(x => !(bool)x.IsDeleted && x.ParentId == null).ToList();
+            return Context.sharedInstance.Blocks.Where(x => !(bool)x.IsDeleted && x.ParentId == null ).ToList();
+
+           
         }
         public static List<Block> getSubBlocks( int blockId )
         {

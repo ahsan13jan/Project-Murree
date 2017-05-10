@@ -72,7 +72,7 @@ namespace FurnitureManagement.Views.LocationN
                 else
                 {
 
-                    var location = new Location() { BlockId = listBlock[CB_Block.SelectedIndex].Id, SubBlockId = filteredBlocks[CB_SubBlock.SelectedIndex].Id, Category = cmb_CategoryLocation.SelectedIndex + 1 };
+                    var location = new Location() { BlockId = filteredBlocks[CB_Block.SelectedIndex].Id, SubBlockId = listSubBlock[CB_SubBlock.SelectedIndex].Id, Category = cmb_CategoryLocation.SelectedIndex + 1 };
 
                     var officer = new Officer()
                     {
@@ -265,7 +265,8 @@ namespace FurnitureManagement.Views.LocationN
             if (CB_Block.SelectedIndex != -1)
             {
                 CB_SubBlock.ItemsSource = null;
-                CB_SubBlock.ItemsSource = BlockService.getSubBlocks(filteredBlocks[CB_Block.SelectedIndex].Id);
+                listSubBlock = BlockService.getSubBlocks(filteredBlocks[CB_Block.SelectedIndex].Id).ToList().Where(x=> x.Locations1.Count == 0).ToList();
+                CB_SubBlock.ItemsSource = listSubBlock;
             }
 
         }
