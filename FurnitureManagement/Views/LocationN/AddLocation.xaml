@@ -60,7 +60,7 @@
 
         <StackPanel Name="SP_Officer" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6"  Visibility="Collapsed">
             <StackPanel Orientation="Horizontal">
-                <Label Width="100" Margin="0,5,5,5">Location</Label>
+                <Label  Visibility="Hidden" Width="100" Margin="0,5,5,5">Location</Label>
                 <Label Width="100" Margin="7,5,5,5">Occupant Name</Label>
                 <Label Width="100" Margin="8,5,5,5">Rank</Label>
                 <Label Width="100" Margin="7,5,5,5">Army No</Label>
@@ -70,7 +70,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <!--<TextBox Name="txt_LocationName" Width="100" ></TextBox>-->
-                <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black" Margin="5,5,5,5">
+                <Border CornerRadius="5" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Margin="5,5,5,5">
                     <TextBox Name="txt_LocationName" Background="Transparent" BorderThickness="0" Height="15" Width="100" />
                 </Border>
 
@@ -104,7 +104,10 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="100" Name="txt_unitNumber"></TextBox>
+                <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black" Margin="5,5,5,5">
+
+                    <TextBox Width="100" Name="txt_unitNumber"></TextBox>
+                </Border>
             </StackPanel>
 
 
