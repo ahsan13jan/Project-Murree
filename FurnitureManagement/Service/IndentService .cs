@@ -11,12 +11,17 @@ namespace FurnitureManagement.Service
     {
         public static void addIndent( Indent indent , List<Material> list )
         {
-            indent.IsDeleted = false;
-            indent.CreatedAt = DateTime.Now;
-            var con = Context.sharedInstance;
-            con.Indents.Add(indent);
-            con.SaveChanges();
-            IndentMateralService.addIndentMaterial(indent, list);
+            using (var Context = new FurnitureEntities())
+            {
+                indent.IsDeleted = false;
+                indent.CreatedAt = DateTime.Now;
+                var con = Context;
+                con.Indents.Add(indent);
+                con.SaveChanges();
+                IndentMateralService.addIndentMaterial(indent, list);
+            }
+
+            
 
         }
         public static void deleteIndent(int id)

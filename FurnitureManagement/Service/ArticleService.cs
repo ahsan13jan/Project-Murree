@@ -11,17 +11,30 @@ namespace FurnitureManagement.Service
     {
         public static List<Article> getArticlesByCategory( int catId )
         {
-            return Context.sharedInstance.Articles.Where(x => x.Category1.Category_Id == catId).ToList();
+            using (var Context = new FurnitureEntities())
+            {
+                return Context.Articles.Where(x => x.Category1.Category_Id == catId).ToList();
+            }
+                
         }
         public static List<Article> getArticles()
         {
-            return Context.sharedInstance.Articles.ToList();
+            using (var Context = new FurnitureEntities())
+            {
+                return Context.Articles.ToList();
+            }
+            
         }
 
         public static int getArticleCount( int articleId )
         {
-            var article = Context.sharedInstance.Articles.Find(articleId);
-            return article.JobItems.Sum(x => x.Quantity).Value ;
+            using (var Context = new FurnitureEntities())
+            {
+                var article = Context.Articles.Find(articleId);
+                return article.JobItems.Sum(x => x.Quantity).Value;
+            }
+
+            
         }
 
     }
