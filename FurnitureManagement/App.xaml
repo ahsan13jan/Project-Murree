@@ -63,7 +63,7 @@
             <Setter Property = "HorizontalContentAlignment" Value = "Center" />
             <Setter Property = "VerticalContentAlignment" Value = "Center" />
 
-            <Setter Property="Template">
+            <!--<Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="5" Background="#acad9f" BorderBrush="#ccc" BorderThickness="0,1,1,0" >
@@ -71,7 +71,7 @@
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
-            </Setter>
+            </Setter>-->
         </Style>
 
 
