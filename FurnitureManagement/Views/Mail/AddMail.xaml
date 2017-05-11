@@ -63,7 +63,7 @@
         <Button Name="btn_Search" Grid.Column="2" Grid.Row="3" Content="Search" Click="btn_SearchClick" Width="100" Margin="41,20,119,78"/>
 
         <ScrollViewer Margin="5,110,0,0" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Height="180" Grid.RowSpan="4" >
-            <Grid  >
+            <Grid>
                 <DataGrid Name="dataGrid" AlternatingRowBackground="LightGray" HeadersVisibility="All" RowHeight="30" CanUserAddRows="False"  >
                     <DataGrid.Columns>
 

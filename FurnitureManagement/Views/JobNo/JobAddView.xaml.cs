@@ -58,6 +58,7 @@ namespace FurnitureManagement.Views.JobNo
                 int id = (int)added.Category;
                 added.CATEGORYDESC = JobService.CategoryDescription(id);
                 listOfJobs.Add(added);
+                MessageBox.Show("Job Added Successfully.");
                 refreshGrid();
             }
             else
@@ -69,6 +70,17 @@ namespace FurnitureManagement.Views.JobNo
         }
         void refreshGrid()
         {
+
+            Input_AmountApproval.Text = "";
+            Input_AmountContract.Text = "";
+            Input_CompletionDate.SelectedDate = null;
+            Input_ContractorName.Text = "";
+            Input_FinancialYear.SelectedDate = null;
+            Input_CANo.Text = "";
+            Input_Description.Text = "";
+            Input_JobNo.Text = "";
+            cmb_Category.SelectedValue = -1;
+
             dataGrid.ItemsSource = null;
             dataGrid.ItemsSource = listOfJobs;
         }
@@ -96,20 +108,26 @@ namespace FurnitureManagement.Views.JobNo
         {
             string message = null;
 
+            int n;
+            bool isNumeric = int.TryParse("123", out n);
+
             if (Input_JobNo.Text == "")
                 message = message + "Input JobNo :\n";
             if (Input_CANo.Text == "")
                 message = message + "Input CANNo :\n";
             if (Input_ContractorName.Text == "")
                 message = message + "Input Contractor :\n";
-            if (Input_AmountApproval.Text == "")
+            if (Input_AmountApproval.Text == "" || !int.TryParse(Input_AmountApproval.Text, out n) )
                 message = message + "Input Amount Approval :\n";
+
+
+            
 
             if (Input_FinancialYear.SelectedDate == null)
                 message = message + "Input Financial Year :\n";
             if (Input_Description.Text == "")
                 message = message + "Input Description :\n";
-            if (Input_AmountContract.Text == "")
+            if (Input_AmountContract.Text == "" || !int.TryParse(Input_AmountContract.Text, out n))
                 message = message + "Input Amount Contract :\n";
             if (Input_CompletionDate.SelectedDate == null)
                 message = message + "Input Complettion Date :\n";

@@ -21,7 +21,6 @@ namespace FurnitureManagement.Service
             var context = Context.sharedInstance;
             context.ItemLocations.Add(toAdd);
             context.SaveChanges();
-
         }
 
     }
