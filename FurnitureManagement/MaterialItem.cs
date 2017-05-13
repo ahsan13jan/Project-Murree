@@ -21,8 +21,10 @@ namespace FurnitureManagement
         public Nullable<int> Rate { get; set; }
         public bool IsDeleted { get; set; }
         public System.DateTime CreatedAt { get; set; }
+        public Nullable<int> LocationId { get; set; }
     
         public virtual Item Item { get; set; }
         public virtual Material Material { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

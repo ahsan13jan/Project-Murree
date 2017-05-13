@@ -21,6 +21,7 @@ namespace FurnitureManagement
             this.ItemLocations = new HashSet<ItemLocation>();
             this.Officers = new HashSet<Officer>();
             this.Units = new HashSet<Unit>();
+            this.MaterialItems = new HashSet<MaterialItem>();
         }
     
         public int Id { get; set; }
@@ -41,5 +42,7 @@ namespace FurnitureManagement
         public virtual ICollection<Officer> Officers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Unit> Units { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MaterialItem> MaterialItems { get; set; }
     }
 }

@@ -53,8 +53,8 @@
 
                     </ComboBox>
                     <TextBox Name="Item1_0" Width="110" Margin="5" Style="{StaticResource  RoundedTextBox}" ></TextBox>
-                    <Label Name="Item2_0" Width="100" Margin="5" FontSize="9"  ></Label>
-                    <Label Name="Item3_0" Width="100" Margin="5" FontSize="9" ></Label>
+                    <TextBox Name="Item2_0" Width="100" Margin="5" Style="{StaticResource  RoundedTextBox}" FontSize="9" IsEnabled="False" ></TextBox>
+                    <TextBox Name="Item3_0" Width="100" Margin="5" Style="{StaticResource  RoundedTextBox}" FontSize="9" IsEnabled="False" ></TextBox>
 
                 </StackPanel>
 

@@ -87,19 +87,23 @@ namespace FurnitureManagement.Views.ItemViews
             quantity.Style = style;
             
             //
-            Label rate = new Label();
+            TextBox rate = new TextBox();
             rate.Width = 100;
             rate.Margin = new Thickness(margin);
             rate.Name = "Item2_" + itemCounter;
             rate.FontSize = 9;
+            rate.IsEnabled = false;
+            rate.Style = style;
             RegisterName("Item2_" + itemCounter, rate);
             sp.Children.Add(rate);
             //
-            Label accUnit = new Label();
+            TextBox accUnit = new TextBox();
             accUnit.Width = 100;
             accUnit.FontSize = 9;
             accUnit.Margin = new Thickness(margin);
             accUnit.Name = "Item3_" + itemCounter;
+            accUnit.IsEnabled = false;
+            accUnit.Style = style;
             RegisterName("Item3_" + itemCounter, accUnit);
             sp.Children.Add(accUnit);
             //
@@ -127,11 +131,11 @@ namespace FurnitureManagement.Views.ItemViews
                 sp.Children.Remove(quantity);
                 UnregisterName("Item1_" + itemCounter);
 
-                var rate  =  ((Label)FindName("Item2_" + itemCounter));
+                var rate  =  ((TextBox)FindName("Item2_" + itemCounter));
                 sp.Children.Remove(rate);
                 UnregisterName("Item2_" + itemCounter);
 
-                var acccUnit =  ((Label)FindName("Item3_" + itemCounter));
+                var acccUnit =  ((TextBox)FindName("Item3_" + itemCounter));
                 sp.Children.Remove(acccUnit);
                 UnregisterName("Item3_" + itemCounter);
 
@@ -201,8 +205,8 @@ namespace FurnitureManagement.Views.ItemViews
                 articleCB.ItemsSource = filteredArticles;
 
                 ((TextBox)FindName("Item1_" + a)).Text = "";
-                ((Label)FindName("Item2_" + a)).Content = "";
-                ((Label)FindName("Item3_" + a)).Content = "";
+                ((TextBox)FindName("Item2_" + a)).Text = "";
+                ((TextBox)FindName("Item3_" + a)).Text = "";
             }
         }
 
@@ -215,8 +219,8 @@ namespace FurnitureManagement.Views.ItemViews
 
             if (selectedIndex != -1 && selectedArticleIndex != -1)
             {
-                ((Label)FindName("Item2_" + selectedIndex)).Content = filteredArticles[selectedArticleIndex].Rate.ToString();
-                ((Label)FindName("Item3_" + selectedIndex)).Content = filteredArticles[selectedArticleIndex].Acc_Unit.ToString();
+                ((TextBox)FindName("Item2_" + selectedIndex)).Text = filteredArticles[selectedArticleIndex].Rate.ToString();
+                ((TextBox)FindName("Item3_" + selectedIndex)).Text = filteredArticles[selectedArticleIndex].Acc_Unit.ToString();
             }
         }
 
@@ -243,8 +247,8 @@ namespace FurnitureManagement.Views.ItemViews
         {
             ((ComboBox)FindName("Item0_0")).SelectedIndex = -1;
             ((TextBox)FindName("Item1_0")).Text = "";
-            ((Label)FindName("Item2_0")).Content = "";
-            ((Label)FindName("Item3_0")).Content = "";
+            ((TextBox)FindName("Item2_0")).Text = "";
+            ((TextBox)FindName("Item3_0")).Text = "";
 
             CB_Job.SelectedIndex = -1;
             while ( itemCounter > 0)

@@ -12,11 +12,13 @@ namespace FurnitureManagement.Service
         public static void assignMaterialToItem ( int itemId , int materialId , decimal quantity , int rate )
         {
             var instance = Context.sharedInstance;
+            int? locationId = instance.Items.Find(itemId).LocationID;
             var materialItem = new MaterialItem();
             materialItem.ItemId = itemId;
             materialItem.MaterialId = materialId;
             materialItem.Quantity = quantity;
             materialItem.Rate = rate;
+            materialItem.LocationId = locationId;
             materialItem.IsDeleted = false;
             materialItem.CreatedAt = DateTime.Now;
             instance.MaterialItems.Add(materialItem);
@@ -33,14 +35,20 @@ namespace FurnitureManagement.Service
             return list;
         }
 
-        public static List<MaterialItem> getMaterialItemFilter( DateTime? from , DateTime? to , int? articleId )
+        public static List<MaterialItem> getMaterialItemFilter( DateTime? from , DateTime? to , int? articleId  , int? locationId)
         {
+            if (locationId == null)
+                locationId = 0;
+            if (locationId == 0)
+                locationId = null;
+
             var instance = Context.sharedInstance;
 
             var list = instance.MaterialItems.Where(x =>
             ( x.CreatedAt >= from || from == null ) && 
             (x.CreatedAt <= to || to == null) && 
-            (x.Item.JobItem.ArticleId == articleId  || articleId == null  )  && 
+            (x.Item.JobItem.ArticleId == articleId  || articleId == null   )  &&
+            (x.LocationId == locationId || locationId == 0) &&
             !x.IsDeleted).ToList();
 
             return list;

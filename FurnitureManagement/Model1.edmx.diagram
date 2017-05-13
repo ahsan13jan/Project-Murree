@@ -45,6 +45,7 @@
         <AssociationConnector Association="FurnitureModel.FK_ItemLocation_Location" />
         <AssociationConnector Association="FurnitureModel.FK_Officer_Location" />
         <AssociationConnector Association="FurnitureModel.FK_Unit_Location" />
+        <AssociationConnector Association="FurnitureModel.FK_MaterialItem_ToLocationID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

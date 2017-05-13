@@ -30,12 +30,20 @@
                 <Label Width="100" Margin="0,0,5,0">From</Label>
                 <Label Width="100" Margin="0,0,5,0">To</Label>
                 <Label Width="100" Margin="0,0,5,0">Article</Label>
+                <Label Width="100" Margin="0,0,5,0">Location</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <DatePicker Name="Input_From" Width="100" Margin="0,0,5,0"  />
-                <DatePicker Name="Input_To" Width="100" Margin="0,0,5,0"   />
-                <ComboBox Name="CB_Articles" Width="100" Margin="0,0,5,0" DisplayMemberPath="Article_DESC" SelectedValuePath="Article_Id" SelectionChanged="Articles_SelectionChanged" />
+                <DatePicker Name="Input_From" Height="25" Width="100" Margin="0,0,5,0"  IsEnabled="False" />
+                <DatePicker Name="Input_To"   Height="25" Width="100" Margin="0,0,5,0"  IsEnabled="False" />
+                <ComboBox Name="CB_Articles"  Height="25" Width="100" Margin="0,0,5,0"  IsEnabled="False"  DisplayMemberPath="Article_DESC" SelectedValuePath="Article_Id" SelectionChanged="Articles_SelectionChanged" />
+                <ComboBox Name="CB_Locations" Height="25" Width="100" Margin="0,0,5,0"  IsEnabled="False" DisplayMemberPath="Display" SelectedValuePath="Id" SelectionChanged="Location_SelectionChanged" />
                 <Button Click="Update_Click"> Update</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <CheckBox Name="C_InputFrom" Width="100" Margin="40,0,5,0"  Checked="CheckBoxChangedInputFrom" Unchecked="CheckBoxChangedInputFrom"   />
+                <CheckBox Name="C_InputTo" Width="100" Margin="0,0,5,0"  Checked="CheckBoxChangedInputTo" Unchecked="CheckBoxChangedInputTo"    />
+                <CheckBox Name="C_Articles" Width="100" Margin="0,0,5,0" Checked="CheckBoxChangedArticles" Unchecked="CheckBoxChangedArticles"   />
+                <CheckBox Name="C_Locations" Width="100" Margin="0,0,5,0"  Checked="CheckBoxChangedLocation" Unchecked="CheckBoxChangedLocation"   />
             </StackPanel>
         </StackPanel>
         <ScrollViewer Margin="5,10,0,0" Grid.Row="2" Grid.Column="0"  Height="350" >
@@ -46,6 +54,7 @@
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                      <DataGridTextColumn Header="Item" Binding="{Binding Item.UIN}" />
                         <DataGridTextColumn Header="Article" Binding="{Binding Item.JobItem.Article.Article_DESC}" />
+                        <DataGridTextColumn Header="Location" Binding="{Binding Location.Display}" />
                         <DataGridTextColumn Header="Material" Binding="{Binding Material.Name}" />
                         <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
                         <DataGridTextColumn Header="Rate" Binding="{Binding Rate}" />

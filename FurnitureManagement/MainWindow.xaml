@@ -39,7 +39,7 @@
         <!--HEADER-->
 
         <StackPanel Grid.Row="0"  Margin="0,0,0,5">
-            <Label HorizontalAlignment="Left" FontSize="25" FontWeight="Medium" >Furniture Management</Label>
+            <Label HorizontalAlignment="Left" FontSize="25" FontWeight="Medium" >Inventory Management System-Murree</Label>
             <DockPanel x:Name="docPanWeaponsView" LastChildFill="False" Margin="0,5">
                 <Menu Name="menuMain" Height="25" DockPanel.Dock="Top" >
 
