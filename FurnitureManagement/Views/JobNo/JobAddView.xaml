@@ -87,7 +87,8 @@
 
 
 
-        <Grid Margin="10" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="5" >
+        <ScrollViewer Margin="10" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="5" Height="200">
+        <Grid  >
             <DataGrid Name="dataGrid"  AutoGenerateColumns="False" CanUserAddRows="False"  >
                 <DataGrid.ContextMenu>
                     <ContextMenu>
@@ -109,22 +110,22 @@
                 
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Job No" Binding="{Binding JobNo}" />
-                    <DataGridTextColumn Header="Category" Binding="{Binding CATEGORYDESC }" />
-                    <DataGridTextColumn Header="CA No" Binding="{Binding CANo}" />
-                    <DataGridTextColumn Header="Contractor Name" Binding="{Binding ContractorName}" />
-                    <DataGridTextColumn Header="Amount Approval" Binding="{Binding AmountApproval}" />
-                    <DataGridTextColumn Header="Financial Year" Binding="{Binding FinancialYear}" />
-                    <DataGridTextColumn Header="Job Description" Binding="{Binding JobDescription}" />
-                    <DataGridTextColumn Header="Amount Contract" Binding="{Binding AmountContract}" />
-                    <DataGridTextColumn Header="Completion Date" Binding="{Binding CompletionDate}" />
-                    
-                    <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt }" />
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Job No" Binding="{Binding JobNo}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Category" Binding="{Binding CATEGORYDESC }" IsReadOnly="True" />
+                        <DataGridTextColumn Header="CA No" Binding="{Binding CANo}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Contractor Name" Binding="{Binding ContractorName}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Amount Approval" Binding="{Binding AmountApproval}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Financial Year" Binding="{Binding FinancialYear}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Job Description" Binding="{Binding JobDescription}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Amount Contract" Binding="{Binding AmountContract}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Completion Date" Binding="{Binding CompletionDate}" IsReadOnly="True"/>
+
+                        <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt }" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-
+        </ScrollViewer>
 
 
 

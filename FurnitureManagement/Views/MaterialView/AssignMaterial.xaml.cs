@@ -38,7 +38,7 @@ namespace FurnitureManagement.Views.MaterialView
         void getData()
         {
             Input_Quantity.Text = "";
-            Input_RemaingQuantity.Content = "";
+            Input_RemaingQuantity.Text = "";
             CB_Material.ItemsSource = null;
             CB_Material.SelectedIndex = -1;
             materialList = MaterialService.getMaterialModels();
@@ -54,7 +54,7 @@ namespace FurnitureManagement.Views.MaterialView
             int selectedIndex = CB_Material.SelectedIndex;
             if (selectedIndex >= 0 && selectedIndex <= materialList.Count)
             {
-                Input_RemaingQuantity.Content = materialList[selectedIndex].Quantity;
+                Input_RemaingQuantity.Text = materialList[selectedIndex].Quantity.ToString();
             }
 
         }

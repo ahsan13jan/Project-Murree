@@ -34,7 +34,7 @@
 
         <local:Header Grid.Row="0" Grid.ColumnSpan="4"  Margin="0,0,0,10"/>
 
-        <Label  Grid.Row="1"  Grid.Column="0" FontSize="14" FontWeight="Normal">Assign Furniture</Label>
+        <Label  Grid.Row="1"  Grid.Column="0" Style="{StaticResource SubHeading}" >Assign Furniture</Label>
 
         <Label Grid.Row="2" Grid.Column="0" >Location</Label>
         <ComboBox Grid.Row="2" Name="cmblocation" Grid.Column="1" Width="150" Height="25"
@@ -73,7 +73,9 @@
 
         <Button Grid.Row="6" Grid.Column="1" Width="100" Click="Assign_Click" Name="btnAssign" Margin="5" >Assign</Button>
 
-        <Grid Margin="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" >
+        <ScrollViewer Margin="10" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Height="200">
+        <Grid  >
+            
             <DataGrid Name="dataGrid"  CanUserAddRows="False"
                       AutoGenerateColumns="False">
 
@@ -88,13 +90,13 @@
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Location" Binding="{Binding Location.Display}" />
-                    <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}" />
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Location" Binding="{Binding Location.Display}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}" IsReadOnly="True" />
 
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-
+        </ScrollViewer>
     </Grid>
 </Page>

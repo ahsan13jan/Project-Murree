@@ -52,13 +52,13 @@
             <DataGrid Name="dataGrid"  >
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="UIN" Binding="{Binding UIN}" />
-                     <DataGridTextColumn Header="Job No" Binding="{Binding JobItem.Job.JobNo}" />
-                        <DataGridTextColumn Header="Category" Binding="{Binding JobItem.Job.Category1.Category_DESC}" />
-                        <DataGridTextColumn Header="Article" Binding="{Binding JobItem.Article.Article_DESC}" />
-                         <DataGridTextColumn Header="Location" Binding="{Binding Location.Display}" />
-                        <DataGridTextColumn Header="Financial Year" Binding="{Binding JobItem.Job.FinancialYear}" />
-                    <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}" />
+                    <DataGridTextColumn Header="UIN" Binding="{Binding UIN}"  IsReadOnly="True" />
+                        <DataGridTextColumn Header="Job No" Binding="{Binding JobItem.Job.JobNo}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Category" Binding="{Binding JobItem.Job.Category1.Category_DESC}"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Article" Binding="{Binding JobItem.Article.Article_DESC}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Location" Binding="{Binding Location.Display}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Financial Year" Binding="{Binding JobItem.Job.FinancialYear}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

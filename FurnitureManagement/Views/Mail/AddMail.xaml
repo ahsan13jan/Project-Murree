@@ -48,14 +48,14 @@
         <Label FontWeight="DemiBold" Width="90" Margin="205,9,199,11" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">Date</Label>
         <DatePicker  Name="dtp_mail" Grid.Column="2" Grid.Row="2" Width="100" Margin="41,12,119,34" Height="28"/>
         <Label FontWeight="DemiBold" Margin="192,12,173,238" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" >Subject</Label>
-        <TextBox Style="{StaticResource  RoundedTextBox1}" Name="txt_subject" Grid.Column="3" Grid.Row="2" Width="120" Margin="10,3,104,15" Visibility="Visible">
+        <TextBox Style="{StaticResource  RoundedTextBox1}" Height="25" Name="txt_subject" Grid.Column="3" Grid.Row="2" Width="120" Margin="10,3,104,15" Visibility="Visible">
         </TextBox>
         <Label Width="90" FontWeight="DemiBold" Margin="0,11,144,1" Grid.Column="1" Grid.Row="3">Filed In</Label>
-        <TextBox Style="{StaticResource  RoundedTextBox}" Name="txt_fileIn" Width="100" Grid.Column="1" Grid.Row="3" Height="28" Margin="72,11,62,183" RenderTransformOrigin="0.517,-0.19"/>
+        <TextBox Style="{StaticResource  RoundedTextBox}" Name="txt_fileIn" Width="100" Grid.Column="1" Grid.Row="3" Height="28" Margin="72,5,62,183" RenderTransformOrigin="0.517,-0.19"/>
         <Label Width="90" FontWeight="DemiBold" Margin="195,9,209,10" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">Page No</Label>
-        <TextBox Style="{StaticResource  RoundedTextBox}" Name="txt_pageNo" Grid.Column="2" Width="100"  Grid.Row="3" KeyDown="txt_pageNo_KeyDown" Height="28" Margin="41,0,119,170" RenderTransformOrigin="0.262,1.137"/>
+        <TextBox Style="{StaticResource  RoundedTextBox}" Name="txt_pageNo" Grid.Column="2" Width="100"  Grid.Row="3" KeyDown="txt_pageNo_KeyDown" Height="28" Margin="41,-10,119,170" RenderTransformOrigin="0.262,1.137"/>
         <Label Width="90" FontWeight="DemiBold" Margin="192,86,212,9" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2">Scanned Copy</Label>
-        <Button Name="btn_imgEmail" Grid.Column="3" Grid.Row="2" Content="Browse" Width="100" Margin="22,72,112,165" Click="btn_imgEmail_Click" Grid.RowSpan="2" ></Button>
+        <Button Name="btn_imgEmail" Grid.Column="3" Grid.Row="2" Content="Browse" Width="100" Margin="22,62,112,165" Click="btn_imgEmail_Click" Grid.RowSpan="2" ></Button>
         <Label Width="90" FontWeight="DemiBold" Margin="0,75,144,50" Grid.Column="1" Grid.Row="3" Visibility="Hidden" Name="lbl_Replyagainst">Reply Against</Label>
         <ComboBox  Name="cmb_Replyaginst" Grid.Column="1" Grid.Row="3" Width="100" Height="28" Margin="95,20,39,82" RenderTransformOrigin="0.509,1.119" Visibility="Hidden" DisplayMemberPath="replyAgaist" />
 

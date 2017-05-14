@@ -28,7 +28,7 @@
         <Label Grid.Row="1" Style="{ StaticResource SubHeading }" >Update Material Rates</Label>
         
 
-        <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Height="270">
+        <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Height="350">
             <Grid Margin="5,10"  >
                 <DataGrid Name="dataGrid"  AutoGenerateColumns="False" CanUserAddRows="False">
                     <DataGrid.Columns>
@@ -40,7 +40,7 @@
                 </DataGrid>
             </Grid>
         </ScrollViewer>
-        <Button Grid.Row="4" Grid.ColumnSpan="2" Click="Add_Click" >Add</Button>
+        <Button Grid.Row="4" Grid.ColumnSpan="2" Click="Add_Click" Margin="10" >Add</Button>
 
     </Grid>
 </Page>

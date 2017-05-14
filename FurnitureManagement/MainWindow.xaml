@@ -60,6 +60,9 @@
                         <MenuItem Header="Add SubBlock" Click="AddSubBlock_Click" />
                     </MenuItem>
 
+                    <MenuItem Header="Job"  Style="{StaticResource MenuHeading}">
+                        <MenuItem Header="Add Job" Click="AddJob_Click" />
+                    </MenuItem>
 
                     <MenuItem Header="Maintenance" Name="menuItemUniform" Style="{StaticResource MenuHeading}">
                         <MenuItem Header="Material" Click="Material_Click" />
@@ -69,9 +72,7 @@
                         <MenuItem Header="Material History" Click="MaterialAssignView_Click" />
                     </MenuItem>
 
-                    <MenuItem Header="Job"  Style="{StaticResource MenuHeading}">
-                        <MenuItem Header="Add Job" Click="AddJob_Click" />
-                    </MenuItem>
+
 
                     <MenuItem Header="Mail"  Style="{StaticResource MenuHeading}">
                         <MenuItem Header="Mail View" Click="MailView_Click" />
