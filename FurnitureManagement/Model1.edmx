@@ -13,6 +13,7 @@
           <Property Name="Article_DESC" Type="nvarchar(max)" />
           <Property Name="Acc_Unit" Type="nvarchar" MaxLength="50" />
           <Property Name="Category" Type="int" />
+          <Property Name="Multiple" Type="int" />
           <Property Name="Rate" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Prefix" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -601,6 +602,7 @@
           <NavigationProperty Name="Category1" Relationship="Self.FK_Articles_Category" FromRole="Articles" ToRole="Category" />
           <NavigationProperty Name="JobItems" Relationship="Self.FK_JobItems_ToArticle" FromRole="Articles" ToRole="JobItems" />
           <Property Name="Prefix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Multiple" Type="Int32" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -1224,6 +1226,7 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="FurnitureModel.Article">
               <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Multiple" ColumnName="Multiple" />
                 <ScalarProperty Name="Prefix" ColumnName="Prefix" />
                 <ScalarProperty Name="Article_Id" ColumnName="Article_Id" />
                 <ScalarProperty Name="Article_DESC" ColumnName="Article_DESC" />

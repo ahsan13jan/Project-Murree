@@ -139,7 +139,7 @@ namespace FurnitureManagement.Views.MaterialView
             bundle.MaterialBundleItems.ToList().ForEach(x =>
             {
 
-                MaterialItemService.assignMaterialToItem(item.Id, (int)x.MaterialId, (decimal)x.Quantity * Multiplier, (int)x.Material.Rate);
+                MaterialItemService.assignMaterialToItem(item.Id, (int)x.MaterialId, (decimal)x.Quantity * Multiplier * (decimal)item.JobItem.Article.Multiple , (int)x.Material.Rate);
 
             });
         }

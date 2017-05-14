@@ -63,7 +63,7 @@ namespace FurnitureManagement.Service
 
         public static bool IsBundleAvailable(int Id , int articleId , decimal Multipler = 1 )
         {
-
+            var articleMultiplier = Context.sharedInstance.Articles.Find(articleId).Multiple;
             var Bundle = Context.sharedInstance.MaterialBundles.Find(Id);
             bool status = true;
 
@@ -88,7 +88,7 @@ namespace FurnitureManagement.Service
 
             Bundle.MaterialBundleItems.ToList().ForEach(x=> 
             {
-                if (x.Quantity > x.Material.Quantity)
+                if (x.Quantity * articleMultiplier > x.Material.Quantity)
                     status = false;
             });
 
