@@ -22,6 +22,7 @@ namespace FurnitureManagement.Views.MaterialView
         List<Article> listArticles;
         List<MaterialItem> listMaterialItems;
         List<Location> listLocations;
+        List<Material> listMaterials;
 
 
         public MaterialAssignView()
@@ -34,11 +35,14 @@ namespace FurnitureManagement.Views.MaterialView
         {
             listArticles = ArticleService.getArticles();
             listLocations = LocationService.getLocations();
+            listMaterials = MaterialService.getMaterials();
             listLocations.Add( new Location() { Id = 0 }  );
             CB_Articles.ItemsSource = null;
             CB_Articles.ItemsSource = listArticles;
             CB_Locations.ItemsSource = null;
             CB_Locations.ItemsSource = listLocations;
+            CB_Material.ItemsSource = null;
+            CB_Material.ItemsSource = listMaterials;
         }
 
 
@@ -56,10 +60,14 @@ namespace FurnitureManagement.Views.MaterialView
         {
             updateGrid();
         }
+        private void Material_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            updateGrid();
+        }
 
         void updateGrid()
         {
-            listMaterialItems = MaterialItemService.getMaterialItemFilter(Input_From.SelectedDate , Input_To.SelectedDate , (int?)CB_Articles.SelectedValue , (int?)CB_Locations.SelectedValue);
+            listMaterialItems = MaterialItemService.getMaterialItemFilter(Input_From.SelectedDate , Input_To.SelectedDate , (int?)CB_Articles.SelectedValue , (int?)CB_Locations.SelectedValue , (int?)CB_Material.SelectedValue);
 
             listMaterialItems.ForEach( x=> {
                 if (x.Location == null)
@@ -124,6 +132,21 @@ namespace FurnitureManagement.Views.MaterialView
             {
                 CB_Locations.IsEnabled = false;
                 CB_Locations.SelectedIndex = -1;
+            }
+        }
+
+     
+
+        private void CheckBoxChangedMaterial(object sender, RoutedEventArgs e)
+        {
+            if ((bool)C_Material.IsChecked)
+            {
+                CB_Material.IsEnabled = true;
+            }
+            else
+            {
+                CB_Material.IsEnabled = false;
+                CB_Material.SelectedIndex = -1;
             }
         }
     }

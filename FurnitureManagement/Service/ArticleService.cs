@@ -26,7 +26,6 @@ namespace FurnitureManagement.Service
                 var article = Context.sharedInstance.Articles.Find(articleId);
                 return article.JobItems.Sum(x => x.Quantity).Value;
 
-
             
         }
 

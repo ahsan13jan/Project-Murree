@@ -41,7 +41,7 @@ namespace FurnitureManagement.Views.MaterialView
             Input_RemaingQuantity.Text = "";
             CB_Material.ItemsSource = null;
             CB_Material.SelectedIndex = -1;
-            materialList = MaterialService.getMaterialModels();
+            materialList = MaterialService.getMaterials();
             CB_Material.ItemsSource = materialList;
 
             bundleList = MaterialBundleService.MaterialBundles((int)item.JobItem.ArticleId);

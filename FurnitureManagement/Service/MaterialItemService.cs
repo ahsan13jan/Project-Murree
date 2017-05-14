@@ -35,7 +35,7 @@ namespace FurnitureManagement.Service
             return list;
         }
 
-        public static List<MaterialItem> getMaterialItemFilter( DateTime? from , DateTime? to , int? articleId  , int? locationId)
+        public static List<MaterialItem> getMaterialItemFilter( DateTime? from , DateTime? to , int? articleId  , int? locationId , int? materialId)
         {
             if (locationId == null)
                 locationId = 0;
@@ -49,6 +49,7 @@ namespace FurnitureManagement.Service
             (x.CreatedAt <= to || to == null) && 
             (x.Item.JobItem.ArticleId == articleId  || articleId == null   )  &&
             (x.LocationId == locationId || locationId == 0) &&
+            (x.MaterialId == materialId || materialId == null) &&
             !x.IsDeleted).ToList();
 
             return list;

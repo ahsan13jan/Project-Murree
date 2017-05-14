@@ -25,7 +25,7 @@ namespace FurnitureManagement.Views
         public MaterialViewP()
         {
             InitializeComponent();
-            listMaterial = MaterialService.getMaterialModels();
+            listMaterial = MaterialService.getMaterials();
             updateGrid();
         }
 

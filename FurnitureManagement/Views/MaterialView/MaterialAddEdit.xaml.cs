@@ -25,7 +25,7 @@ namespace FurnitureManagement.Views.MaterialView
         public MaterialAddEdit()
         {
             InitializeComponent();
-            listMaterial = MaterialService.getMaterialModels();
+            listMaterial = MaterialService.getMaterials();
             listMaterial.ForEach(x => x.Quantity = 0);
             updateGrid();
         }

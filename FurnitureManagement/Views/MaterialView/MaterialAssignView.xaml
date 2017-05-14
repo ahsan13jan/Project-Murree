@@ -31,12 +31,15 @@
                 <Label Width="100" Margin="0,0,5,0">To</Label>
                 <Label Width="100" Margin="0,0,5,0">Article</Label>
                 <Label Width="100" Margin="0,0,5,0">Location</Label>
+                <Label Width="100" Margin="0,0,5,0">Material</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <DatePicker Name="Input_From" Height="25" Width="100" Margin="0,0,5,0"  IsEnabled="False" />
                 <DatePicker Name="Input_To"   Height="25" Width="100" Margin="0,0,5,0"  IsEnabled="False" />
                 <ComboBox Name="CB_Articles"  Height="25" Width="100" Margin="0,0,5,0"  IsEnabled="False"  DisplayMemberPath="Article_DESC" SelectedValuePath="Article_Id" SelectionChanged="Articles_SelectionChanged" />
                 <ComboBox Name="CB_Locations" Height="25" Width="100" Margin="0,0,5,0"  IsEnabled="False" DisplayMemberPath="Display" SelectedValuePath="Id" SelectionChanged="Location_SelectionChanged" />
+                <ComboBox Name="CB_Material" Height="25" Width="100" Margin="0,0,5,0"  IsEnabled="False" DisplayMemberPath="Display" SelectedValuePath="Id" SelectionChanged="Material_SelectionChanged" />
+
                 <Button Click="Update_Click"> Update</Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
@@ -44,6 +47,7 @@
                 <CheckBox Name="C_InputTo" Width="100" Margin="0,0,5,0"  Checked="CheckBoxChangedInputTo" Unchecked="CheckBoxChangedInputTo"    />
                 <CheckBox Name="C_Articles" Width="100" Margin="0,0,5,0" Checked="CheckBoxChangedArticles" Unchecked="CheckBoxChangedArticles"   />
                 <CheckBox Name="C_Locations" Width="100" Margin="0,0,5,0"  Checked="CheckBoxChangedLocation" Unchecked="CheckBoxChangedLocation"   />
+                <CheckBox Name="C_Material" Width="100" Margin="0,0,5,0"  Checked="CheckBoxChangedMaterial" Unchecked="CheckBoxChangedMaterial"   />
             </StackPanel>
         </StackPanel>
         <ScrollViewer Margin="5,10,0,0" Grid.Row="2" Grid.Column="0"  Height="350" >

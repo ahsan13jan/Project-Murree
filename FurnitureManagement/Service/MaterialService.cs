@@ -33,11 +33,7 @@ namespace FurnitureManagement.Service
         }
 
 
-        public static List<Material> getMaterialModels()
-        {
-            return Context.sharedInstance.Materials.ToList();
-            
-        }
+
 
         public static List<Material> getMaterials()
         {
