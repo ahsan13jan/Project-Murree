@@ -90,8 +90,10 @@
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Location" Binding="{Binding Location.Display}" IsReadOnly="True" />
+                    
+                        <DataGridTextColumn Header="Item UIN" Binding="{Binding UIN}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Article" Binding="{Binding JobItem.Article.Article_DESC}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Location" Binding="{Binding Location.Display}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Created At" Binding="{Binding CreatedAt}" IsReadOnly="True" />
 
                 </DataGrid.Columns>

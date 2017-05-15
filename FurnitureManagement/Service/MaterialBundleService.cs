@@ -86,11 +86,24 @@ namespace FurnitureManagement.Service
                     return false;
             }
 
-            Bundle.MaterialBundleItems.ToList().ForEach(x=> 
+            if (Bundle.Id <= 3 )
             {
-                if (x.Quantity * articleMultiplier > x.Material.Quantity)
-                    status = false;
-            });
+                Bundle.MaterialBundleItems.ToList().ForEach(x =>
+                {
+                    if (x.Quantity * articleMultiplier > x.Material.Quantity)
+                        status = false;
+                });
+            }
+            else
+            {
+                Bundle.MaterialBundleItems.ToList().ForEach(x =>
+                {
+                    if (x.Quantity  > x.Material.Quantity)
+                        status = false;
+                });
+            }
+
+            
 
             return status;
         }

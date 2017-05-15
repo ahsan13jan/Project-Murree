@@ -62,14 +62,74 @@ namespace FurnitureManagement.Helper
     {
         static public decimal quantityRatio( int articleId )
         {
-            if (articleId == 1003 || articleId == 1)
-                return  (decimal)(1.0 / 4.0);
 
-            if (articleId == 1044)
-                return 1 / 2;
 
-            if (articleId == 1027)
-                return 1 / 3;
+
+
+            if (
+                articleId == 1018 ||
+                articleId == 1019 ||
+                articleId == 1020 ||
+                articleId == 1024 ||
+                articleId == 1041
+                )
+                return  (decimal)(1.0/2.0);
+
+            if (articleId == 1027 ||
+                articleId == 1028 )
+                return (decimal)(1.0 / 3.0);
+          
+
+
+            if (articleId == 2 ||
+                 articleId == 1003 ||
+                 articleId == 1006 ||
+                 articleId == 1039 ||
+                 articleId == 1022 ||
+                 articleId == 1023 ||
+                 articleId == 1009 ||
+                 articleId == 1010
+
+                 )
+                return (decimal)(1.0 / 4.0);
+
+
+
+            if (articleId == 1040)
+                return (decimal)(1.0 / 6.0);
+
+            if (
+            articleId == 1029 ||
+            articleId == 1030 ||
+            articleId == 1031 ||
+            articleId == 1032 ||
+            articleId == 1033 ||
+            articleId == 1034 ||
+            articleId == 1035 ||
+            articleId == 1037 ||
+            articleId == 1038 ||
+            articleId == 1044 ||
+            articleId == 1045 ||
+            articleId == 1046 ||
+            articleId == 1047 ||
+            articleId == 1025 ||
+            articleId == 1026
+            )
+                return (decimal)(1.0 / 8.0);
+
+
+
+
+
+
+
+            if (articleId == 1014 ||
+                articleId == 1015 ||
+                articleId == 1016 ||
+                articleId == 1042 ||
+                articleId == 1043 
+                )
+                return (decimal)(1.0 / 12.0);
 
 
             return 1;

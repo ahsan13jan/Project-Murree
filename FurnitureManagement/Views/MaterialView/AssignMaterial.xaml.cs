@@ -46,6 +46,8 @@ namespace FurnitureManagement.Views.MaterialView
 
             bundleList = MaterialBundleService.MaterialBundles((int)item.JobItem.ArticleId);
             CB_Bundle.ItemsSource = null;
+
+
             CB_Bundle.ItemsSource = bundleList;
         }
 
@@ -114,7 +116,12 @@ namespace FurnitureManagement.Views.MaterialView
             if (CB_Bundle.SelectedIndex != -1)
             {
                 dataGrid.ItemsSource = null;
-                dataGrid.ItemsSource = bundleList[CB_Bundle.SelectedIndex].MaterialBundleItems;
+                var list  = bundleList[CB_Bundle.SelectedIndex].MaterialBundleItems;
+
+                if (bundleList[CB_Bundle.SelectedIndex].Id <= 3)
+                    list.ToList().ForEach(x => x.Quantity = x.Quantity * (decimal)item.JobItem.Article.Multiple);
+
+                dataGrid.ItemsSource = list;
             }
             else
                 dataGrid.ItemsSource = null;
@@ -136,12 +143,27 @@ namespace FurnitureManagement.Views.MaterialView
             {
                 AssignBundle(MaterialBundleService.getMaterialBundleById(5), (decimal)(5.0 / 4.0));
             }
-            bundle.MaterialBundleItems.ToList().ForEach(x =>
+
+            if ( bundle.Id <= 3 )
             {
+                bundle.MaterialBundleItems.ToList().ForEach(x =>
+                {
 
-                MaterialItemService.assignMaterialToItem(item.Id, (int)x.MaterialId, (decimal)x.Quantity * Multiplier * (decimal)item.JobItem.Article.Multiple , (int)x.Material.Rate);
+                    MaterialItemService.assignMaterialToItem(item.Id, (int)x.MaterialId, (decimal)x.Quantity * Multiplier * (decimal)item.JobItem.Article.Multiple, (int)x.Material.Rate);
 
-            });
+                });
+            }
+            else
+            {
+                bundle.MaterialBundleItems.ToList().ForEach(x =>
+                {
+
+                    MaterialItemService.assignMaterialToItem(item.Id, (int)x.MaterialId, (decimal)x.Quantity * Multiplier , (int)x.Material.Rate);
+
+                });
+            }
+
+           
         }
     }
 }
